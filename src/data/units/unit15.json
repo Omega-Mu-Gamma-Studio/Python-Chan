@@ -1,8 +1,8 @@
 {
   "id": 15,
   "course": 3,
-  "title": "Unit 15 \u2014 TBD",
-  "isPublished": false,
+  "title": "Capstone Project",
+  "isPublished": true,
   "lessons": [
     "15.1",
     "15.2",

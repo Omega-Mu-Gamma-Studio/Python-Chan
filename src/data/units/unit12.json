@@ -1,8 +1,8 @@
 {
   "id": 12,
   "course": 3,
-  "title": "Unit 12 \u2014 TBD",
-  "isPublished": false,
+  "title": "Ensemble Methods and Model Tuning",
+  "isPublished": true,
   "lessons": [
     "12.1",
     "12.2",

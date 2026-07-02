@@ -1,8 +1,8 @@
 {
   "id": 14,
   "course": 3,
-  "title": "Unit 14 \u2014 TBD",
-  "isPublished": false,
+  "title": "NLP and Advanced Topics",
+  "isPublished": true,
   "lessons": [
     "14.1",
     "14.2",

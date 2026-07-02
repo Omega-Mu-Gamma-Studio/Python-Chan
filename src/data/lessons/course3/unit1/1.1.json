@@ -1,30 +1,30 @@
 {
   "id": "1.1",
-  "title": "What is C++? Why game devs love it",
+  "title": "The ML Pipeline",
   "type": "conceptual",
   "phase1": {
     "code": "",
     "output": "",
-    "explanation": "C++ is a high-performance programming language created by Bjarne Stroustrup in 1985 as an extension of C. It's the language of choice for game development, game engines, and performance-critical systems.\n\n🎮 **Why game devs love C++:**\n\n1. **Performance** — C++ compiles directly to machine code. No interpreter, no virtual machine. You control every byte. When you need 60 frames per second, C++ delivers.\n\n2. **Memory Control** — You decide exactly when and where memory is allocated. This is both powerful and dangerous. It's why games can run on consoles with 8GB of RAM while some browsers use 4GB just for three tabs.\n\n3. **Hardware Access** — C++ can talk directly to the GPU, network cards, and other hardware. That's how game engines render millions of polygons per frame.\n\n4. **Game Engines** — Unreal Engine, Godot, CryEngine, and most AAA game studios use C++ for their core systems. If you want to work in games, C++ is a non-negotiable skill.\n\n5. **Control** — C++ doesn't hide the machine from you. You see what the computer is actually doing. That's scary at first, but it's what makes you a better programmer.\n\n**What Java-chan won't tell you:**\nJava-chan is warm and friendly. She holds your hand. She hides memory management behind a garbage collector. That's fine for business apps. But games? Games need raw power. Games need control. That's where PlusPlus-chan comes in.\n\n🔥 **She doesn't hold your hand. She builds your hands.**\n\nIn this course, you'll build a complete text-based RPG from scratch — not a toy, but a real, saveable game. Every lesson gets you closer to that goal.",
-    "openingDialogue": "Java-chan is nice. I'm not. Let's build something real. 🎮🔥"
+    "explanation": "🐍 **The Machine Learning Pipeline is a step-by-step process for building ML systems.**\n\n**What is an ML Pipeline?**\n\nAn ML pipeline is the end-to-end process of taking raw data and producing a deployed model that makes predictions.\n\n**The 7 Steps of the ML Pipeline:**\n\n1. **Business Understanding**\n   - Define the problem\n   - Set objectives\n   - Define success metrics\n\n2. **Data Acquisition**\n   - Collect data from sources\n   - Combine datasets\n   - Store data\n\n3. **Data Preparation**\n   - Clean data (missing values, outliers)\n   - Transform data (scaling, encoding)\n   - Feature engineering\n\n4. **Model Building**\n   - Split data (train/validation/test)\n   - Select algorithms\n   - Train models\n\n5. **Model Evaluation**\n   - Evaluate performance\n   - Compare models\n   - Tune hyperparameters\n\n6. **Model Deployment**\n   - Deploy to production\n   - Monitor performance\n   - Update models\n\n7. **Model Monitoring**\n   - Track performance drift\n   - Retrain when needed\n   - Collect feedback\n\n**Why Use a Pipeline?**\n\n| Benefit | Description |\n|---------|-------------|\n| Reproducibility | Same steps = same results |\n| Automation | Automate steps |\n| Consistency | Same preprocessing for all data |\n| Scalability | Handle more data easily |\n| Maintainability | Easy to update |\n\n**Scikit-Learn Pipelines:**\n```python\nfrom sklearn.pipeline import Pipeline\nfrom sklearn.preprocessing import StandardScaler\nfrom sklearn.linear_model import LogisticRegression\n\npipeline = Pipeline([\n    ('scaler', StandardScaler()),\n    ('classifier', LogisticRegression())\n])\n\npipeline.fit(X_train, y_train)\npredictions = pipeline.predict(X_test)\n```\n\n**Python-chan says:**\n\"The ML pipeline is your roadmap. Follow it and you'll build successful ML systems.\"",
+    "openingDialogue": "The ML Pipeline — your roadmap to building models. 🗺️"
   },
   "phase2": {
     "brokenCode": "",
     "errorMessage": "",
-    "explanation": "Conceptual lesson — no broken code yet. But here's a common misconception:\n\n❌ **'C++ is just C with classes.'**\n\nActually: Modern C++ is fundamentally different from C. Yes, you can write C-style code in C++, but that's like using a sports car to drive 5mph to the grocery store. Modern C++ has:\n• Smart pointers (no manual delete)\n• Move semantics (efficient resource transfer)\n• Lambdas and functional programming\n• Templates and generics\n• RAII (automatic resource management)\n\nPlusPlus-chan will teach you Modern C++ — the real way professionals write C++ today."
+    "explanation": "**Common misconception:** \"ML is just about training models.\"\n\n**The truth:**\n- Model training is only 20% of the work\n- Data preparation is 60-80% of the work\n- Deployment and monitoring are ongoing\n\n**Common mistake:** Skipping steps\n```python\n# ❌ Bad: Jump straight to modeling\nmodel = RandomForestClassifier()\nmodel.fit(X, y)\n\n# ✅ Good: Follow the pipeline\n# 1. Understand the problem\n# 2. Collect and prepare data\n# 3. Explore the data\n# 4. Build and evaluate models\n# 5. Deploy and monitor\n```\n\n**Common mistake:** Not validating assumptions\n- Data quality assumptions\n- Model assumptions\n- Deployment assumptions\n\n**Python-chan says:**\n\"The pipeline exists for a reason. Follow it and you'll avoid common mistakes.\""
   },
   "phase3": {
-    "prompt": "Which statement is TRUE about C++ in game development?\n\nA) C++ is a purely object-oriented language with no support for low-level memory access\nB) C++ is commonly used in game engines because it offers high performance and direct hardware control\nC) C++ programs always run slower than Java programs\nD) C++ does not support manual memory management\n\nSelect the CORRECT answer.",
+    "prompt": "Which step of the ML pipeline typically takes the most time and effort?\n\nA) Model Training\nB) Data Preparation\nC) Model Deployment\nD) Model Monitoring\n\nSelect the correct answer.",
     "validationPattern": {
       "mcqAnswer": "B"
     },
     "dialogueHints": [
-      "Think about what makes C++ special compared to other languages.",
-      "Memory management is a key difference between C++ and Java.",
-      "Game engines need speed and control."
+      "Think about where most of the work happens",
+      "Data is often messy and needs cleaning",
+      "Model training is relatively quick"
     ],
     "solution": null,
-    "openingDialogue": "Let's see if you were paying attention. 🤔💕"
+    "openingDialogue": "ML Pipeline quiz! 🤔"
   },
   "xpReward": 10
 }

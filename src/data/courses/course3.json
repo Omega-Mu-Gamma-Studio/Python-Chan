@@ -4,6 +4,6 @@
   "title": "Course 3 — Machine Learning",
   "tagline": "Go from raw data to trained models — build classifiers, neural nets, and deploy them.",
   "icon": "✦",
-  "isPublished": false,
+  "isPublished": true,
   "units": [11, 12, 13, 14, 15]
 }
