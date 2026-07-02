@@ -1,8 +1,8 @@
 {
   "id": 10,
   "course": 2,
-  "title": "Unit 10 \u2014 TBD",
-  "isPublished": false,
+  "title": "Intro to ML and Final Project",
+  "isPublished": true,
   "lessons": [
     "10.1",
     "10.2",

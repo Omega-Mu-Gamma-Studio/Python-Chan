@@ -1,8 +1,8 @@
 {
   "id": 3,
   "slug": "course-3",
-  "title": "Course 3",
-  "tagline": "Replace with a one-line description of this course.",
+  "title": "Course 3 — Machine Learning",
+  "tagline": "Go from raw data to trained models — build classifiers, neural nets, and deploy them.",
   "icon": "✦",
   "isPublished": false,
   "units": [11, 12, 13, 14, 15]

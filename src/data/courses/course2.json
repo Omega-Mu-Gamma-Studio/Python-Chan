@@ -1,9 +1,9 @@
 {
   "id": 2,
   "slug": "course-2",
-  "title": "Course 2",
-  "tagline": "Replace with a one-line description of this course.",
+  "title": "Course 2 — Data Science",
+  "tagline": "Stop staring at spreadsheets. Start finding stories in data with Pandas, NumPy, and Plotly.",
   "icon": "◐",
-  "isPublished": false,
+  "isPublished": true,
   "units": [6, 7, 8, 9, 10]
 }

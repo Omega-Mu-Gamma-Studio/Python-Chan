@@ -1,8 +1,8 @@
 {
   "id": 7,
   "course": 2,
-  "title": "Unit 7 \u2014 TBD",
-  "isPublished": false,
+  "title": "Data Cleaning and Transformation",
+  "isPublished": true,
   "lessons": [
     "7.1",
     "7.2",

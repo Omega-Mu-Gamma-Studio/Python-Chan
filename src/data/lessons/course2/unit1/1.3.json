@@ -1,33 +1,30 @@
 {
   "id": "1.3",
-  "title": "Your first program — Hello, Player!",
-  "type": "coding",
+  "title": "Setting Up Jupyter and Anaconda",
+  "type": "conceptual",
   "phase1": {
-    "code": "#include <iostream>\n\nint main() {\n    std::cout << \"Hello, Player!\" << std::endl;\n    std::cout << \"Welcome to your first C++ game.\" << std::endl;\n    return 0;\n}",
-    "output": "Hello, Player!\nWelcome to your first C++ game.",
-    "explanation": "🎮 **This is your first step into game development.**\n\nLet's break this down — every line matters:\n\n`#include <iostream>` — This is your input/output library. It's how you talk to the player. In game terms, it's your UI system.\n\n`int main()` — The entry point of every C++ program. This is where your game starts. Every game has a main loop — this is its origin.\n\n`std::cout` — Console output. In a real game, this would be rendering graphics. For now, you're rendering text to the terminal. Baby steps.\n\n`<<` — The stream operator. It pushes text to the console. Think of it like sending data to the display.\n\n`std::endl` — End line. Equivalent to pressing Enter after a line of text.\n\n`return 0;` — The program exits successfully. Zero means 'no error' — in game terms, you quit cleanly.\n\n🔥 **PlusPlus-chan's insight:**\n\nJava-chan would start with `System.out.println(\"Hello World\")` and call it a day. I'm starting with `#include`, `std::cout`, and `std::endl`. \n\nWhy? Because I'm showing you the **machinery** behind the output. You're not just printing — you're learning what printing actually is. That's the difference between learning to use a tool and learning to build one.",
-    "openingDialogue": "Your first program. It's small, but this is how every game starts. 🔥💻"
+    "code": "",
+    "output": "",
+    "explanation": "🐍 **Jupyter Notebook is the data scientist's workspace.**\n\n**What is Jupyter?**\n- Interactive coding environment\n- Mix code, text, and visualizations\n- Perfect for data exploration\n- Supports Python, R, Julia, and more\n\n**What is Anaconda?**\n- Python distribution for data science\n- Includes 150+ pre-installed packages\n- Includes Jupyter, Spyder, and other tools\n- Package manager (conda)\n\n**Installation Options:**\n\n1. **Anaconda** (Recommended for beginners)\n   - Download from anaconda.com\n   - Everything included\n   - ~5GB installation\n\n2. **Miniconda** (Lightweight)\n   - Smaller installation\n   - Only essential packages\n   - Install what you need\n\n3. **pip + virtualenv** (Advanced)\n   - Install Python separately\n   - `pip install jupyter`\n   - More manual control\n\n**Starting Jupyter:**\n```bash\n# From terminal/command prompt\njupyter notebook\n\n# Or with Anaconda Navigator\n# Click on Jupyter Notebook\n```\n\n**Jupyter Interface:**\n- **Cells** — individual code or text blocks\n- **Kernel** — Python interpreter running in background\n- **Markdown** — formatted text cells\n- **Output** — results displayed below cells\n\n**Keyboard Shortcuts:**\n| Shortcut | Action |\n|----------|--------|\n| `Shift+Enter` | Run cell |\n| `Ctrl+Enter` | Run cell (stay in cell) |\n| `A` | Insert cell above |\n| `B` | Insert cell below |\n| `D+D` | Delete cell |\n| `M` | Markdown cell |\n| `Y` | Code cell |\n\n**Python-chan says:**\n\"Jupyter Notebook is where data science comes alive. It's interactive, visual, and perfect for exploration.\"",
+    "openingDialogue": "Setting up Jupyter — your data science workspace. 📓"
   },
   "phase2": {
-    "brokenCode": "#include <iostream>\n\nint main() \n    std::cout << \"Hello, Player!\" << std::endl;\n    std::cout << \"Welcome to your first C++ game.\" << std::endl;\n    return 0;\n}",
-    "errorMessage": "main.cpp:5:1: error: expected ';' before 'return'\n    5 |     return 0;\n      |     ^~~~~~\nmain.cpp:4:5: error: expected '(' before 'return'\n    4 |     std::cout << \"Hello, Player!\" << std::endl;\n      |     ^~~~~~\nmain.cpp:6:1: error: expected unqualified-id before '}' token\n    6 | }\n      | ^",
-    "explanation": "See that? The `{` after `main()` is missing. \n\nIn C++, `main()` needs an opening `{` to start its code block. Without it, the compiler gets confused.\n\n🔍 **Error breakdown:**\n\n| Error | What Actually Means |\n|-------|---------------------|\n| `expected ';' before 'return'` | The compiler thinks something is missing before `return` (it's the missing `{`). |\n| `expected '(' before 'return'` | The compiler is trying to parse the function differently. |\n| `expected unqualified-id before '}'` | The compiler reached the end of the file and something was incomplete. |\n\n**The fix is simple:**\n```cpp\nint main() {    // ← This curly brace is the whole problem\n    std::cout << \"Hello, Player!\" << std::endl;\n    return 0;\n}\n```\n\n**Why this happens:**\nC++ is strict about syntax. One missing character can cascade into multiple errors. The compiler tries to recover but makes assumptions. That's why you get 3 errors for 1 missing brace.\n\n**PlusPlus-chan says:**\n\"Get used to this. It happens to everyone. The difference between a beginner and a pro is how quickly you spot the missing brace.\""
+    "brokenCode": "",
+    "errorMessage": "",
+    "explanation": "**Common issues and solutions:**\n\n**Issue 1: Jupyter not found**\n```bash\n# Error: 'jupyter' is not recognized\n\n# Fix: Install Jupyter\npip install jupyter\n\n# Or use conda\nconda install jupyter\n```\n\n**Issue 2: Kernel not starting**\n```bash\n# Error: Kernel died or not connecting\n\n# Fix: Check Python version\npython --version\n\n# Reinstall ipykernel\npip install --upgrade ipykernel\n```\n\n**Issue 3: Slow performance**\n- Close unused notebooks\n- Limit data size in cells\n- Use efficient operations\n- Consider using the cloud\n\n**Issue 4: Can't import packages**\n```bash\n# Error: No module named '...'\n\n# Fix: Install package in the right environment\n# Check which environment Jupyter is using\nimport sys\nprint(sys.executable)\n\n# Install in that environment\n!pip install package_name\n```\n\n**Python-chan says:**\n\"Setup issues are common. Take it step by step, and don't hesitate to search for solutions.\""
   },
   "phase3": {
-    "prompt": "Write a C++ program that prints:\n\n```\nWelcome to the Dungeon!\n```\n\nRequirements:\n- Use `#include <iostream>`\n- Use `std::cout`\n- Use `std::endl`\n- The program must compile and run",
+    "prompt": "What is the keyboard shortcut to run a cell in Jupyter Notebook?\n\nA) `Ctrl+S`\nB) `Shift+Enter`\nC) `Alt+R`\nD) `Ctrl+R`\n\nSelect the correct answer.",
     "validationPattern": {
-      "required": ["#include <iostream>", "int main", "std::cout", "Welcome to the Dungeon!", "std::endl"],
-      "forbidden": ["print", "System.out"],
-      "fullRegex": "#include\\s*<iostream>\\s*int\\s+main\\s*\\(\\s*\\)\\s*\\{[\\s\\S]*std::cout\\s*<<\\s*\"Welcome to the Dungeon!\"\\s*<<\\s*std::endl\\s*;[\\s\\S]*return\\s+0\\s*;[\\s\\S]*\\}"
+      "mcqAnswer": "B"
     },
     "dialogueHints": [
-      "Start with `#include <iostream>`",
-      "Your main function needs `int main()` and `{}`",
-      "`std::cout << \"Your text\" << std::endl;`",
-      "Don't forget `return 0;` at the end"
+      "Think about which key combination executes code",
+      "Shift is often used for running in notebooks",
+      "Enter completes the command"
     ],
-    "solution": "#include <iostream>\n\nint main() {\n    std::cout << \"Welcome to the Dungeon!\" << std::endl;\n    return 0;\n}",
-    "openingDialogue": "Your turn! Show me you can make the game speak. 🎮"
+    "solution": null,
+    "openingDialogue": "Quick Jupyter shortcut quiz! ⌨️"
   },
   "xpReward": 10
 }

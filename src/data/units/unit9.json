@@ -1,8 +1,8 @@
 {
   "id": 9,
   "course": 2,
-  "title": "Unit 9 \u2014 TBD",
-  "isPublished": false,
+  "title": "Statistics and Exploratory Analysis",
+  "isPublished": true,
   "lessons": [
     "9.1",
     "9.2",
