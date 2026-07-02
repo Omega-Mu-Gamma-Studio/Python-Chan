@@ -65,8 +65,18 @@ const Home = () => {
       .catch(e => setCoursesError(e.message));
   }, []);
 
+  const sisters = [
+    { id: 'java',      name: 'Java-Chan',       emoji: '☕', accent: '#e0a542', tagline: 'Cozy greeting screen, warm & gold.',      url: 'https://java-chan.vercel.app' },
+    { id: 'plusplus',  name: 'PlusPlus-Chan',   emoji: '➕', accent: '#6f9fd8', tagline: 'C++, sharp edges and pointers.',           url: 'https://plusplus-chan.vercel.app' },
+    { id: 'rust',      name: 'Rust-Chan',       emoji: '🦀', accent: '#d9714a', tagline: 'Borrow checker, held with love.',          url: 'https://rust-chan.vercel.app' },
+    { id: 'go',        name: 'Go-Chan',         emoji: '🐹', accent: '#5fb8c7', tagline: 'Goroutines, freshly recolored.',           url: 'https://go-chan.vercel.app' },
+    { id: 'kotlin',    name: 'Kotlin-Chan',     emoji: '🎯', accent: '#b385d8', tagline: 'Null safety, Android-ready.',              url: 'https://kotlin-chan.vercel.app' },
+    { id: 'sharp',     name: 'Sharp-Chan',      emoji: '#️⃣', accent: '#8f7dd6', tagline: 'C#, LINQ, and a little chaos.',            url: 'https://sharp-chan.vercel.app' },
+  ];
+
   return (
     <div className="home-page">
+      <div className="home-main">
 
       {/* ── HERO: lakeside clearing ── */}
       <div className="home-hero">
@@ -186,6 +196,35 @@ const Home = () => {
           })}
         </div>
       </div>
+
+      </div>
+
+      {/* ── SISTERS RAIL ── */}
+      <aside className="home-sisters">
+        <h2 className="home-section-title home-section-title--rail">
+          <span className="section-title-bar" />
+          Meet my sisters
+        </h2>
+        <div className="sisters-list">
+          {sisters.map(sister => (
+            <a
+              key={sister.id}
+              className="sister-card"
+              href={sister.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ '--sister-accent': sister.accent }}
+            >
+              <span className="sister-emoji" aria-hidden="true">{sister.emoji}</span>
+              <span className="sister-info">
+                <span className="sister-name">{sister.name}</span>
+                <span className="sister-tagline">{sister.tagline}</span>
+              </span>
+              <span className="sister-arrow">↗</span>
+            </a>
+          ))}
+        </div>
+      </aside>
 
     </div>
   );
