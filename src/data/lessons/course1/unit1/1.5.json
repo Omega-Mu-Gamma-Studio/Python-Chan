@@ -1,33 +1,34 @@
 {
   "id": "1.5",
-  "title": "Arithmetic & Logical Operators",
+  "title": "Basic Data Types — int, float, str, bool",
   "type": "coding",
   "phase1": {
-    "code": "#include <iostream>\n\nint main() {\n    // Arithmetic operators\n    int health = 100;\n    int damage = 25;\n    int heal = 30;\n    \n    int newHealth = health - damage;\n    std::cout << \"After taking \" << damage << \" damage: \" << newHealth << std::endl;\n    \n    int healedHealth = newHealth + heal;\n    std::cout << \"After healing \" << heal << \" HP: \" << healedHealth << std::endl;\n    \n    // Shorthand operators\n    int gold = 50;\n    gold += 20;  // Add 20 gold\n    std::cout << \"Gold after pickup: \" << gold << std::endl;\n    \n    gold *= 2;   // Double gold\n    std::cout << \"Gold after doubling: \" << gold << std::endl;\n    \n    // Logical operators\n    int playerHealth = 75;\n    int playerLevel = 5;\n    bool hasPotion = true;\n    \n    // AND — both must be true\n    bool canFightBoss = (playerLevel >= 10 && playerHealth >= 80);\n    std::cout << \"Can fight boss? \" << (canFightBoss ? \"Yes\" : \"No\") << std::endl;\n    \n    // OR — at least one must be true\n    bool canHeal = (hasPotion || playerHealth < 30);\n    std::cout << \"Can heal? \" << (canHeal ? \"Yes\" : \"No\") << std::endl;\n    \n    // NOT — flips the value\n    bool isDead = false;\n    bool isAlive = !isDead;\n    std::cout << \"Is alive? \" << (isAlive ? \"Yes\" : \"No\") << std::endl;\n    \n    return 0;\n}",
-    "output": "After taking 25 damage: 75\nAfter healing 30 HP: 105\nGold after pickup: 70\nGold after doubling: 140\nCan fight boss? No\nCan heal? Yes\nIs alive? Yes",
-    "explanation": "🎮 **Operators are how you calculate everything in your game.**\n\n**Arithmetic Operators:**\n| Operator | Use | Example |\n|----------|-----|---------|\n| `+` | Addition | `health + heal` |\n| `-` | Subtraction | `health - damage` |\n| `*` | Multiplication | `gold * 2` |\n| `/` | Division | `gold / 2` |\n| `%` | Modulus (remainder) | `10 % 3 = 1` |\n\n**Shorthand Operators:**\n| Operator | Means | Use |\n|----------|-------|-----|\n| `+=` | Add and assign | `gold += 20` → `gold = gold + 20` |\n| `-=` | Subtract and assign | `health -= 10` |\n| `*=` | Multiply and assign | `gold *= 2` |\n| `/=` | Divide and assign | `gold /= 2` |\n\n**Logical Operators (for decisions):**\n| Operator | Use |\n|----------|-----|\n| `&&` | AND — both must be true |\n| `||` | OR — at least one must be true |\n| `!`  | NOT — flips true/false |\n\n**PlusPlus-chan's note:**\nThe shorthand operators (`+=`, `*=`) are faster to write and compile to the same machine code. Use them. They're how game devs write efficient code.\n\n**Logical operators are the foundation of game AI.**",
-    "openingDialogue": "Operators are your game's math engine. Let's calculate. 🔢"
+    "code": "# Different data types in Python\n\n# Integer (whole number)\nlevel = 42\nprint(f\"Level: {level} (type: {type(level)})\")\n\n# Float (decimal number)\nhealth = 99.5\nprint(f\"Health: {health} (type: {type(health)})\")\n\n# String (text)\nname = \"Champion\"\nprint(f\"Name: {name} (type: {type(name)})\")\n\n# Boolean (True/False)\nis_hero = True\nprint(f\"Is Hero? {is_hero} (type: {type(is_hero)})\")\n\n# Check types with type()\nprint(f\"\\n{name} is a {type(name).__name__}\")",
+    "output": "Level: 42 (type: <class 'int'>)\nHealth: 99.5 (type: <class 'float'>)\nName: Champion (type: <class 'str'>)\nIs Hero? True (type: <class 'bool'>)\n\nChampion is a str",
+    "explanation": "🐍 **Python has four basic data types:**\n\n| Type | Name | Example | Use for |\n|------|------|---------|---------|\n| `int` | Integer | `42`, `-5`, `0` | Whole numbers |\n| `float` | Float | `3.14`, `-0.5`, `2.0` | Decimal numbers |\n| `str` | String | `\"Hello\"`, `'Hi'` | Text |\n| `bool` | Boolean | `True`, `False` | True/False values |\n\n**Important notes:**\n- `type()` tells you what type a value is\n- Strings can use single `'` or double `\"` quotes\n- Booleans MUST be capitalized: `True` not `true`\n- `int` and `float` are numbers — you can do math with them\n\n**Type checking example:**\n```python\nage = 25          # int\nprice = 19.99     # float\ngreeting = \"Hi\"   # str\nis_ready = True   # bool\n\nprint(type(age))      # <class 'int'>\nprint(type(price))    # <class 'float'>\n```\n\n**Python-chan says:**\n\"Every piece of data has a type. Think of it like: numbers, text, and truth values. Simple.\"",
+    "openingDialogue": "Let's meet Python's basic data types. These are your building blocks. 🧱"
   },
   "phase2": {
-    "brokenCode": "#include <iostream>\n\nint main() {\n    int playerHealth = 50;\n    int damage = 30;\n    \n    // Mistake: assigning with = instead of comparing with ==\n    if (playerHealth = damage) {\n        std::cout << \"Player health equals damage\" << std::endl;\n    }\n    \n    return 0;\n}",
-    "errorMessage": "(No error — but the LOGIC is completely wrong! This compiles and runs with incorrect behavior.)",
-    "explanation": "This is the classic C++ trap: using `=` instead of `==` in a condition.\n\n`=` is assignment. It sets `playerHealth` to the value of `damage`.\n`==` is comparison. It checks if they're equal.\n\n**What's happening:**\n`if (playerHealth = damage)` — this assigns `30` to `playerHealth`, then checks if `30` is true (it is). So the condition always runs.\n\n**The fix:**\n```cpp\nif (playerHealth == damage) {  // Compare, don't assign\n    // ...\n}\n```\n\n**PlusPlus-chan says:**\n\"This is the most common mistake in C++. Java-chan would scold you gently. I'm going to show you this error until you never make it again.\""
+    "brokenCode": "level = 42\nhealth = 99.5\nname = \"Champion\"\nis_hero = true  # Error: lowercase 'true'\n\nprint(level)\nprint(health)\nprint(name)\nprint(is_hero)",
+    "errorMessage": "Traceback (most recent call last):\n  File \"main.py\", line 4, in <module>\n    is_hero = true  # Error: lowercase 'true'\n              ^^^^\nNameError: name 'true' is not defined",
+    "explanation": "You used lowercase `true` instead of capitalized `True`!\n\n**What's happening:**\n1. Python expects `True` and `False` (capitalized)\n2. `true` is not defined — Python thinks it's a variable name\n3. It doesn't exist → `NameError`\n\n**The fix:**\n```python\nis_hero = True  # ← Capitalized!\n```\n\n**Python-chan says:**\n\"Python is case-sensitive. `True` is a keyword. `true` is just a mistake. Always capitalize booleans.\"",
+    "openingDialogue": "Case matters in Python. Let's see what happens when you forget. ⚠️"
   },
   "phase3": {
-    "prompt": "Write a C++ program that:\n\n1. Declares `int health = 80`, `int armor = 20`\n2. Calculates `effectiveHealth = health + armor`\n3. Checks if `health > 50` (prints \"Healthy\" or \"Not healthy\")\n4. Checks if `health > 50 && armor > 10` (prints \"Tanky\" or \"Not tanky\")\n\nUse the ternary operator for the first check.\n\nPrint all results.",
+    "prompt": "Write a Python program that:\n\n1. Creates a variable `player_name` with string value \"Legolas\"\n2. Creates a variable `player_age` with integer value 2931\n3. Creates a variable `player_height` with float value 6.1\n4. Creates a variable `is_elf` with boolean value True\n5. Prints all four variables\n\nExample output:\n```\nLegolas\n2931\n6.1\nTrue\n```",
     "validationPattern": {
-      "required": ["int", "=", "+", ">", "&&", "std::cout"],
-      "forbidden": ["using namespace"],
-      "fullRegex": "int\\s+\\w+\\s*=\\s*80\\s*;[\\s\\S]*int\\s+\\w+\\s*=\\s*20\\s*;[\\s\\S]*\\+\\s*\\w+[\\s\\S]*\\?[\\s\\S]*:"
+      "required": ["player_name", "player_age", "player_height", "is_elf", "print"],
+      "forbidden": [";", "class", "def"],
+      "fullRegex": "player_name\\s*=\\s*\"[^\"]*\"[\\s\\S]*player_age\\s*=\\s*\\d+[\\s\\S]*player_height\\s*=\\s*\\d+\\.\\d+[\\s\\S]*is_elf\\s*=\\s*True[\\s\\S]*print"
     },
     "dialogueHints": [
-      "Define health and armor first.",
-      "effectiveHealth = health + armor.",
-      "Ternary: `(condition) ? \"True\" : \"False\"`",
-      "Use `&&` for the AND check."
+      "String uses quotes: \"Legolas\"",
+      "Integer is just a number: 2931",
+      "Float has a decimal point: 6.1",
+      "Boolean is capitalized: True"
     ],
-    "solution": "#include <iostream>\n\nint main() {\n    int health = 80;\n    int armor = 20;\n    int effectiveHealth = health + armor;\n    \n    std::cout << \"Effective health: \" << effectiveHealth << std::endl;\n    \n    std::cout << \"Health status: \" \n              << (health > 50 ? \"Healthy\" : \"Not healthy\") \n              << std::endl;\n    \n    std::cout << \"Tanky status: \" \n              << (health > 50 && armor > 10 ? \"Tanky\" : \"Not tanky\") \n              << std::endl;\n    \n    return 0;\n}",
-    "openingDialogue": "Show me you know your operators. No mistakes. 😤"
+    "solution": "player_name = \"Legolas\"\nplayer_age = 2931\nplayer_height = 6.1\nis_elf = True\n\nprint(player_name)\nprint(player_age)\nprint(player_height)\nprint(is_elf)",
+    "openingDialogue": "Now you try. Create variables of all four types and show them to me. 📊"
   },
   "xpReward": 10
 }

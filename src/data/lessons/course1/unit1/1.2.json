@@ -1,30 +1,30 @@
 {
   "id": "1.2",
-  "title": "Setting up your environment (g++, VS Code)",
+  "title": "Setting Up Your Environment",
   "type": "conceptual",
   "phase1": {
     "code": "",
     "output": "",
-    "explanation": "Before we write any code, let's get your environment set up.\n\n🔧 **What you need:**\n\n1. **A C++ Compiler (g++):**\n   - Windows: Install MinGW-w64 or use MSVC\n   - macOS: Install Xcode Command Line Tools (`xcode-select --install`)\n   - Linux: `sudo apt install g++` (Ubuntu/Debian)\n\n   Check it works: Open a terminal and type `g++ --version`\n\n2. **VS Code (or any editor):**\n   - Download from code.visualstudio.com\n   - Install the C/C++ extension by Microsoft\n\n3. **Your First Project:**\n   Create a folder called `cpp-game` — this is where your journey begins.\n\n💡 **Pro tip from PlusPlus-chan:**\n\nLearn to compile from the command line before using an IDE. That's how you learn what's really happening. An IDE hides the compile steps, but you need to know them:\n\n```bash\ng++ -o myprogram main.cpp\n./myprogram\n```\n\nJava-chan hides the compiler from you. I don't. You're going to see every step of the transformation from code to executable.\n\n**You're not just learning C++ — you're learning how computers actually work.** That's the part that matters.",
-    "openingDialogue": "No fancy IDEs hiding the truth. Terminal first. Always. 🖥️💀"
+    "explanation": "🐍 **Let's get your Python environment ready!**\n\n**Step 1: Install Python**\n- Go to python.org and download the latest version\n- During installation, CHECK \"Add Python to PATH\" (important!)\n- Verify installation: open terminal/cmd and type `python --version`\n\n**Step 2: Choose a Code Editor**\n\n| Editor | Best for |\n|--------|----------|\n| VS Code | All-purpose, great extensions |\n| PyCharm | Python-focused IDE |\n| Jupyter Notebook | Data science, experimentation |\n| IDLE | Built-in, simple |\n\n**Step 3: Your First Interactive Session**\n- Open terminal\n- Type `python` and press Enter\n- You're now in the Python REPL (Read-Eval-Print Loop)\n- Try: `print(\"Hello!\")` — it should work immediately\n\n**Step 4: Virtual Environments**\n- Think of these as isolated sandboxes for your projects\n- `python -m venv myenv` creates one\n- Activate it before installing packages\n\n**Python-chan says:**\n\"Setting up your environment is like preparing your workspace. A clean desk = a clear mind. Let's get you comfortable.\"",
+    "openingDialogue": "Before we write code, let's get your tools ready. A good setup makes everything smoother. 🛠️"
   },
   "phase2": {
     "brokenCode": "",
     "errorMessage": "",
-    "explanation": "Conceptual lesson — no broken code here!\n\nCommon issue: `g++: command not found`\n\nThis means the compiler isn't in your PATH. Don't panic. PlusPlus-chan has seen this before.\n\n**Fixes:**\n- Windows: Make sure MinGW/bin is in your PATH\n- macOS: Run `xcode-select --install`\n- Linux: `sudo apt install g++` (or your distro's equivalent)\n\n**Check your work:**\nOpen a terminal and type:\n```bash\ng++ --version\n```\nIf you see a version number, you're ready. If not... PlusPlus-chan is patient. She'll wait."
+    "explanation": "**Common mistake:** Forgetting to check \"Add Python to PATH\" during installation.\n\n**The problem:** When you type `python` in terminal, your computer can't find it.\n\n**The fix:**\n1. Reinstall Python and check the box\n2. OR manually add Python to PATH\n3. OR use `py` instead of `python` on Windows\n\n**Python-chan says:**\n\"This one checkbox trips up so many people. Don't worry — it's an easy fix.\""
   },
   "phase3": {
-    "prompt": "What command do you use to compile a C++ file called `main.cpp` into an executable called `mygame`?\n\nA) `g++ main.cpp -o mygame`\nB) `g++ -o main.cpp mygame`\nC) `compile main.cpp mygame`\nD) `g++ main.cpp --exec mygame`\n\nSelect the CORRECT command.",
+    "prompt": "What should you type in your terminal to check if Python is installed correctly?\n\nA) `python --version`\nB) `check python`\nC) `python -check`\nD) `version python`\n\nSelect the correct answer.",
     "validationPattern": {
       "mcqAnswer": "A"
     },
     "dialogueHints": [
-      "The '-o' flag means 'output'.", 
-      "The source file comes first, then the output flag.", 
-      "Think about what order makes sense: source → output."
+      "Think about how we verify software versions.",
+      "The command asks Python to show its version.",
+      "It's a common pattern: `command --version`"
     ],
     "solution": null,
-    "openingDialogue": "Time to prove you can use the terminal. Don't worry, I'll help. 💻"
+    "openingDialogue": "Quick check to make sure you're ready. 🧪"
   },
   "xpReward": 10
 }

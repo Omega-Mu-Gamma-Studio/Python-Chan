@@ -1,33 +1,34 @@
 {
   "id": "1.9",
-  "title": "while loops — the game loop concept",
+  "title": "String Formatting with f-strings",
   "type": "coding",
   "phase1": {
-    "code": "#include <iostream>\n#include <string>\n\nint main() {\n    // The game loop - the heart of every game\n    bool isRunning = true;\n    int playerHealth = 100;\n    \n    std::cout << \"=== Welcome to the Arena ===\" << std::endl;\n    std::cout << \"You are in a battle! Fight until you die or run.\" << std::endl;\n    \n    int round = 1;\n    \n    // The main game loop\n    while (isRunning) {\n        std::cout << \"\\n--- Round \" << round << \" ---\" << std::endl;\n        std::cout << \"Health: \" << playerHealth << std::endl;\n        \n        // Enemy attack\n        int damage = rand() % 20 + 5;  // Random damage: 5-24\n        playerHealth -= damage;\n        \n        std::cout << \"Enemy hits you for \" << damage << \" damage!\" << std::endl;\n        \n        // Check if dead\n        if (playerHealth <= 0) {\n            std::cout << \"You have been defeated!\" << std::endl;\n            isRunning = false;  // Exit loop\n        }\n        \n        round++;\n        \n        // Optional: ask to continue\n        if (isRunning) {\n            std::cout << \"Press Enter to continue...\";\n            std::cin.ignore();\n            std::cin.get();\n        }\n    }\n    \n    std::cout << \"\\n=== Game Over ===\" << std::endl;\n    std::cout << \"You survived \" << round << \" rounds.\" << std::endl;\n    \n    // While loop counting\n    std::cout << \"\\n=== Counting enemies ===\" << std::endl;\n    int enemyCount = 0;\n    while (enemyCount < 5) {\n        std::cout << \"Spawned enemy #\" << enemyCount + 1 << std::endl;\n        enemyCount++;\n    }\n    \n    return 0;\n}",
-    "output": "=== Welcome to the Arena ===\nYou are in a battle! Fight until you die or run.\n\n--- Round 1 ---\nHealth: 100\nEnemy hits you for 12 damage!\nPress Enter to continue...\n\n--- Round 2 ---\nHealth: 88\nEnemy hits you for 18 damage!\nPress Enter to continue...\n\n--- Round 3 ---\nHealth: 70\nEnemy hits you for 22 damage!\nPress Enter to continue...\n\n--- Round 4 ---\nHealth: 48\nEnemy hits you for 15 damage!\n... (continues until health <= 0)\n\n=== Game Over ===\nYou survived 7 rounds.\n\n=== Counting enemies ===\nSpawned enemy #1\nSpawned enemy #2\nSpawned enemy #3\nSpawned enemy #4\nSpawned enemy #5",
-    "explanation": "🎮 **The while loop is the game loop.**\n\nThe game loop is the most important concept in game development. Every game has one:\n\n```cpp\nwhile (gameIsRunning) {\n    processInput();    // What did the player do?\n    update();          // Update game state\n    render();          // Draw the screen\n}\n```\n\n**While loop syntax:**\n```cpp\nwhile (condition) {\n    // Code runs repeatedly while condition is true\n}\n```\n\n**Key concepts:**\n- The loop continues as long as the condition is true\n- You need to change something inside the loop to eventually exit\n- `while (true)` creates an infinite loop (use with caution!)\n\n**Game use cases:**\n- Main game loop\n- Waiting for player input\n- Animation frames\n- AI decision loops",
-    "openingDialogue": "The game loop. Every frame. Every game. This is where games live. 🔄🎮"
+    "code": "# f-strings — the modern way to format strings\n\nname = \"Hero\"\nlevel = 5\nhealth = 80\nmana = 40\n\n# Basic f-string\nprint(f\"Welcome, {name}!\")\n\n# Multiple variables\nprint(f\"Level: {level} | Health: {health} | Mana: {mana}\")\n\n# Calculations inside f-strings\nprint(f\"Health + Mana = {health + mana}\")\n\n# Formatting numbers\nscore = 1234.5678\nprint(f\"Score: {score:.2f}\")  # 2 decimal places\nprint(f\"Score: {score:.0f}\")   # 0 decimal places\n\n# Padding and alignment\nitem = \"Sword\"\nprice = 99.99\nprint(f\"{item:10} ${price:8.2f}\")\n\n# Using expressions\nis_ready = True\nprint(f\"Ready? {'Yes' if is_ready else 'No'}\")\n\n# Old ways (avoid these):\n# name + \" is level \" + str(level)  # Concatenation (messy)\n# \"%s is level %d\" % (name, level)  # % formatting (old)\n# \"{} is level {}\".format(name, level)  # .format() (okay but verbose)\n\n# f-strings are the way!",
+    "output": "Welcome, Hero!\nLevel: 5 | Health: 80 | Mana: 40\nHealth + Mana = 120\nScore: 1234.57\nScore: 1235\nSword      $   99.99\nReady? Yes",
+    "explanation": "🐍 **f-strings are the cleanest way to format strings in Python.**\n\n**Basic syntax:**\n```python\nname = \"Hero\"\nprint(f\"Welcome, {name}!\")  # f\"... {variable} ...\"\n```\n\n**What you can do inside `{}`:**\n\n| Feature | Example | Result |\n|---------|---------|--------|\n| Variables | `{name}` | `Hero` |\n| Math | `{health + mana}` | `120` |\n| Format decimals | `{score:.2f}` | `1234.57` |\n| Padding | `{item:10}` | `Sword     ` |\n| Expressions | `{'Yes' if is_ready else 'No'}` | `Yes` |\n\n**Key rules:**\n- Must start with `f` before the string: `f\"...\"`\n- Variables go inside `{}` braces\n- You can put any valid Python expression inside `{}`\n\n**Python-chan says:**\n\"f-strings are the best way to build strings. They're readable, fast, and powerful. Use them.\"",
+    "openingDialogue": "Let's learn how to format strings elegantly. f-strings are your best friend. 📝"
   },
   "phase2": {
-    "brokenCode": "#include <iostream>\n\nint main() {\n    int count = 0;\n    \n    // Missing increment — infinite loop!\n    while (count < 10) {\n        std::cout << \"Count: \" << count << std::endl;\n        // count++;  ← Missing!\n    }\n    \n    return 0;\n}",
-    "errorMessage": "Count: 0\nCount: 0\nCount: 0\n... (Infinite loop — will never end!)",
-    "explanation": "This is an infinite loop! `count` never changes, so `count < 10` is always true.\n\n**What's happening:**\n1. `count` starts at 0\n2. `count < 10` is true\n3. The loop prints \"Count: 0\"\n4. `count` never changes\n5. The condition is checked again — still true\n6. Repeat forever\n\n**The fix:**\n```cpp\nwhile (count < 10) {\n    std::cout << \"Count: \" << count << std::endl;\n    count++;  // ← This makes the loop end\n}\n```\n\n**PlusPlus-chan says:**\n\"Infinite loops are the #1 mistake with while. Always check: 'What changes in this loop?' If nothing changes, you're stuck forever.\"\n\n**How to stop an infinite loop:**\n- Ctrl+C in the terminal\n- Close the terminal window\n- Restart your machine (if it's really bad)"
+    "brokenCode": "name = \"Hero\"\nlevel = 5\n\n# Missing the f prefix\nprint(\"Welcome, {name}! You are level {level}\")",
+    "errorMessage": "Welcome, {name}! You are level {level}",
+    "explanation": "You forgot the `f` prefix! Without it, Python treats the string literally.\n\n**What's happening:**\n1. No `f` prefix → Python doesn't interpret `{}`\n2. It prints the literal text `{name}` and `{level}`\n3. No error — just wrong output\n\n**The fix:**\n```python\nprint(f\"Welcome, {name}! You are level {level}\")  # ← Add f!\n```\n\n**Python-chan says:**\n\"The `f` tells Python: 'This string has variables inside.' Without it, you just get a boring literal string.\"",
+    "openingDialogue": "What happens when you forget the f? Let's see. 🧐"
   },
   "phase3": {
-    "prompt": "Write a C++ program that:\n\n1. Declares `int health = 100`\n2. Uses a `while` loop that continues while `health > 0`\n3. Inside the loop:\n   - Generate random damage between 5 and 25 (`rand() % 21 + 5`)\n   - Subtract damage from health\n   - Print: \"You took [damage] damage! Health: [health]\"\n4. When health reaches 0 or below, exit the loop\n5. Print: \"Game Over!\"\n\nRequirements:\n- Use `#include <iostream>` and `#include <cstdlib>` for `rand()`\n- Use `while (health > 0)`\n- Print the health after each hit",
+    "prompt": "Write a Python program that:\n\n1. Creates variables: `character = \"Gandalf\"`, `level = 100`, `power = 999.9`\n2. Uses f-strings to print:\n   - \"Character: Gandalf\"\n   - \"Level: 100\"\n   - \"Power: 999.90\" (with 2 decimal places)\n   - \"Is this a wizard? Yes\" (using a condition: is_wizard = True)\n\nExample output:\n```\nCharacter: Gandalf\nLevel: 100\nPower: 999.90\nIs this a wizard? Yes\n```",
     "validationPattern": {
-      "required": ["while", "rand", "health > 0", "std::cout", "#include <cstdlib>"],
-      "forbidden": ["using namespace"],
-      "fullRegex": "while\\s*\\(\\s*health\\s*>\\s*0\\s*\\)[\\s\\S]*rand\\(\\)[\\s\\S]*health\\s*=\\s*health\\s*\\-\\s*damage"
+      "required": ["character", "level", "power", "is_wizard", "f\"", "print"],
+      "forbidden": [";", "class", "def"],
+      "fullRegex": "character\\s*=\\s*\"[^\"]*\"[\\s\\S]*level\\s*=\\s*100[\\s\\S]*power\\s*=\\s*999\\.9[\\s\\S]*is_wizard\\s*=\\s*True[\\s\\S]*f\"[^\"]*\\{[^}]*\\}[^\"]*\""
     },
     "dialogueHints": [
-      "Include `<cstdlib>` for `rand()`",
-      "`rand() % 21 + 5` gives a number between 5 and 25",
-      "The loop condition is `while (health > 0)`",
-      "Print damage and health each iteration"
+      "Use `f\"...{variable}...\"` for formatting",
+      "For 2 decimals: `{power:.2f}`",
+      "For condition: `{'Yes' if is_wizard else 'No'}`",
+      "Don't forget the `f` prefix!"
     ],
-    "solution": "#include <iostream>\n#include <cstdlib>\n\nint main() {\n    int health = 100;\n    \n    std::cout << \"=== Survival Mode ===\" << std::endl;\n    \n    while (health > 0) {\n        int damage = rand() % 21 + 5;  // 5-25 damage\n        health -= damage;\n        \n        std::cout << \"You took \" << damage << \" damage! Health: \" << health << std::endl;\n    }\n    \n    std::cout << \"Game Over!\" << std::endl;\n    \n    return 0;\n}",
-    "openingDialogue": "Now you understand the game loop. The heart of everything. ❤️🔄"
+    "solution": "character = \"Gandalf\"\nlevel = 100\npower = 999.9\nis_wizard = True\n\nprint(f\"Character: {character}\")\nprint(f\"Level: {level}\")\nprint(f\"Power: {power:.2f}\")\nprint(f\"Is this a wizard? {'Yes' if is_wizard else 'No'}\")",
+    "openingDialogue": "Your turn to format strings. Make it clean and elegant! ✨"
   },
   "xpReward": 10
 }

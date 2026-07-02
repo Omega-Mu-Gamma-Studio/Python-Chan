@@ -1,33 +1,35 @@
 {
   "id": "1.15",
-  "title": "Scope, namespaces & std::",
+  "title": "Mini Challenge — Hello, World Done Right",
   "type": "coding",
   "phase1": {
-    "code": "#include <iostream>\n#include <string>\n\n// Global variable (visible everywhere)\nint globalPlayerCount = 1;\n\n// Function demonstrating scope\nvoid displayGlobalCount() {\n    std::cout << \"Global count: \" << globalPlayerCount << std::endl;\n}\n\nint main() {\n    std::cout << \"=== Scope & Namespaces ===\" << std::endl;\n    \n    // 1. Namespace\n    std::cout << \"Using std::cout and std::endl\" << std::endl;\n    \n    // 2. Local vs Global\n    int localHealth = 100;  // Local variable\n    \n    std::cout << \"Local health: \" << localHealth << std::endl;\n    std::cout << \"Global count: \" << globalPlayerCount << std::endl;\n    \n    // 3. Scope inside blocks\n    {\n        int blockHealth = 50;  // Only visible inside this block\n        std::cout << \"Block health: \" << blockHealth << std::endl;\n        \n        // Can access outer variables\n        std::cout << \"Outer health: \" << localHealth << std::endl;\n    }\n    // blockHealth is NOT visible here!\n    // std::cout << blockHealth; // ERROR!\n    \n    // 4. Using 'using' (careful!)\n    // using namespace std; // Not recommended\n    \n    // 5. Namespace aliases\n    namespace io = std;\n    io::cout << \"Using alias: Hello!\" << io::endl;\n    \n    // 6. Scope with functions\n    displayGlobalCount();\n    \n    // 7. Shadowing (bad practice)\n    int globalPlayerCount = 99;  // Shadows the global variable!\n    std::cout << \"Local shadow: \" << globalPlayerCount << std::endl;\n    std::cout << \"Real global: \" << ::globalPlayerCount << std::endl;  // Use :: to access global\n    \n    return 0;\n}",
-    "output": "=== Scope & Namespaces ===\nUsing std::cout and std::endl\nLocal health: 100\nGlobal count: 1\nBlock health: 50\nOuter health: 100\nUsing alias: Hello!\nGlobal count: 1\nLocal shadow: 99\nReal global: 1",
-    "explanation": "🎮 **Scope and namespaces keep your code organized.**\n\n**Scope rules:**\n\n| Scope | Visibility |\n|-------|------------|\n| Global | Visible everywhere |\n| Local | Visible only in the function/block |\n| Block | Visible only inside `{ }` |\n\n**Namespaces:**\n- `std` is the Standard Library namespace\n- `std::cout`, `std::endl`, `std::string`\n- Prevents naming conflicts\n\n**The `using` keyword:**\n```cpp\n// NOT recommended (pollutes global namespace)\nusing namespace std;\n\n// Better (specific import)\nusing std::cout;\nusing std::endl;\n\n// Best (explicit)\nstd::cout << \"Hello\" << std::endl;\n```\n\n**Scope Resolution `::`:**\n- `::variable` → access global variable\n- `namespace::function` → access function in namespace\n\n**Game uses:**\n- Organizing game systems\n- Avoiding naming conflicts\n- Managing large projects\n\n**PlusPlus-chan says:**\n\"Java-chan has packages. I have namespaces. Same idea, different syntax. Keep your code organized.\"",
-    "openingDialogue": "Scope keeps your code clean. Namespaces keep it organized. 🧹"
+    "code": "# A more elaborate \"Hello, World\" program\n\n# Get user's name\nname = input(\"What's your name? \")\n\n# Get user's favorite language\nlanguage = input(\"What's your favorite programming language? \")\n\n# Welcome message\nprint(\"=\" * 40)\nprint(f\"Welcome, {name}!\")\nprint(f\"You love {language}!\")\nprint(\"Let's learn Python together.\")\nprint(\"=\" * 40)\n\n# Calculate something simple\nage = int(input(\"How old are you? \"))\nyears_to_100 = 100 - age\nprint(f\"You'll be 100 in {years_to_100} years!\")\n\n# Goodbye\nprint(\"\\nHappy coding!\")",
+    "output": "What's your name? Alex\nWhat's your favorite programming language? Python\n========================================\nWelcome, Alex!\nYou love Python!\nLet's learn Python together.\n========================================\nHow old are you? 25\nYou'll be 100 in 75 years!\n\nHappy coding!",
+    "explanation": "🐍 **A complete \"Hello, World\" with style!**\n\n**What this program shows:**\n1. **User input** — `input()` to get information\n2. **String formatting** — f-strings for clean output\n3. **Type conversion** — `int()` for numbers\n4. **String multiplication** — `\"=\" * 40` creates a line\n5. **Variables** — storing and using data\n6. **Arithmetic** — calculating years to 100\n\n**Key takeaways:**\n- Programs can be interactive\n- Combine multiple concepts\n- Make it personal and engaging\n- Always handle user input carefully\n\n**Python-chan says:**\n\"You've learned a lot this unit. This challenge brings it all together. Show me what you've got!\"",
+    "openingDialogue": "Final challenge of Unit 1! Bring everything together. 🏆"
   },
   "phase2": {
-    "brokenCode": "#include <iostream>\n\nusing namespace std;  // This is NOT recommended!\n\nint main() {\n    // Without std::, everything is ambiguous\n    cout << \"Hello\" << endl;\n    \n    // If you have a function called 'cout', it conflicts!\n    return 0;\n}",
-    "errorMessage": "(No error — but this is a ticking time bomb! Potential naming conflicts.)",
-    "explanation": "`using namespace std;` imports the entire `std` namespace into the global scope.\n\n**Problems:**\n1. **Naming conflicts** — If you define `cout` or `endl`, it will conflict with `std::`\n2. **Ambiguity** — Which `cout`? Yours or `std`'s?\n3. **Readability** — Less clear where things come from\n\n**The fix:**\n```cpp\nstd::cout << \"Hello\" << std::endl;  // Explicit\n```\n\n**PlusPlus-chan says:**\n\"I won't stop you from using `using namespace std;` in small programs. But in large projects, it's asking for trouble. Be explicit.\"\n\n**Best practice:**\n- Avoid `using namespace std;` in headers\n- Use `std::` explicitly in most cases\n- Only use `using` for specific items you use often"
+    "brokenCode": "# A broken version of the challenge\n\nname = input(\"What's your name? \")\nlanguage = input(\"What's your favorite programming language? \")\n\nprint(\"========================================\")\nprint(f\"Welcome, {name}!\")\nprint(f\"You love {language}!\")\nprint(\"Let's learn Python together.\")\nprint(\"========================================\")\n\nage = input(\"How old are you? \")\nyears_to_100 = 100 - age  # ERROR!\nprint(f\"You'll be 100 in {years_to_100} years!\")",
+    "errorMessage": "Traceback (most recent call last):\n  File \"main.py\", line 11, in <module>\n    years_to_100 = 100 - age  # ERROR!\n                   ^^^^\nTypeError: unsupported operand type(s) for -: 'int' and 'str'",
+    "explanation": "You forgot to convert `age` to an integer!\n\n**What's happening:**\n1. `age = input(\"...\")` returns a string\n2. `100 - age` tries to subtract a string from an integer\n3. Python can't do that → `TypeError`\n\n**The fix:**\n```python\nage = int(input(\"How old are you? \"))  # ← Convert to int!\nyears_to_100 = 100 - age  # Now works\n```\n\n**Python-chan says:**\n\"Don't forget to convert numbers! This is the most common mistake in interactive programs.\"",
+    "openingDialogue": "One more bug to catch before the challenge. Can you spot it? 🐛"
   },
   "phase3": {
-    "prompt": "Write a C++ program that:\n\n1. Declares a global variable `int gameVersion = 1`\n2. In `main()`, declares a local variable `int gameVersion = 2`\n3. Prints the local version using the local variable\n4. Prints the global version using `::`\n5. Creates a block `{ }` and inside it, declares `int localVersion = 3`\n6. Prints the block variable inside the block\n7. All prints use `std::cout` and `std::endl` (no `using namespace`)\n\nRequirements:\n- Use `::` for global access\n- Use a block scope\n- No `using namespace std;`",
+    "prompt": "Write a complete Python program that:\n\n1. Asks for the user's name\n2. Asks for their favorite programming language\n3. Asks for their current level (1-100, as a number)\n4. Prints a welcome message with all three pieces of info\n5. Calculates and prints how many levels until level 100\n\nExample output:\n```\nWhat's your name? Frodo\nWhat's your favorite language? Python\nWhat's your current level? 15\n\nWelcome, Frodo!\nYou love Python!\nYou are level 15.\nYou need 85 more levels to reach 100!\n```\n\n**Requirements:**\n- Use f-strings for formatting\n- Convert level to integer\n- Use meaningful variable names",
     "validationPattern": {
-      "required": ["int gameVersion", "::gameVersion", "std::cout", "std::endl", "{"],
-      "forbidden": ["using namespace"],
-      "fullRegex": "int\\s+gameVersion\\s*=\\s*1[\\s\\S]*int\\s+gameVersion\\s*=\\s*2[\\s\\S]*::gameVersion[\\s\\S]*std::cout[\\s\\S]*\\{[\\s\\S]*\\}"
+      "required": ["input", "int", "f\"", "name", "language", "level", "print", "100"],
+      "forbidden": [";", "class", "def", "global"],
+      "fullRegex": "input\\s*\\([^)]*\\)[\\s\\S]*input\\s*\\([^)]*\\)[\\s\\S]*input\\s*\\([^)]*\\)[\\s\\S]*f\"[^\"]*\\{[^}]*\\}[^\"]*\"[\\s\\S]*100"
     },
     "dialogueHints": [
-      "Global: `int gameVersion = 1;` outside main",
-      "Local: `int gameVersion = 2;` inside main",
-      "Global access: `::gameVersion`",
-      "Block: `{ int localVersion = 3; std::cout << ...; }`"
+      "Use `input()` three times for name, language, level",
+      "Convert level to int: `int(input(...))`",
+      "Use f-strings for output",
+      "Calculate `levels_to_100 = 100 - level`",
+      "Make your output look similar to the example"
     ],
-    "solution": "#include <iostream>\n\nint gameVersion = 1;  // Global\n\nint main() {\n    int gameVersion = 2;  // Local (shadows global)\n    \n    std::cout << \"Local version: \" << gameVersion << std::endl;\n    std::cout << \"Global version: \" << ::gameVersion << std::endl;\n    \n    {\n        int localVersion = 3;\n        std::cout << \"Block version: \" << localVersion << std::endl;\n    }\n    \n    // localVersion is not visible here\n    \n    return 0;\n}",
-    "openingDialogue": "Scope mastery. Clean code. Professional work. 🏗️"
+    "solution": "name = input(\"What's your name? \")\nlanguage = input(\"What's your favorite language? \")\nlevel = int(input(\"What's your current level? \"))\n\nlevels_to_100 = 100 - level\n\nprint(f\"\\nWelcome, {name}!\")\nprint(f\"You love {language}!\")\nprint(f\"You are level {level}.\")\nprint(f\"You need {levels_to_100} more levels to reach 100!\")",
+    "openingDialogue": "Final challenge! Bring it all together and show me what you've learned! 🎯"
   },
-  "xpReward": 10
+  "xpReward": 15
 }

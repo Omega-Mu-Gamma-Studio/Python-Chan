@@ -1,7 +1,7 @@
 {
   "id": 4,
   "course": 1,
-  "title": "STL & Templates",
+  "title": "Files, Errors, and Modules",
   "isPublished": true,
   "lessons": [
     "4.1",

@@ -1,7 +1,7 @@
 {
   "id": 5,
   "course": 1,
-  "title": "File I/O, Error Handling & Shipping",
+  "title": "Object Oriented Python and Final Project",
   "isPublished": true,
   "lessons": [
     "5.1",

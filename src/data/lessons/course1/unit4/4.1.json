@@ -1,30 +1,36 @@
 {
   "id": "4.1",
-  "title": "What is the STL?",
-  "type": "conceptual",
+  "title": "Opening and Reading Files",
+  "type": "coding",
   "phase1": {
-    "code": "",
-    "output": "",
-    "explanation": "🎮 **The Standard Template Library (STL) is C++'s weapon arsenal.**\n\n**What is the STL?**\n\nThe STL is a collection of powerful, reusable components that handle common programming tasks. It's part of the C++ Standard Library.\n\nInstead of writing your own linked list, dynamic array, or sorting algorithm, you use STL containers and algorithms. They're fast, tested, and optimized.\n\n**The Four Pillars of STL:**\n\n| Pillar | What it does | Examples |\n|--------|--------------|----------|\n| **Containers** | Store data | `std::vector`, `std::map`, `std::set` |\n| **Algorithms** | Process data | `std::sort`, `std::find`, `std::copy` |\n| **Iterators** | Connect containers and algorithms | `begin()`, `end()`, `std::iterator` |\n| **Functors** | Callable objects | Function pointers, lambdas |\n\n**Why STL matters for games:**\n\n| Use | STL Component |\n|-----|---------------|\n| **Player inventory** | `std::vector<Item>` |\n| **Enemy roster** | `std::list<Enemy*>` |\n| **Item database** | `std::unordered_map<int, Item>` |\n| **High scores** | `std::set<int>` |\n| **Search/sort** | `std::find`, `std::sort` |\n\n**Benefits of using STL:**\n\n| Benefit | Why |\n|---------|-----|\n| **Performance** | Highly optimized |\n| **Reliability** | Well-tested |\n| **Portability** | Works on all platforms |\n| **Productivity** | Write less code |\n| **Readability** | Standard naming |\n\n**Common STL Containers:**\n\n| Container | Use |\n|-----------|-----|\n| `std::vector` | Dynamic array, fast random access |\n| `std::array` | Fixed-size array |\n| `std::list` | Doubly-linked list |\n| `std::map` | Key-value pairs (sorted) |\n| `std::unordered_map` | Key-value pairs (hash table) |\n| `std::set` | Unique elements (sorted) |\n| `std::unordered_set` | Unique elements (hash table) |\n| `std::queue` | FIFO queue |\n| `std::stack` | LIFO stack |\n| `std::deque` | Double-ended queue |\n\n**PlusPlus-chan says:**\n\"The STL is your toolbox. You could build everything from scratch — but why would you? Use the tools. Build your game, not the wheel.\"",
-    "openingDialogue": "The STL: your game dev toolkit. Ready to use. ⚔️"
+    "code": "# Reading files in Python\n\n# Create a sample file first (in a real scenario, this would already exist)\nwith open(\"sample.txt\", \"w\") as f:\n    f.write(\"Hello, Player!\\n\")\n    f.write(\"Welcome to Python file handling.\\n\")\n    f.write(\"This is line 3.\\n\")\n\nprint(\"=== Reading entire file ===\\n\")\n\n# Method 1: read() — entire file as string\nwith open(\"sample.txt\", \"r\") as file:\n    content = file.read()\n    print(f\"Full content:\\n{content}\")\n\n# Method 2: readlines() — list of lines\nwith open(\"sample.txt\", \"r\") as file:\n    lines = file.readlines()\n    print(f\"Lines as list: {lines}\")\n\nprint(\"\\n=== Reading line by line ===\\n\")\n\n# Method 3: iterate over file object\nwith open(\"sample.txt\", \"r\") as file:\n    print(\"Each line:\")\n    for line in file:\n        print(f\"  {line.strip()}\")  # strip() removes newline\n\nprint(\"\\n=== Reading with readline() ===\\n\")\n\n# Method 4: readline() — one line at a time\nwith open(\"sample.txt\", \"r\") as file:\n    line1 = file.readline()\n    line2 = file.readline()\n    print(f\"Line 1: {line1.strip()}\")\n    print(f\"Line 2: {line2.strip()}\")\n\n# File modes\n# 'r' — read (default)\n# 'w' — write (overwrites)\n# 'a' — append\n# 'r+' — read and write\n# 'x' — exclusive creation (fails if exists)\n\nprint(\"\\n=== Checking if file exists ===\\n\")\n\nimport os\nif os.path.exists(\"sample.txt\"):\n    print(\"sample.txt exists!\")\nelse:\n    print(\"sample.txt not found!\")",
+    "output": "=== Reading entire file ===\n\nFull content:\nHello, Player!\nWelcome to Python file handling.\nThis is line 3.\n\nLines as list: ['Hello, Player!\\n', 'Welcome to Python file handling.\\n', 'This is line 3.\\n']\n\n=== Reading line by line ===\n\nEach line:\n  Hello, Player!\n  Welcome to Python file handling.\n  This is line 3.\n\n=== Reading with readline() ===\n\nLine 1: Hello, Player!\nLine 2: Welcome to Python file handling.\n\n=== Checking if file exists ===\n\nsample.txt exists!",
+    "explanation": "🐍 **Reading files is done with `open()` and file methods.**\n\n**Basic file reading:**\n```python\nwith open(\"filename.txt\", \"r\") as file:\n    content = file.read()\n```\n\n**Reading methods:**\n| Method | What it does | Returns |\n|--------|--------------|---------|\n| `read()` | Entire file | String |\n| `readlines()` | All lines | List of strings |\n| `readline()` | One line | String |\n| Iteration | Each line | String |\n\n**File modes:**\n| Mode | What it does |\n|------|--------------|\n| `'r'` | Read (default) |\n| `'w'` | Write (overwrites) |\n| `'a'` | Append |\n| `'r+'` | Read and write |\n| `'x'` | Exclusive creation |\n\n**Key points:**\n- Always use `with` statement (auto-closes file)\n- `strip()` removes newline characters\n- `os.path.exists()` checks if file exists\n\n**Python-chan says:**\n\"`with open()` is the safe way to read files. It automatically closes the file for you.\"",
+    "openingDialogue": "Reading files — opening the door to persistent data. 📂"
   },
   "phase2": {
-    "brokenCode": "",
-    "errorMessage": "",
-    "explanation": "Conceptual lesson — no broken code here!\n\n**Common misconception:** \"STL is slow, I should write my own containers.\"\n\nActually: STL is highly optimized. Writing your own containers is rarely faster unless you have very specific needs. The STL has been refined over decades.\n\n**Another misconception:** \"STL is hard to learn.\"\n\nActually: STL containers work similarly. Once you learn `std::vector`, you can use most other containers easily. They share common interfaces.\n\n**PlusPlus-chan says:**\n\"Don't reinvent the wheel. The STL is your friend. Use it.\""
+    "brokenCode": "# Trying to read a file that doesn't exist\n\nwith open(\"missing.txt\", \"r\") as file:\n    content = file.read()",
+    "errorMessage": "Traceback (most recent call last):\n  File \"main.py\", line 3, in <module>\n    with open(\"missing.txt\", \"r\") as file:\n         ^^^^^^^^^^^^^^^^^^^^^^^^^\nFileNotFoundError: [Errno 2] No such file or directory: 'missing.txt'",
+    "explanation": "**FileNotFoundError: the file doesn't exist!**\n\n**What's wrong:**\n1. Trying to open a file that doesn't exist\n2. `open()` raises FileNotFoundError\n3. Program crashes\n\n**The fix:**\n```python\nimport os\n\nfilename = \"missing.txt\"\n\n# Check if file exists first\nif os.path.exists(filename):\n    with open(filename, \"r\") as file:\n        content = file.read()\nelse:\n    print(f\"File '{filename}' not found!\")\n\n# Or use try/except\ntry:\n    with open(filename, \"r\") as file:\n        content = file.read()\nexcept FileNotFoundError:\n    print(f\"File '{filename}' not found!\")\n```\n\n**Python-chan says:**\n\"Always check if a file exists before reading it. Or use try/except to handle the error gracefully.\"",
+    "openingDialogue": "What happens when you try to read a missing file? Let's see. ⚠️"
   },
   "phase3": {
-    "prompt": "Which statement about the STL is TRUE?\n\nA) The STL is an external library you need to download separately\nB) STL containers are not well-suited for game development\nC) STL provides containers, algorithms, and iterators\nD) `std::vector` is a fixed-size container\n\nSelect the CORRECT answer.",
+    "prompt": "Write a Python program that:\n\n1. Creates a file called \"quest_log.txt\" with these lines:\n   ```\n   Find the lost artifact\n   Defeat the dragon\n   Rescue the princess\n   Collect the treasure\n   ```\n\n2. Reads the file and prints:\n   - The entire content using read()\n   - Each line with a number using enumerate()\n   - Total number of lines\n   - The third line specifically\n\nExpected output:\n```\n=== Full content ===\nFind the lost artifact\nDefeat the dragon\nRescue the princess\nCollect the treasure\n\n=== Numbered lines ===\n1: Find the lost artifact\n2: Defeat the dragon\n3: Rescue the princess\n4: Collect the treasure\n\nTotal lines: 4\nThird line: Rescue the princess\n```",
     "validationPattern": {
-      "mcqAnswer": "C"
+      "required": ["with", "open", "write", "read", "readlines", "print", "enumerate"],
+      "forbidden": [";", "class", "def"],
+      "fullRegex": "with\\s+open\\s*\\([^)]*\\s*['\"]w['\"][^)]*\\)[\\s\\S]*with\\s+open\\s*\\([^)]*\\s*['\"]r['\"][^)]*\\)[\\s\\S]*read\\s*\\(\\s*\\)[\\s\\S]*readlines\\s*\\(\\s*\\)[\\s\\S]*enumerate"
     },
     "dialogueHints": [
-      "Think about what the STL actually includes.",
-      "The STL is part of the C++ Standard Library.",
-      "What are the four pillars of the STL?"
+      "Write file: `with open(\"quest_log.txt\", \"w\") as f:` then `f.write()` for each line",
+      "Read file: `with open(\"quest_log.txt\", \"r\") as f:`",
+      "Use `f.read()` for full content",
+      "Use `f.readlines()` for all lines",
+      "Use `enumerate(lines, 1)` for numbered lines",
+      "Access third line: `lines[2]`"
     ],
-    "solution": null,
-    "openingDialogue": "Let's see if you understand the STL. 🤔"
+    "solution": "# Write the file\nwith open(\"quest_log.txt\", \"w\") as f:\n    f.write(\"Find the lost artifact\\n\")\n    f.write(\"Defeat the dragon\\n\")\n    f.write(\"Rescue the princess\\n\")\n    f.write(\"Collect the treasure\\n\")\n\n# Read the file\nwith open(\"quest_log.txt\", \"r\") as f:\n    print(\"=== Full content ===\")\n    print(f.read())\n    \n    # Reset file pointer\n    f.seek(0)\n    lines = f.readlines()\n    \n    print(\"=== Numbered lines ===\")\n    for i, line in enumerate(lines, 1):\n        print(f\"{i}: {line.strip()}\")\n    \n    print(f\"\\nTotal lines: {len(lines)}\")\n    print(f\"Third line: {lines[2].strip()}\")",
+    "openingDialogue": "Your turn to read files! Create and read a quest log. 📜"
   },
   "xpReward": 10
 }

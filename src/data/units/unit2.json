@@ -1,7 +1,7 @@
 {
   "id": 2,
   "course": 1,
-  "title": "Object Oriented C++",
+  "title": "Control Flow and Functions",
   "isPublished": true,
   "lessons": [
     "2.1",

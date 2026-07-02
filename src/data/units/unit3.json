@@ -1,7 +1,7 @@
 {
   "id": 3,
   "course": 1,
-  "title": "Memory & Pointers",
+  "title": "Collections",
   "isPublished": true,
   "lessons": [
     "3.1",

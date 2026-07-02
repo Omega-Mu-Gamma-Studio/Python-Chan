@@ -1,33 +1,34 @@
 {
   "id": "1.7",
-  "title": "if / else — branching decisions",
+  "title": "Arithmetic Operators",
   "type": "coding",
   "phase1": {
-    "code": "#include <iostream>\n#include <string>\n\nint main() {\n    int health = 75;\n    int gold = 30;\n    bool hasKey = false;\n    \n    // Simple if\n    std::cout << \"=== Health Check ===\" << std::endl;\n    if (health > 50) {\n        std::cout << \"You are healthy!\" << std::endl;\n    }\n    \n    // if-else\n    std::cout << \"\\n=== Gold Check ===\" << std::endl;\n    if (gold >= 50) {\n        std::cout << \"You have enough gold to buy the sword!\" << std::endl;\n    } else {\n        std::cout << \"You need \" << (50 - gold) << \" more gold for the sword.\" << std::endl;\n    }\n    \n    // if-else-if chain\n    std::cout << \"\\n=== Key Check ===\" << std::endl;\n    if (hasKey) {\n        std::cout << \"You open the door with the key!\" << std::endl;\n    } else {\n        std::cout << \"The door is locked. You need a key.\" << std::endl;\n    }\n    \n    // Nested if\n    std::cout << \"\\n=== Treasure Room ===\" << std::endl;\n    bool hasSword = false;\n    bool hasShield = false;\n    \n    if (hasSword) {\n        if (hasShield) {\n            std::cout << \"You have both! You are fully equipped.\" << std::endl;\n        } else {\n            std::cout << \"You have a sword but no shield.\" << std::endl;\n        }\n    } else {\n        if (hasShield) {\n            std::cout << \"You have a shield but no sword.\" << std::endl;\n        } else {\n            std::cout << \"You are completely unarmed!\" << std::endl;\n        }\n    }\n    \n    return 0;\n}",
-    "output": "=== Health Check ===\nYou are healthy!\n\n=== Gold Check ===\nYou need 20 more gold for the sword.\n\n=== Key Check ===\nThe door is locked. You need a key.\n\n=== Treasure Room ===\nYou are completely unarmed!",
-    "explanation": "🎮 **if/else is how games make decisions.**\n\nEvery game decision is an if statement:\n- \"If the player has enough health, they can fight\"\n- \"If the player has the key, they can open the door\"\n- \"If the player's level is high enough, they can equip the sword\"\n\n**Syntax:**\n```cpp\nif (condition) {\n    // Code runs if condition is true\n}\n\nif (condition) {\n    // Runs if true\n} else {\n    // Runs if false\n}\n\nif (condition1) {\n    // Runs if condition1 is true\n} else if (condition2) {\n    // Runs if condition1 is false AND condition2 is true\n} else {\n    // Runs if all conditions are false\n}\n```\n\n**Nested if:**\nWhen you need to check multiple conditions that depend on each other.\n\n**Common game uses:**\n- Combat outcomes\n- Quest completion checks\n- NPC dialogue branches\n- Level-up requirements",
-    "openingDialogue": "Decisions. This is where games get interesting. 🤔🎮"
+    "code": "# Arithmetic operators in Python\n\na = 10\nb = 3\n\n# Addition\nprint(f\"{a} + {b} = {a + b}\")\n\n# Subtraction\nprint(f\"{a} - {b} = {a - b}\")\n\n# Multiplication\nprint(f\"{a} * {b} = {a * b}\")\n\n# Division (always returns float)\nprint(f\"{a} / {b} = {a / b}\")\n\n# Floor division (integer division, rounds down)\nprint(f\"{a} // {b} = {a // b}\")\n\n# Modulus (remainder)\nprint(f\"{a} % {b} = {a % b}\")\n\n# Exponentiation (power)\nprint(f\"{a} ** {b} = {a ** b}\")\n\n# Order of operations\nresult = (2 + 3) * 4 ** 2\nprint(f\"\\n(2 + 3) * 4 ** 2 = {result}\")",
+    "output": "10 + 3 = 13\n10 - 3 = 7\n10 * 3 = 30\n10 / 3 = 3.3333333333333335\n10 // 3 = 3\n10 % 3 = 1\n10 ** 3 = 1000\n\n(2 + 3) * 4 ** 2 = 80",
+    "explanation": "🐍 **Python's arithmetic operators:**\n\n| Operator | Name | Example | Result |\n|----------|------|---------|--------|\n| `+` | Addition | `10 + 3` | `13` |\n| `-` | Subtraction | `10 - 3` | `7` |\n| `*` | Multiplication | `10 * 3` | `30` |\n| `/` | Division | `10 / 3` | `3.333...` |\n| `//` | Floor Division | `10 // 3` | `3` |\n| `%` | Modulus | `10 % 3` | `1` |\n| `**` | Exponentiation | `10 ** 3` | `1000` |\n\n**Important notes:**\n- `/` always returns a `float`\n- `//` returns an `int` (rounds down)\n- `%` gives you the remainder\n- `**` is Python's power operator (not `^`!)\n\n**Order of operations (PEMDAS):**\n1. Parentheses `()`\n2. Exponents `**`\n3. Multiplication `*`, Division `/`, Floor `//`, Modulus `%`\n4. Addition `+`, Subtraction `-`\n\n**Python-chan says:**\n\"Math in Python is straightforward. Just remember: `/` gives you decimals, `//` gives you whole numbers, and `%` tells you what's left over.\"",
+    "openingDialogue": "Time to do some math. Python makes it easy. ➗"
   },
   "phase2": {
-    "brokenCode": "#include <iostream>\n\nint main() {\n    int health = 30;\n    \n    // Missing semicolon after else\n    if (health > 50) {\n        std::cout << \"Healthy!\" << std::endl;\n    }\n    else \n        std::cout << \"Not healthy!\" << std::endl;\n    }\n    \n    return 0;\n}",
-    "errorMessage": "main.cpp:10:1: error: 'else' without a previous 'if'\n   10 | }\n      | ^\n1 error",
-    "explanation": "The `else` has no matching `if` because the structure is broken.\n\n**What went wrong:**\nThe `else` statement must be directly connected to an `if`. Here, the `if` block closed with `}`, and then `else` appears after it with a missing `{`.\n\n**The fix:**\n```cpp\nif (health > 50) {\n    std::cout << \"Healthy!\" << std::endl;\n} else {\n    std::cout << \"Not healthy!\" << std::endl;\n}\n```\n\n**PlusPlus-chan says:**\n\"Indentation matters for readability, but for the compiler, braces matter more. Always use `{}` even for single statements. It prevents this error.\""
+    "brokenCode": "result = 10 / 3\nprint(result)\n\n# Using ^ for exponentiation (wrong!)\npower = 2 ^ 3\nprint(power)",
+    "errorMessage": "2 ^ 3\n  ~~^~~\nprint(power)\n    ^^^^^\nNameError: name 'power' is not defined",
+    "explanation": "You used `^` for exponentiation — but `^` is the XOR operator in Python!\n\n**What's happening:**\n1. `^` is bitwise XOR, not exponentiation\n2. `2 ^ 3` = `1` (bitwise operation)\n3. But the real issue: `power` is not defined\n\n**The fix:**\n```python\nresult = 10 / 3\nprint(result)\n\npower = 2 ** 3  # ← Use ** for exponentiation!\nprint(power)\n```\n\n**Python-chan says:**\n\"Python uses `**` for powers, not `^`. That's a common trap for beginners. Remember: `**` is power, `^` is something else entirely.\"",
+    "openingDialogue": "Common mistake alert! Let's see what happens when you use the wrong operator. ⚡"
   },
   "phase3": {
-    "prompt": "Write a C++ program that:\n\n1. Declares `int playerHealth = 45` and `int playerGold = 80`\n2. If health is greater than 50: prints \"You are feeling strong!\"\n3. Else if health is between 20 and 50: prints \"You are wounded, but alive.\"\n4. Else: prints \"You are critically injured!\"\n5. If gold is greater than 50: prints \"You have enough money for the potion.\"\n6. Else: prints \"You're too poor for that potion.\"\n\nRequirements:\n- Use if-else-if for health\n- Use if-else for gold",
+    "prompt": "Write a Python program that calculates:\n\n1. `level = 15`, `exp_bonus = 8`\n2. Calculate total_exp = level * exp_bonus + 50\n3. Calculate average_exp = total_exp / 3\n4. Calculate exp_remainder = total_exp % 5\n5. Print all results with labels\n\nExample output:\n```\nTotal EXP: 170\nAverage EXP: 56.666666666666664\nEXP remainder: 0\n```",
     "validationPattern": {
-      "required": ["if", "else if", "else", ">", "<= 50", "std::cout"],
-      "forbidden": ["using namespace"],
-      "fullRegex": "if\\s*\\([\\s\\S]*\\)\\s*\\{[\\s\\S]*\\}\\s*else\\s+if\\s*\\([\\s\\S]*\\)\\s*\\{[\\s\\S]*\\}\\s*else\\s*\\{[\\s\\S]*\\}"
+      "required": ["level", "exp_bonus", "total_exp", "average_exp", "exp_remainder", "print"],
+      "forbidden": [";", "class", "def", "^"],
+      "fullRegex": "level\\s*=\\s*15[\\s\\S]*exp_bonus\\s*=\\s*8[\\s\\S]*total_exp\\s*=\\s*level\\s*\\*\\s*exp_bonus\\s*\\+\\s*50[\\s\\S]*average_exp\\s*=\\s*total_exp\\s*/\\s*3[\\s\\S]*exp_remainder\\s*=\\s*total_exp\\s*%\\s*5[\\s\\S]*print"
     },
     "dialogueHints": [
-      "Health conditions: > 50, between 20 and 50, else",
-      "Between: `health >= 20 && health <= 50`",
-      "Gold: `if (gold > 50)` else",
-      "Use `std::cout` for each branch"
+      "Use `*` for multiplication",
+      "Use `/` for division (gives float)",
+      "Use `%` for remainder/modulus",
+      "Remember the order of operations"
     ],
-    "solution": "#include <iostream>\n\nint main() {\n    int playerHealth = 45;\n    int playerGold = 80;\n    \n    std::cout << \"=== Player Status ===\" << std::endl;\n    \n    if (playerHealth > 50) {\n        std::cout << \"You are feeling strong!\" << std::endl;\n    } else if (playerHealth >= 20 && playerHealth <= 50) {\n        std::cout << \"You are wounded, but alive.\" << std::endl;\n    } else {\n        std::cout << \"You are critically injured!\" << std::endl;\n    }\n    \n    if (playerGold > 50) {\n        std::cout << \"You have enough money for the potion.\" << std::endl;\n    } else {\n        std::cout << \"You're too poor for that potion.\" << std::endl;\n    }\n    \n    return 0;\n}",
-    "openingDialogue": "Branching time. Make the right choices. ⚔️"
+    "solution": "level = 15\nexp_bonus = 8\n\ntotal_exp = level * exp_bonus + 50\naverage_exp = total_exp / 3\nexp_remainder = total_exp % 5\n\nprint(\"Total EXP:\", total_exp)\nprint(\"Average EXP:\", average_exp)\nprint(\"EXP remainder:\", exp_remainder)",
+    "openingDialogue": "Your turn to crunch some numbers. Show me your math skills! 🧮"
   },
   "xpReward": 10
 }

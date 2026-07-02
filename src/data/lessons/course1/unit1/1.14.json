@@ -1,33 +1,31 @@
 {
   "id": "1.14",
-  "title": "Strings & string manipulation",
+  "title": "The Python REPL",
   "type": "coding",
   "phase1": {
-    "code": "#include <iostream>\n#include <string>\n\nint main() {\n    std::cout << \"=== String Manipulation ===\" << std::endl;\n    \n    // Creating strings\n    std::string playerName = \"Hero\";\n    std::string greeting = \"Welcome, \";\n    \n    // Concatenation\n    std::string message = greeting + playerName + \"!\";\n    std::cout << message << std::endl;\n    \n    // String length\n    std::string gameTitle = \"Dungeon Quest\";\n    std::cout << \"Title: '\" << gameTitle << \"' (\" << gameTitle.length() << \" characters)\" << std::endl;\n    \n    // Accessing characters\n    std::cout << \"First character: \" << gameTitle[0] << std::endl;\n    std::cout << \"Last character: \" << gameTitle[gameTitle.length() - 1] << std::endl;\n    \n    // Substring\n    std::string sub = gameTitle.substr(0, 7);  // \"Dungeon\"\n    std::cout << \"Substring (0-7): '\" << sub << \"'\" << std::endl;\n    \n    // Find\n    std::string sentence = \"The hero defeated the dragon.\";\n    size_t pos = sentence.find(\"dragon\");\n    if (pos != std::string::npos) {\n        std::cout << \"Found 'dragon' at position \" << pos << std::endl;\n    }\n    \n    // Replace\n    std::string story = \"The player opened the chest.\";\n    story.replace(story.find(\"player\"), 6, \"hero\");\n    std::cout << \"Replaced: \" << story << std::endl;\n    \n    // Uppercase/Lowercase (manual)\n    std::string power = \"FIREBALL\";\n    for (char& c : power) {\n        c = std::tolower(c);\n    }\n    std::cout << \"Lowercase: \" << power << std::endl;\n    \n    // Checking if empty\n    std::string empty = \"\";\n    if (empty.empty()) {\n        std::cout << \"String is empty!\" << std::endl;\n    }\n    \n    // Comparison\n    std::string str1 = \"Apple\";\n    std::string str2 = \"Banana\";\n    if (str1 < str2) {\n        std::cout << str1 << \" comes before \" << str2 << std::endl;\n    }\n    \n    return 0;\n}",
-    "output": "=== String Manipulation ===\nWelcome, Hero!\nTitle: 'Dungeon Quest' (13 characters)\nFirst character: D\nLast character: t\nSubstring (0-7): 'Dungeon'\nFound 'dragon' at position 20\nReplaced: The hero opened the chest.\nLowercase: fireball\nString is empty!\nApple comes before Banana",
-    "explanation": "🎮 **Strings are how games store text.**\n\n**Key string operations:**\n\n| Operation | Code |\n|-----------|------|\n| Length | `str.length()` |\n| Access character | `str[0]` |\n| Concatenation | `str1 + str2` |\n| Substring | `str.substr(start, length)` |\n| Find | `str.find(\"text\")` |\n| Replace | `str.replace(pos, length, \"new\")` |\n| Empty check | `str.empty()` |\n| Comparison | `str1 == str2`, `str1 < str2` |\n\n**Game uses:**\n- Player names\n- Dialogue\n- Item descriptions\n- Quest text\n- UI labels\n\n**PlusPlus-chan says:**\n\"Strings are everywhere in games. Java-chan has `String`. I have `std::string`. Same idea, slightly different syntax.\"\n\n**⚠️ Important:**\n- Include `#include <string>`\n- `std::string` is mutable (you can modify it)\n- `length()` returns a `size_t`\n- `find()` returns `std::string::npos` if not found",
-    "openingDialogue": "Strings: your game's words. Every story needs them. 📝"
+    "code": "# The REPL (Read-Eval-Print Loop) is your playground\n# These examples show what you can do in the REPL\n\n# In the REPL, you can type Python code and see results immediately\n# This is great for experimenting!\n\n# Example 1: Simple math\n# >>> 5 + 3\n# 8\n\n# Example 2: Variables\n# >>> x = 10\n# >>> x * 2\n# 20\n\n# Example 3: Quick tests\n# >>> len(\"hello\")\n# 5\n\n# Example 4: Help function\n# >>> help(print)  # Shows documentation\n\n# Example 5: Check type\n# >>> type(42)\n# <class 'int'>\n\n# Example 6: Multi-line (use shift+enter or paste)\n# >>> def greet(name):\n# ...     return f\"Hello, {name}!\"\n# ... \n# >>> greet(\"World\")\n# 'Hello, World!'\n\nprint(\"REPL examples shown in comments!\")",
+    "output": "REPL examples shown in comments!",
+    "explanation": "🐍 **The REPL is your interactive Python playground.**\n\n**REPL stands for:**\n- **R**ead — Python reads your input\n- **E**val — Python evaluates it\n- **P**rint — Python shows the result\n- **L**oop — Python waits for your next input\n\n**How to start the REPL:**\n```bash\npython\n```\n\n**What you can do in the REPL:**\n- Test small snippets of code\n- Experiment with new functions\n- Check types and values\n- Get help with `help()`\n- Explore objects with `dir()`\n\n**Useful REPL commands:**\n\n| Command | What it does |\n|---------|--------------|\n| `help()` | Enter help mode |\n| `dir(obj)` | List attributes of object |\n| `type(obj)` | Check type |\n| `exit()` | Exit the REPL |\n| `!command` | Run system command (on some systems) |\n\n**Python-chan says:**\n\"The REPL is your best friend when learning. Try things there first. Experiment. Break things. That's how you learn.\"",
+    "openingDialogue": "The REPL — your interactive Python playground. Let's explore. 🎮"
   },
   "phase2": {
-    "brokenCode": "#include <iostream>\n#include <string>\n\nint main() {\n    std::string name = \"Hero\";\n    \n    // Forgetting to include <string> already done\n    // But using c-string functions on std::string incorrectly\n    std::cout << \"Name length: \" << strlen(name) << std::endl;  // ERROR!\n    \n    return 0;\n}",
-    "errorMessage": "main.cpp:8:34: error: no matching function for call to 'strlen(std::string&)'\n    8 |     std::cout << \"Name length: \" << strlen(name) << std::endl;\n      |                                  ^~~~~~\n1 error",
-    "explanation": "`strlen()` is for C-style strings (char arrays). `std::string` has its own `.length()` method.\n\n**The fix:**\n```cpp\nstd::cout << \"Name length: \" << name.length() << std::endl;\n```\n\n**PlusPlus-chan says:**\n\"This is a common C vs C++ mix-up. `std::string` is the C++ way. Use its methods, not C functions.\"\n\n**When to use what:**\n- `std::string` → `.length()`, `.substr()`, `.find()`\n- `char[]` → `strlen()`, `strcmp()`"
+    "brokenCode": "# In the REPL, this would work\n# >>> x = 10\n# >>> x = x + \"5\"\n# But... this would break!\n\n# Here's the error you'd see:\n# Traceback (most recent call last):\n#   File \"<stdin>\", line 1, in <module>\n# TypeError: unsupported operand type(s) for +: 'int' and 'str'",
+    "errorMessage": "TypeError: unsupported operand type(s) for +: 'int' and 'str'",
+    "explanation": "**In the REPL, you can test code and see errors immediately.**\n\n**What went wrong:**\n1. `x = 10` assigns an integer\n2. `x = x + \"5\"` tries to add a string to an integer\n3. Python throws a `TypeError`\n\n**The REPL is great for:**\n- Testing code quickly\n- Seeing errors immediately\n- Experimenting without saving files\n- Learning new features\n\n**Python-chan says:**\n\"The REPL gives you immediate feedback. Try things. See what works. See what doesn't. It's the fastest way to learn.\"",
+    "openingDialogue": "The REPL shows you errors instantly. Let's see one. ⚡"
   },
   "phase3": {
-    "prompt": "Write a C++ program that:\n\n1. Creates a string `playerName = \"Hero\"`\n2. Creates a string `item = \"Sword\"`\n3. Concatenates them into: \"Hero found a Sword!\"\n4. Prints the length of the string\n5. Finds the position of \"Sword\" in the string\n6. Replaces \"Sword\" with \"Shield\"\n7. Prints the final string\n\nRequirements:\n- Use `std::string`\n- Use `.length()`, `.find()`, `.replace()`\n- Print results at each step",
+    "prompt": "What does REPL stand for?\n\nA) Run, Execute, Print, Loop\nB) Read, Evaluate, Print, Loop\nC) Read, Execute, Process, Loop\nD) Run, Evaluate, Print, Loop\n\nSelect the correct answer.",
     "validationPattern": {
-      "required": ["std::string", ".length()", ".find()", ".replace()", "std::cout"],
-      "forbidden": ["using namespace"],
-      "fullRegex": "std::string\\s+\\w+\\s*=\\s*\"[^\"]*\"[\\s\\S]*\\.length\\s*\\([\\s\\S]*\\)[\\s\\S]*\\.find\\s*\\([\\s\\S]*\\)[\\s\\S]*\\.replace\\s*\\([\\s\\S]*\\)"
+      "mcqAnswer": "B"
     },
     "dialogueHints": [
-      "Create string: `std::string message = playerName + \" found a \" + item + \"!\";`",
-      "Length: `message.length()`",
-      "Find: `message.find(\"Sword\")`",
-      "Replace: `message.replace(pos, 5, \"Shield\")`"
+      "Think about what happens when you type code in the REPL",
+      "The first step is reading your input",
+      "The last step is going back to read more input"
     ],
-    "solution": "#include <iostream>\n#include <string>\n\nint main() {\n    std::string playerName = \"Hero\";\n    std::string item = \"Sword\";\n    \n    std::string message = playerName + \" found a \" + item + \"!\";\n    std::cout << \"Message: \" << message << std::endl;\n    \n    std::cout << \"Length: \" << message.length() << std::endl;\n    \n    size_t pos = message.find(\"Sword\");\n    std::cout << \"'Sword' found at position: \" << pos << std::endl;\n    \n    message.replace(pos, 5, \"Shield\");\n    std::cout << \"Updated message: \" << message << std::endl;\n    \n    return 0;\n}",
-    "openingDialogue": "Strings tell your game's story. Master them. 📖"
+    "solution": null,
+    "openingDialogue": "Quick pop quiz! What does REPL stand for? 📝"
   },
   "xpReward": 10
 }
