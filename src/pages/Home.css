@@ -20,7 +20,7 @@
   border-radius: var(--radius-xl);
   overflow: hidden;
   padding: 32px 28px;
-  background: linear-gradient(160deg, #0a2620 0%, #123830 55%, #1a5c52 100%);
+  background: var(--gradient-hero);
   border: 1px solid var(--color-border-accent);
   isolation: isolate;
 }
@@ -28,7 +28,10 @@
 .hero-water {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, transparent 0%, rgba(63, 163, 138, 0.18) 70%, rgba(127, 217, 196, 0.28) 100%);
+  background: linear-gradient(180deg,
+    transparent 0%,
+    color-mix(in srgb, var(--color-primary) 18%, transparent) 70%,
+    color-mix(in srgb, var(--color-primary-light) 28%, transparent) 100%);
   pointer-events: none;
 }
 
@@ -110,7 +113,7 @@
   background-size: 200% 200%;
   background-position: 0% 50%;
   color: #05130f;
-  box-shadow: 0 4px 24px var(--color-primary-glow), 0 0 0 1px rgba(63,163,138,0.35);
+  box-shadow: 0 4px 24px var(--color-primary-glow), 0 0 0 1px color-mix(in srgb, var(--color-primary) 35%, transparent);
 }
 
 .cta-btn--primary:hover {
@@ -137,7 +140,7 @@
 
 .stone {
   position: relative;
-  background: rgba(17, 48, 42, 0.75);
+  background: var(--color-glass);
   border: 1px solid var(--color-border-accent);
   border-radius: var(--radius-lg);
   padding: 16px 18px;
@@ -177,7 +180,7 @@
 .stone--shop {
   cursor: pointer;
   border-style: dashed;
-  border-color: rgba(63, 163, 138, 0.22);
+  border-color: color-mix(in srgb, var(--color-primary) 22%, transparent);
   align-items: center;
   justify-content: center;
   text-align: center;
@@ -186,7 +189,7 @@
 
 .stone--shop:hover {
   border-style: solid;
-  background: rgba(63, 163, 138, 0.08);
+  background: color-mix(in srgb, var(--color-primary) 8%, transparent);
 }
 
 .stone-shop-icon { font-size: 1.6rem; }
@@ -230,7 +233,7 @@
 .stream-track {
   position: relative;
   height: 4px;
-  background: rgba(63, 163, 138, 0.14);
+  background: color-mix(in srgb, var(--color-primary) 14%, transparent);
   border-radius: var(--radius-full);
   overflow: hidden;
   margin-top: 6px;
@@ -306,7 +309,7 @@
 
 .course-card {
   position: relative;
-  background: rgba(17, 48, 42, 0.75);
+  background: var(--color-glass);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
   padding: 20px 18px 16px;
@@ -323,7 +326,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(115deg, transparent 40%, rgba(127, 217, 196, 0.14) 50%, transparent 60%);
+  background: linear-gradient(115deg, transparent 40%, color-mix(in srgb, var(--color-primary-light) 14%, transparent) 50%, transparent 60%);
   transform: translateX(-100%);
   transition: transform 0.6s ease;
   pointer-events: none;
@@ -340,7 +343,7 @@
 
 .course-card--active:hover {
   border-color: var(--color-primary);
-  background: rgba(63, 163, 138, 0.09);
+  background: color-mix(in srgb, var(--color-primary) 9%, transparent);
   box-shadow: 0 4px 24px var(--color-primary-glow);
   transform: translateY(-2px);
 }
@@ -416,7 +419,7 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  background: rgba(17, 48, 42, 0.6);
+  background: var(--color-glass-soft);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   padding: 10px 12px;
@@ -436,7 +439,7 @@
 
 .sister-card:hover {
   border-color: var(--sister-accent);
-  background: rgba(17, 48, 42, 0.9);
+  background: color-mix(in srgb, var(--color-surface-2) 90%, transparent);
   transform: translateX(2px);
   box-shadow: 0 4px 16px rgba(0,0,0,0.35);
 }

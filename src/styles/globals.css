@@ -7,20 +7,33 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,900&display=swap');
 
 :root {
-  /* --- Core Palette: deep lake water, wet stone --- */
-  --color-bg:            #071815;
-  --color-surface:       #0e2420;
-  --color-surface-2:     #11302a;
-  --color-surface-3:     #0a1c18;
-  --color-border:        rgba(63, 163, 138, 0.12);
-  --color-border-accent: rgba(63, 163, 138, 0.3);
+  /* --- Core Palette: deep lake water, wet stone ---
+     Lifted a few % lighter than the original near-black
+     values so the default theme reads as "sunlit forest
+     lake" rather than "underwater at midnight". */
+  --color-bg:            #0a201b;
+  --color-surface:       #123a30;
+  --color-surface-2:     #17463a;
+  --color-surface-3:     #0e2b24;
+  --color-border:        rgba(63, 163, 138, 0.14);
+  --color-border-accent: rgba(63, 163, 138, 0.32);
 
   /* --- Python-Chan Brand Colors (blue-green lake gradient) --- */
   --color-primary:        #3fa38a;
   --color-primary-light:  #7fd9c4;
   --color-primary-dark:   #1a5c52;
   --color-primary-glow:   rgba(63, 163, 138, 0.24);
-  --gradient-lake:         linear-gradient(135deg, #1a5c52 0%, #3fa38a 55%, #7fd9c4 100%);
+  /* Built from the theme-aware primary variables above (rather
+     than hardcoded hex) so every biome gets its own gradient
+     automatically once --color-primary-* is overridden below. */
+  --gradient-lake:         linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary) 55%, var(--color-primary-light) 100%);
+  /* Ambient hero/card wash — built the same way, used anywhere
+     a "moody scene-setting" background is needed. */
+  --gradient-hero:         linear-gradient(160deg, color-mix(in srgb, var(--color-surface) 92%, black) 0%, var(--color-surface-2) 55%, var(--color-primary-dark) 100%);
+  /* Semi-transparent glass panel background, used by cards/stones
+     instead of a hardcoded rgba(). */
+  --color-glass:           color-mix(in srgb, var(--color-surface-2) 75%, transparent);
+  --color-glass-soft:      color-mix(in srgb, var(--color-surface-2) 60%, transparent);
 
   --color-cyan:           #5fb8a8;
   --color-cyan-light:     #9de0d2;
@@ -86,25 +99,32 @@
    are the other regions she's visited.
    ============================================ */
 .theme-forest {
-  /* explicit alias of :root, for wallpaper items that want to name it */
+  /* explicit alias of :root, for wallpaper items that want to name it —
+     kept in sync with the root palette above, surface-3 included, so
+     nothing looks different if this class happens to be applied. */
+  --color-bg:              #0a201b;
+  --color-surface:         #123a30;
+  --color-surface-2:       #17463a;
+  --color-surface-3:       #0e2b24;
   --color-primary:        #3fa38a;
   --color-primary-light:  #7fd9c4;
   --color-primary-dark:   #1a5c52;
   --color-primary-glow:   rgba(63, 163, 138, 0.24);
-  --color-border-accent:  rgba(63, 163, 138, 0.3);
+  --color-border-accent:  rgba(63, 163, 138, 0.32);
   --color-xp:             #3fa38a;
 }
 
 .theme-mountain {
   /* granite blue-grey, snow-white highlights */
-  --color-bg:              #10161c;
-  --color-surface:         #171f27;
-  --color-surface-2:       #1c2530;
+  --color-bg:              #131a21;
+  --color-surface:         #1c2530;
+  --color-surface-2:       #232f3c;
+  --color-surface-3:       #161e26;
   --color-primary:         #7fa3bf;
   --color-primary-light:   #cfe3f0;
   --color-primary-dark:    #4c7089;
   --color-primary-glow:    rgba(127, 163, 191, 0.22);
-  --color-border-accent:   rgba(127, 163, 191, 0.3);
+  --color-border-accent:   rgba(127, 163, 191, 0.32);
   --color-xp:              #7fa3bf;
   --color-cyan:            #cfe3f0;
   --color-cyan-light:      #eaf4fa;
@@ -112,14 +132,15 @@
 
 .theme-desert {
   /* sun-baked terracotta, sand, warm gold */
-  --color-bg:              #1c130b;
-  --color-surface:         #26190f;
-  --color-surface-2:       #301f12;
+  --color-bg:              #22170d;
+  --color-surface:         #2e2013;
+  --color-surface-2:       #3a2716;
+  --color-surface-3:       #271b0f;
   --color-primary:         #d97f41;
   --color-primary-light:   #f0b774;
   --color-primary-dark:    #a3551f;
   --color-primary-glow:    rgba(217, 127, 65, 0.24);
-  --color-border-accent:   rgba(217, 127, 65, 0.32);
+  --color-border-accent:   rgba(217, 127, 65, 0.34);
   --color-xp:              #e0b34a;
   --color-cyan:            #e0b34a;
   --color-cyan-light:      #f2d488;
@@ -127,27 +148,29 @@
 
 .theme-canyon {
   /* red rock, burnt orange, dusty clay */
-  --color-bg:              #1a0e0a;
-  --color-surface:         #26140e;
-  --color-surface-2:       #331a12;
+  --color-bg:              #201109;
+  --color-surface:         #2e1811;
+  --color-surface-2:       #3c1f16;
+  --color-surface-3:       #291711;
   --color-primary:         #c0553a;
   --color-primary-light:   #e0906f;
   --color-primary-dark:    #8a3624;
   --color-primary-glow:    rgba(192, 85, 58, 0.24);
-  --color-border-accent:   rgba(192, 85, 58, 0.32);
+  --color-border-accent:   rgba(192, 85, 58, 0.34);
   --color-xp:              #c0553a;
 }
 
 .theme-arctic {
   /* glacial pale blue-white */
-  --color-bg:              #0c1418;
-  --color-surface:         #121e24;
-  --color-surface-2:       #17262e;
+  --color-bg:              #10191e;
+  --color-surface:         #17242c;
+  --color-surface-2:       #1d2d36;
+  --color-surface-3:       #131e24;
   --color-primary:         #8fd4e8;
   --color-primary-light:   #d8f2f9;
   --color-primary-dark:    #4f9cb5;
   --color-primary-glow:    rgba(143, 212, 232, 0.24);
-  --color-border-accent:   rgba(143, 212, 232, 0.32);
+  --color-border-accent:   rgba(143, 212, 232, 0.34);
   --color-xp:              #8fd4e8;
   --color-cyan:            #d8f2f9;
   --color-cyan-light:      #f0fbfe;

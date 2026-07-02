@@ -17,7 +17,9 @@
   align-items: center;
   gap: 12px;
   padding: 0 20px;
-  background: rgba(14, 11, 26, 0.85);
+  /* was a hardcoded dark-violet leftover from an older design —
+     now a theme-aware tint of the current surface color */
+  background: color-mix(in srgb, var(--color-surface) 88%, transparent);
   border-bottom: 1px solid var(--color-border-accent);
   z-index: 10;
   backdrop-filter: blur(12px);

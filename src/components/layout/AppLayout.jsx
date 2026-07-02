@@ -23,7 +23,7 @@ const AppLayout = () => {
   return (
     <div className={`app-layout ${themeClass}`}>
       {/* Animated background — always behind everything */}
-      <AnimatedBg />
+      <AnimatedBg themeClass={themeClass} />
 
       <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
 

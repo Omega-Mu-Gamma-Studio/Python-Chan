@@ -16,15 +16,20 @@
   position: absolute;
   border-radius: 50%;
   filter: blur(90px);
-  opacity: 0.28;
+  /* was 0.28 — a touch brighter so the scene doesn't read as
+     flat/oppressive on top of the lightened base palette */
+  opacity: 0.36;
   will-change: transform;
 }
 
+/* Built from theme CSS variables via color-mix() instead of
+   hardcoded rgba(), so every blob re-colors itself the instant
+   the theme class changes — no JS required for this layer. */
 .aurora__blob--1 {
   /* deep water body */
   width: 600px;
   height: 600px;
-  background: radial-gradient(circle, rgba(26, 92, 82, 0.55) 0%, transparent 70%);
+  background: radial-gradient(circle, color-mix(in srgb, var(--color-primary-dark) 60%, transparent) 0%, transparent 70%);
   top: -15%;
   left: -10%;
   animation: aurora-drift-1 22s ease-in-out infinite alternate;
@@ -34,7 +39,7 @@
   /* sunlit shallows */
   width: 500px;
   height: 500px;
-  background: radial-gradient(circle, rgba(127, 217, 196, 0.4) 0%, transparent 70%);
+  background: radial-gradient(circle, color-mix(in srgb, var(--color-primary-light) 42%, transparent) 0%, transparent 70%);
   top: 20%;
   right: -8%;
   animation: aurora-drift-2 28s ease-in-out infinite alternate;
@@ -44,7 +49,7 @@
   /* amber light through canopy */
   width: 450px;
   height: 450px;
-  background: radial-gradient(circle, rgba(217, 164, 65, 0.28) 0%, transparent 70%);
+  background: radial-gradient(circle, color-mix(in srgb, var(--color-amber) 30%, transparent) 0%, transparent 70%);
   bottom: -10%;
   left: 25%;
   animation: aurora-drift-3 18s ease-in-out infinite alternate;
@@ -54,7 +59,7 @@
   /* moss shadow */
   width: 350px;
   height: 350px;
-  background: radial-gradient(circle, rgba(63, 163, 138, 0.3) 0%, transparent 70%);
+  background: radial-gradient(circle, color-mix(in srgb, var(--color-primary) 32%, transparent) 0%, transparent 70%);
   top: 55%;
   left: 55%;
   animation: aurora-drift-4 24s ease-in-out infinite alternate;
