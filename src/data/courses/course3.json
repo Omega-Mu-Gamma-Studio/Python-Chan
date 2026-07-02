@@ -1,0 +1,9 @@
+{
+  "id": 3,
+  "slug": "course-3",
+  "title": "Course 3",
+  "tagline": "Replace with a one-line description of this course.",
+  "icon": "✦",
+  "isPublished": false,
+  "units": [11, 12, 13, 14, 15]
+}

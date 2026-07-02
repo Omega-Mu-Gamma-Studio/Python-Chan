@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import AppLayout from './components/layout/AppLayout';
 import Home from './pages/Home';
+import CoursePage from './pages/CoursePage';
 import LessonPage from './pages/LessonPage';
 import UnitPage from './pages/UnitPage';
 import Shop from './pages/Shop';
@@ -21,6 +22,7 @@ function App() {
         {/* ---- Phase 1 Routes (Active) ---- */}
         <Route path="/" element={<AppLayout />}>
           <Route index element={<Home />} />
+          <Route path="course/:courseId" element={<CoursePage />} />
           <Route path="unit/:unitId" element={<UnitPage />} />
           <Route path="lesson/:lessonId" element={<LessonPage />} />
           <Route path="shop" element={<Shop />} />

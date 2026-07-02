@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { loadAllUnits } from '../../services/lessonService';
+import { loadAllCourses, loadUnitsForCourse } from '../../services/lessonService';
 import { useProgress } from '../../hooks/useProgress';
 import './Sidebar.css';
 
@@ -8,18 +8,30 @@ const Sidebar = ({ isOpen, onClose }) => {
   const navigate = useNavigate();
   const { lessonId } = useParams();
   const { isCompleted, isUnitUnlocked } = useProgress();
-  const [units, setUnits] = useState([]);
+  const [courses, setCourses] = useState([]);
+  const [unitsByCourse, setUnitsByCourse] = useState({});
+  const [expandedCourses, setExpandedCourses] = useState({ 1: true });
   const [expandedUnits, setExpandedUnits] = useState({ 1: true });
 
   useEffect(() => {
-    loadAllUnits()
-      .then(setUnits)
+    loadAllCourses()
+      .then(async (courseList) => {
+        setCourses(courseList);
+        const entries = await Promise.all(
+          courseList.map(async (course) => [course.id, await loadUnitsForCourse(course.id)])
+        );
+        setUnitsByCourse(Object.fromEntries(entries));
+      })
       .catch(console.error);
   }, []);
 
   const handleLessonClick = (id) => {
     navigate(`/lesson/${id}`);
     onClose();
+  };
+
+  const toggleCourse = (courseId) => {
+    setExpandedCourses(prev => ({ ...prev, [courseId]: !prev[courseId] }));
   };
 
   const toggleUnit = (unitId) => {
@@ -34,47 +46,72 @@ const Sidebar = ({ isOpen, onClose }) => {
       </div>
 
       <nav className="sidebar-nav">
-        {units.map(unit => {
-          const unlocked = isUnitUnlocked(unit.id);
-          const expanded = expandedUnits[unit.id];
+        {courses.map(course => {
+          const courseUnlocked = course.isPublished;
+          const courseExpanded = expandedCourses[course.id];
+          const units = unitsByCourse[course.id] || [];
 
           return (
-            <div key={unit.id} className="sidebar-unit">
+            <div key={course.id} className="sidebar-course">
               <button
-                className={`sidebar-unit-header ${!unlocked ? 'sidebar-unit-header--locked' : ''}`}
-                onClick={() => unlocked && toggleUnit(unit.id)}
-                disabled={!unlocked}
+                className={`sidebar-course-header ${!courseUnlocked ? 'sidebar-course-header--locked' : ''}`}
+                onClick={() => courseUnlocked && toggleCourse(course.id)}
+                disabled={!courseUnlocked}
               >
-                <span className="sidebar-unit-icon">
-                  {unlocked ? (expanded ? '▾' : '▸') : '🔒'}
+                <span className="sidebar-course-icon">
+                  {courseUnlocked ? (courseExpanded ? '▾' : '▸') : '🔒'}
                 </span>
-                <span className="sidebar-unit-title">Unit {unit.id}</span>
-                <span className="sidebar-unit-name">{unit.title}</span>
+                <span className="sidebar-course-title">{course.title}</span>
               </button>
 
-              {unlocked && expanded && (
-                <ul className="sidebar-lessons">
-                  {unit.lessons.map(id => {
-                    const done = isCompleted(id);
-                    const active = id === lessonId;
+              {courseUnlocked && courseExpanded && (
+                <div className="sidebar-course-units">
+                  {units.map(unit => {
+                    const unlocked = isUnitUnlocked(unit.id) && unit.isPublished;
+                    const expanded = expandedUnits[unit.id];
+
                     return (
-                      <li key={id}>
+                      <div key={unit.id} className="sidebar-unit">
                         <button
-                          className={`sidebar-lesson-btn
-                            ${active ? 'sidebar-lesson-btn--active' : ''}
-                            ${done ? 'sidebar-lesson-btn--done' : ''}
-                          `}
-                          onClick={() => handleLessonClick(id)}
+                          className={`sidebar-unit-header ${!unlocked ? 'sidebar-unit-header--locked' : ''}`}
+                          onClick={() => unlocked && toggleUnit(unit.id)}
+                          disabled={!unlocked}
                         >
-                          <span className="sidebar-lesson-indicator">
-                            {done ? '✓' : active ? '▶' : '○'}
+                          <span className="sidebar-unit-icon">
+                            {unlocked ? (expanded ? '▾' : '▸') : '🔒'}
                           </span>
-                          <span>Lesson {id}</span>
+                          <span className="sidebar-unit-title">Unit {unit.id}</span>
+                          <span className="sidebar-unit-name">{unit.title}</span>
                         </button>
-                      </li>
+
+                        {unlocked && expanded && (
+                          <ul className="sidebar-lessons">
+                            {unit.lessons.map(id => {
+                              const done = isCompleted(id);
+                              const active = id === lessonId;
+                              return (
+                                <li key={id}>
+                                  <button
+                                    className={`sidebar-lesson-btn
+                                      ${active ? 'sidebar-lesson-btn--active' : ''}
+                                      ${done ? 'sidebar-lesson-btn--done' : ''}
+                                    `}
+                                    onClick={() => handleLessonClick(id)}
+                                  >
+                                    <span className="sidebar-lesson-indicator">
+                                      {done ? '✓' : active ? '▶' : '○'}
+                                    </span>
+                                    <span>Lesson {id}</span>
+                                  </button>
+                                </li>
+                              );
+                            })}
+                          </ul>
+                        )}
+                      </div>
                     );
                   })}
-                </ul>
+                </div>
               )}
             </div>
           );

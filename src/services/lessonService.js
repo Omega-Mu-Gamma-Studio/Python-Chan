@@ -1,116 +1,80 @@
 /**
  * lessonService.js
- * 
- * Responsible for loading lesson and unit data.
- * Phase 1: imports static JSON files.
+ *
+ * Responsible for loading course, unit, and lesson data.
+ * Phase 1: auto-discovers static JSON files via import.meta.glob.
  * Phase 2: swap fetch calls to hit the Express API instead.
- * 
+ *
  * The hook (useLesson.js) calls this service.
  * Components never import lesson data directly.
+ *
+ * ---- Adding new content ----
+ * You do NOT need to edit this file to add a new lesson to an existing
+ * unit. Just drop a JSON file at:
+ *
+ *   src/data/lessons/course{C}/unit{N}/{N}.{M}.json
+ *
+ * and it is picked up automatically (see the import.meta.glob calls
+ * below). To add a brand new unit or course, add one small metadata
+ * JSON file (src/data/units/unit{N}.json or
+ * src/data/courses/course{C}.json) — those are auto-discovered too.
  */
 
 // Phase 2: flip this to true
 const USE_API = false;
 const API_BASE = '/api'; // Phase 2 Express server base
 
-// ---- Static JSON imports (Phase 1) ----
+// ---- Auto-discovery (Phase 1) ----
+// Vite scans these globs at build time. Nothing here needs to be
+// updated by hand when a new course/unit/lesson JSON file is added —
+// as long as it lives at the right path with the right filename.
 
-const UNIT_DATA = {
-  1: () => import('../data/units/unit1.json'),
-  2: () => import('../data/units/unit2.json'),
-  3: () => import('../data/units/unit3.json'),
-  4: () => import('../data/units/unit4.json'),
-  5: () => import('../data/units/unit5.json'),
-};
+const courseFiles = import.meta.glob('../data/courses/course*.json');
+const unitFiles = import.meta.glob('../data/units/unit*.json');
+const lessonFiles = import.meta.glob('../data/lessons/course*/unit*/*.json');
 
-const LESSON_DATA = {
-  // Unit 1 — C++ Foundations 
-  '1.1':  () => import('../data/lessons/unit1/1.1.json'),
-  '1.2':  () => import('../data/lessons/unit1/1.2.json'),
-  '1.3':  () => import('../data/lessons/unit1/1.3.json'),
-  '1.4':  () => import('../data/lessons/unit1/1.4.json'),
-  '1.5':  () => import('../data/lessons/unit1/1.5.json'),
-  '1.6':  () => import('../data/lessons/unit1/1.6.json'),
-  '1.7':  () => import('../data/lessons/unit1/1.7.json'),
-  '1.8':  () => import('../data/lessons/unit1/1.8.json'),
-  '1.9':  () => import('../data/lessons/unit1/1.9.json'),
-  '1.10': () => import('../data/lessons/unit1/1.10.json'),
-  '1.11': () => import('../data/lessons/unit1/1.11.json'),
-  '1.12': () => import('../data/lessons/unit1/1.12.json'),
-  '1.13': () => import('../data/lessons/unit1/1.13.json'),
-  '1.14': () => import('../data/lessons/unit1/1.14.json'),
-  '1.15': () => import('../data/lessons/unit1/1.15.json'),
+function findLoader(files, matcher) {
+  const key = Object.keys(files).find(matcher);
+  return key ? files[key] : null;
+}
 
-  // Unit 2 — Object Oriented C++
-  '2.1':  () => import('../data/lessons/unit2/2.1.json'),
-  '2.2':  () => import('../data/lessons/unit2/2.2.json'),
-  '2.3':  () => import('../data/lessons/unit2/2.3.json'),
-  '2.4':  () => import('../data/lessons/unit2/2.4.json'),
-  '2.5':  () => import('../data/lessons/unit2/2.5.json'),
-  '2.6':  () => import('../data/lessons/unit2/2.6.json'),
-  '2.7':  () => import('../data/lessons/unit2/2.7.json'),
-  '2.8':  () => import('../data/lessons/unit2/2.8.json'),
-  '2.9':  () => import('../data/lessons/unit2/2.9.json'),
-  '2.10': () => import('../data/lessons/unit2/2.10.json'),
-  '2.11': () => import('../data/lessons/unit2/2.11.json'),
-  '2.12': () => import('../data/lessons/unit2/2.12.json'),
-  '2.13': () => import('../data/lessons/unit2/2.13.json'),
-  '2.14': () => import('../data/lessons/unit2/2.14.json'),
-  '2.15': () => import('../data/lessons/unit2/2.15.json'),
+function idsFromFiles(files, pattern) {
+  return Object.keys(files)
+    .map(key => {
+      const match = key.match(pattern);
+      return match ? Number(match[1]) : null;
+    })
+    .filter(id => id !== null)
+    .sort((a, b) => a - b);
+}
 
-  // Unit 3 — Memory & Pointers
-  '3.1':  () => import('../data/lessons/unit3/3.1.json'),
-  '3.2':  () => import('../data/lessons/unit3/3.2.json'),
-  '3.3':  () => import('../data/lessons/unit3/3.3.json'),
-  '3.4':  () => import('../data/lessons/unit3/3.4.json'),
-  '3.5':  () => import('../data/lessons/unit3/3.5.json'),
-  '3.6':  () => import('../data/lessons/unit3/3.6.json'),
-  '3.7':  () => import('../data/lessons/unit3/3.7.json'),
-  '3.8':  () => import('../data/lessons/unit3/3.8.json'),
-  '3.9':  () => import('../data/lessons/unit3/3.9.json'),
-  '3.10': () => import('../data/lessons/unit3/3.10.json'),
-  '3.11': () => import('../data/lessons/unit3/3.11.json'),
-  '3.12': () => import('../data/lessons/unit3/3.12.json'),
-  '3.13': () => import('../data/lessons/unit3/3.13.json'),
-  '3.14': () => import('../data/lessons/unit3/3.14.json'),
-  '3.15': () => import('../data/lessons/unit3/3.15.json'),
+// ---- Courses ----
 
-  // Unit 4 — STL & Templates
-  '4.1':  () => import('../data/lessons/unit4/4.1.json'),
-  '4.2':  () => import('../data/lessons/unit4/4.2.json'),
-  '4.3':  () => import('../data/lessons/unit4/4.3.json'),
-  '4.4':  () => import('../data/lessons/unit4/4.4.json'),
-  '4.5':  () => import('../data/lessons/unit4/4.5.json'),
-  '4.6':  () => import('../data/lessons/unit4/4.6.json'),
-  '4.7':  () => import('../data/lessons/unit4/4.7.json'),
-  '4.8':  () => import('../data/lessons/unit4/4.8.json'),
-  '4.9':  () => import('../data/lessons/unit4/4.9.json'),
-  '4.10': () => import('../data/lessons/unit4/4.10.json'),
-  '4.11': () => import('../data/lessons/unit4/4.11.json'),
-  '4.12': () => import('../data/lessons/unit4/4.12.json'),
-  '4.13': () => import('../data/lessons/unit4/4.13.json'),
-  '4.14': () => import('../data/lessons/unit4/4.14.json'),
-  '4.15': () => import('../data/lessons/unit4/4.15.json'),
+export async function loadCourse(courseId) {
+  if (USE_API) {
+    const res = await fetch(`${API_BASE}/courses/${courseId}`);
+    if (!res.ok) throw new Error(`Course ${courseId} not found`);
+    return res.json();
+  }
 
-  // Unit 5 — File I/O, Error Handling & Shipping
-  '5.1':  () => import('../data/lessons/unit5/5.1.json'),
-  '5.2':  () => import('../data/lessons/unit5/5.2.json'),
-  '5.3':  () => import('../data/lessons/unit5/5.3.json'),
-  '5.4':  () => import('../data/lessons/unit5/5.4.json'),
-  '5.5':  () => import('../data/lessons/unit5/5.5.json'),
-  '5.6':  () => import('../data/lessons/unit5/5.6.json'),
-  '5.7':  () => import('../data/lessons/unit5/5.7.json'),
-  '5.8':  () => import('../data/lessons/unit5/5.8.json'),
-  '5.9':  () => import('../data/lessons/unit5/5.9.json'),
-  '5.10': () => import('../data/lessons/unit5/5.10.json'),
-  '5.11': () => import('../data/lessons/unit5/5.11.json'),
-  '5.12': () => import('../data/lessons/unit5/5.12.json'),
-  '5.13': () => import('../data/lessons/unit5/5.13.json'),
-  '5.14': () => import('../data/lessons/unit5/5.14.json'),
-  '5.15': () => import('../data/lessons/unit5/5.15.json'),
-};
+  const loader = findLoader(courseFiles, key => key.endsWith(`/course${courseId}.json`));
+  if (!loader) throw new Error(`Course ${courseId} not found`);
+  const mod = await loader();
+  return mod.default;
+}
 
-// ---- Loaders ----
+export async function loadAllCourses() {
+  if (USE_API) {
+    const res = await fetch(`${API_BASE}/courses`);
+    if (!res.ok) throw new Error('Failed to load courses');
+    return res.json();
+  }
+
+  const courseIds = idsFromFiles(courseFiles, /course(\d+)\.json$/);
+  return Promise.all(courseIds.map(loadCourse));
+}
+
+// ---- Units ----
 
 export async function loadUnit(unitId) {
   if (USE_API) {
@@ -119,21 +83,8 @@ export async function loadUnit(unitId) {
     return res.json();
   }
 
-  const loader = UNIT_DATA[unitId];
+  const loader = findLoader(unitFiles, key => key.endsWith(`/unit${unitId}.json`));
   if (!loader) throw new Error(`Unit ${unitId} not found`);
-  const mod = await loader();
-  return mod.default;
-}
-
-export async function loadLesson(lessonId) {
-  if (USE_API) {
-    const res = await fetch(`${API_BASE}/lessons/${lessonId}`);
-    if (!res.ok) throw new Error(`Lesson ${lessonId} not found`);
-    return res.json();
-  }
-
-  const loader = LESSON_DATA[lessonId];
-  if (!loader) throw new Error(`Lesson ${lessonId} not found`);
   const mod = await loader();
   return mod.default;
 }
@@ -145,7 +96,27 @@ export async function loadAllUnits() {
     return res.json();
   }
 
-  const unitIds = Object.keys(UNIT_DATA).map(Number);
-  const units = await Promise.all(unitIds.map(id => loadUnit(id)));
-  return units;
+  const unitIds = idsFromFiles(unitFiles, /unit(\d+)\.json$/);
+  return Promise.all(unitIds.map(loadUnit));
+}
+
+// Units belonging to a single course, in the order listed on the course record.
+export async function loadUnitsForCourse(courseId) {
+  const course = await loadCourse(courseId);
+  return Promise.all(course.units.map(loadUnit));
+}
+
+// ---- Lessons ----
+
+export async function loadLesson(lessonId) {
+  if (USE_API) {
+    const res = await fetch(`${API_BASE}/lessons/${lessonId}`);
+    if (!res.ok) throw new Error(`Lesson ${lessonId} not found`);
+    return res.json();
+  }
+
+  const loader = findLoader(lessonFiles, key => key.endsWith(`/${lessonId}.json`));
+  if (!loader) throw new Error(`Lesson ${lessonId} not found`);
+  const mod = await loader();
+  return mod.default;
 }

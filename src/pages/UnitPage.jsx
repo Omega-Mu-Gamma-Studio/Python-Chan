@@ -24,6 +24,8 @@ const UnitPage = () => {
     </div>
   );
 
+  const backTarget = unit?.course ? `/course/${unit.course}` : '/';
+
   if (!unit) return (
     <div className="unit-page-state">
       <span className="loading-spinner" />
@@ -35,7 +37,7 @@ const UnitPage = () => {
   return (
     <div className="unit-page">
       <div className="unit-page-header">
-        <button className="btn btn-ghost" onClick={() => navigate('/')}>← Home</button>
+        <button className="btn btn-ghost" onClick={() => navigate(backTarget)}>← Course</button>
         <div>
           <span className="unit-page-badge">Unit {unit.id}</span>
           <h1 className="unit-page-title">{unit.title}</h1>

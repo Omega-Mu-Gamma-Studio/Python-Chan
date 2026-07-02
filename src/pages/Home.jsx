@@ -1,21 +1,17 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useProgress } from '../hooks/useProgress';
 import useLessonStore from '../store/lessonStore';
+import { loadAllCourses } from '../services/lessonService';
 import './Home.css';
-
-const UNITS = [
-  { id: 1, title: 'C++ Foundations',                   icon: '⬡', lessons: 15 },
-  { id: 2, title: 'Object Oriented C++',               icon: '⬡', lessons: 15 },
-  { id: 3, title: 'Memory & Pointers',                 icon: '⬡', lessons: 15 },
-  { id: 4, title: 'STL & Templates',                   icon: '⬡', lessons: 15 },
-  { id: 5, title: 'File I/O, Errors & Shipping',       icon: '⬡', lessons: 15 },
-];
 
 const Home = () => {
   const navigate = useNavigate();
-  const { lastVisited, xp, level, levelProgress, xpToNextLevel, isUnitUnlocked, completedLessons } = useProgress();
+  const { lastVisited, xp, level, levelProgress, xpToNextLevel, completedLessons } = useProgress();
   const { setExpression, setDialogue } = useLessonStore();
+
+  const [courses, setCourses] = useState([]);
+  const [coursesError, setCoursesError] = useState(null);
 
   const totalCompleted = completedLessons ? Object.keys(completedLessons).length : 0;
   const totalLessons = 75;
@@ -31,6 +27,12 @@ const Home = () => {
     ];
     const msg = greetings[Math.floor(Math.random() * greetings.length)];
     setDialogue(msg);
+  }, []);
+
+  useEffect(() => {
+    loadAllCourses()
+      .then(setCourses)
+      .catch(e => setCoursesError(e.message));
   }, []);
 
   return (
@@ -101,43 +103,33 @@ const Home = () => {
         </p>
       </div>
 
-      {/* ── UNIT GRID ── */}
-      <div className="home-units">
+      {/* ── COURSE SELECTOR ── */}
+      <div className="home-courses">
         <h2 className="home-section-title">
           <span className="section-title-bar" />
-          Curriculum
+          Choose a Course
         </h2>
-        <div className="unit-grid">
-          {UNITS.map(unit => {
-            const unlocked = isUnitUnlocked(unit.id);
-            const unitCompleted = completedLessons
-              ? Object.keys(completedLessons).filter(id => id.startsWith(`${unit.id}.`)).length
-              : 0;
-            const unitPct = Math.round((unitCompleted / unit.lessons) * 100);
 
+        {coursesError && <p className="course-grid-error">Couldn't load courses.</p>}
+
+        <div className="course-grid">
+          {courses.map(course => {
+            const clickable = course.isPublished;
             return (
               <div
-                key={unit.id}
-                className={`unit-card ${unlocked ? 'unit-card--active' : 'unit-card--locked'}`}
-                onClick={() => unlocked && navigate(`/unit/${unit.id}`)}
-                role={unlocked ? 'button' : undefined}
-                tabIndex={unlocked ? 0 : undefined}
+                key={course.id}
+                className={`course-card ${clickable ? 'course-card--active' : 'course-card--locked'}`}
+                onClick={() => clickable && navigate(`/course/${course.id}`)}
+                role={clickable ? 'button' : undefined}
+                tabIndex={clickable ? 0 : undefined}
               >
-                <div className="unit-card-head">
-                  <span className="unit-card-num">U{unit.id}</span>
-                  {unlocked ? (
-                    <span className="unit-card-pct">{unitPct}%</span>
-                  ) : (
-                    <span className="unit-card-lock">🔒</span>
-                  )}
+                <div className="course-card-head">
+                  <span className="course-card-icon">{course.icon}</span>
+                  {!clickable && <span className="course-card-badge">Coming Soon</span>}
                 </div>
-                <span className="unit-card-title">{unit.title}</span>
-                <span className="unit-card-meta">{unit.lessons} lessons</span>
-                {unlocked && (
-                  <div className="unit-card-bar-track">
-                    <div className="unit-card-bar-fill" style={{ width: `${unitPct}%` }} />
-                  </div>
-                )}
+                <span className="course-card-title">{course.title}</span>
+                <span className="course-card-tagline">{course.tagline}</span>
+                <span className="course-card-meta">{course.units.length} units</span>
               </div>
             );
           })}
