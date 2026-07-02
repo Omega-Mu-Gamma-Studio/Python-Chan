@@ -1,0 +1,30 @@
+{
+  "id": "8.1",
+  "title": "Why Visualization Matters",
+  "type": "conceptual",
+  "phase1": {
+    "code": "",
+    "output": "",
+    "explanation": "🐍 **Data visualization turns numbers into stories.**\n\n**Why visualize data?**\n\n1. **Patterns become visible**\n   - Trends, cycles, and outliers\n   - Relationships between variables\n   - Distribution shapes\n\n2. **Communication**\n   - Faster than tables\n   - More memorable\n   - Universal language\n\n3. **Exploration**\n   - Discover unexpected patterns\n   - Generate hypotheses\n   - Identify data issues\n\n**Anscombe's Quartet:**\nFour datasets with identical statistics (mean, variance, correlation) but very different visual patterns.\n\n| Dataset | Mean x | Mean y | Correlation |\n|---------|--------|--------|-------------|\n| I | 9.0 | 7.5 | 0.816 |\n| II | 9.0 | 7.5 | 0.816 |\n| III | 9.0 | 7.5 | 0.816 |\n| IV | 9.0 | 7.5 | 0.816 |\n\n**But they look completely different when plotted!**\n\n**Key lesson:** Always visualize your data before analyzing it.\n\n**Types of plots:**\n\n| Plot Type | Best for |\n|-----------|----------|\n| Line plot | Trends over time |\n| Bar chart | Comparing categories |\n| Scatter plot | Relationships |\n| Histogram | Distribution |\n| Box plot | Summary statistics |\n| Heatmap | Correlations |\n\n**Python-chan says:**\n\"A picture is worth a thousand numbers. Visualization is essential for understanding and communicating data.\"",
+    "openingDialogue": "Why visualize? Because numbers need stories. 📊"
+  },
+  "phase2": {
+    "brokenCode": "",
+    "errorMessage": "",
+    "explanation": "**Common misconception:** \"I can just look at the numbers.\"\n\n**The problem:**\n- Numbers hide patterns\n- Statistics can be misleading\n- Outliers are easy to miss\n- Relationships are hard to see\n\n**Example: The Datasaurus Dozen**\n- 12 datasets with identical statistics\n- Mean, variance, correlation are the same\n- But they look completely different\n- Shows why visualization is essential\n\n**The fix:**\n```python\n# Always visualize\nimport matplotlib.pyplot as plt\n\n# Plot your data\nplt.scatter(df['x'], df['y'])\nplt.show()\n\n# Multiple views\nplt.hist(df['value'])\nplt.boxplot(df['value'])\n```\n\n**Python-chan says:**\n\"Don't trust summary statistics alone. Visualize your data to see what you're really working with.\""
+  },
+  "phase3": {
+    "prompt": "Which of the following is NOT a reason to visualize data?\n\nA) To discover patterns\nB) To communicate findings\nC) To hide data errors\nD) To explore relationships\n\nSelect the correct answer.",
+    "validationPattern": {
+      "mcqAnswer": "C"
+    },
+    "dialogueHints": [
+      "Think about the benefits of visualization",
+      "Visualization reveals, it doesn't hide",
+      "Data errors should be fixed, not hidden"
+    ],
+    "solution": null,
+    "openingDialogue": "Quick check on the importance of visualization! 🤔"
+  },
+  "xpReward": 10
+}

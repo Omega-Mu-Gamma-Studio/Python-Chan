@@ -1,0 +1,48 @@
+{
+  "id": "6.9",
+  "title": "Introduction to Pandas",
+  "type": "coding",
+  "phase1": {
+    "code": "# Introduction to Pandas\n\nimport pandas as pd\nimport numpy as np\n\nprint(\"=== What is Pandas? ===\\n\")\nprint(\"Pandas is the Python library for data analysis.\")\nprint(\"It provides two main data structures:\")\nprint(\"  - Series: 1D labeled data\")\nprint(\"  - DataFrame: 2D labeled data (like a spreadsheet)\")\n\nprint(\"\\n=== Creating a Series ===\\n\")\n\n# From list\ns1 = pd.Series([1, 2, 3, 4, 5])\nprint(f\"Series from list:\\n{s1}\")\n\n# From dict\ns2 = pd.Series({'A': 1, 'B': 2, 'C': 3})\nprint(f\"\\nSeries from dict:\\n{s2}\")\n\n# With custom index\ns3 = pd.Series([10, 20, 30], index=['x', 'y', 'z'])\nprint(f\"\\nSeries with custom index:\\n{s3}\")\n\n# Accessing values\nprint(f\"s3['x']: {s3['x']}\")\nprint(f\"s3[0]: {s3[0]}\")\n\nprint(\"\\n=== Creating a DataFrame ===\\n\")\n\n# From dict of lists\ndata = {\n    'Name': ['Aragorn', 'Legolas', 'Gimli', 'Gandalf'],\n    'Level': [15, 18, 12, 50],\n    'Class': ['Warrior', 'Archer', 'Dwarf', 'Wizard'],\n    'Health': [120, 95, 110, 80]\n}\ndf = pd.DataFrame(data)\nprint(f\"DataFrame from dict:\\n{df}\")\n\n# From list of dicts\ndata2 = [\n    {'Name': 'Frodo', 'Level': 5, 'Class': 'Hobbit'},\n    {'Name': 'Sam', 'Level': 4, 'Class': 'Hobbit'}\n]\ndf2 = pd.DataFrame(data2)\nprint(f\"\\nDataFrame from list of dicts:\\n{df2}\")\n\nprint(\"\\n=== DataFrame properties ===\\n\")\n\nprint(f\"Shape: {df.shape}\")\nprint(f\"Columns: {df.columns}\")\nprint(f\"Index: {df.index}\")\nprint(f\"Data types:\\n{df.dtypes}\")\n\nprint(\"\\n=== Basic DataFrame operations ===\\n\")\n\n# Head and tail\nprint(f\"Head (first 2):\\n{df.head(2)}\")\nprint(f\"Tail (last 2):\\n{df.tail(2)}\")\n\n# Info\nprint(f\"\\nInfo:\")\nprint(df.info())\n\n# Describe\nprint(f\"\\nDescribe:\\n{df.describe()}\")",
+    "output": "=== What is Pandas? ===\n\nPandas is the Python library for data analysis.\nIt provides two main data structures:\n  - Series: 1D labeled data\n  - DataFrame: 2D labeled data (like a spreadsheet)\n\n=== Creating a Series ===\n\nSeries from list:\n0    1\n1    2\n2    3\n3    4\n4    5\ndtype: int64\n\nSeries from dict:\nA    1\nB    2\nC    3\ndtype: int64\n\nSeries with custom index:\nx    10\ny    20\nz    30\ndtype: int64\ns3['x']: 10\ns3[0]: 10\n\n=== Creating a DataFrame ===\n\nDataFrame from dict:\n      Name  Level    Class  Health\n0  Aragorn     15  Warrior     120\n1  Legolas     18   Archer      95\n2    Gimli     12    Dwarf     110\n3  Gandalf     50   Wizard      80\n\nDataFrame from list of dicts:\n    Name  Level   Class\n0  Frodo      5  Hobbit\n1    Sam      4  Hobbit\n\n=== DataFrame properties ===\n\nShape: (4, 4)\nColumns: Index(['Name', 'Level', 'Class', 'Health'], dtype='object')\nIndex: RangeIndex(start=0, stop=4, step=1)\nData types:\nName      object\nLevel      int64\nClass     object\nHealth     int64\ndtype: object\n\n=== Basic DataFrame operations ===\n\nHead (first 2):\n      Name  Level    Class  Health\n0  Aragorn     15  Warrior     120\n1  Legolas     18   Archer      95\nTail (last 2):\n      Name  Level   Class  Health\n2    Gimli     12   Dwarf     110\n3  Gandalf     50  Wizard      80\n\nInfo:\n<class 'pandas.core.frame.DataFrame'>\nRangeIndex: 4 entries, 0 to 3\nData columns (total 4 columns):\n #   Column  Non-Null Count  Dtype \n---  ------  --------------  ----- \n 0   Name    4 non-null      object\n 1   Level   4 non-null      int64 \n 2   Class   4 non-null      object\n 3   Health  4 non-null      int64 \ndtypes: int64(2), object(2)\nmemory usage: 256.0+ bytes\nNone\n\nDescribe:\n           Level     Health\ncount   4.000000   4.000000\nmean   23.750000  101.250000\nstd    16.581047  15.994373\nmin    12.000000  80.000000\n25%    14.250000  91.250000\n50%    16.500000  102.500000\n75%    26.250000  112.500000\nmax    50.000000 120.000000",
+    "explanation": "🐍 **Pandas is the go-to library for data analysis.**\n\n**Key concepts:**\n| Structure | Description | Example |\n|-----------|-------------|---------|\n| Series | 1D labeled data | `pd.Series([1,2,3])` |\n| DataFrame | 2D labeled data | `pd.DataFrame(data)` |\n\n**Creating DataFrames:**\n```python\n# From dict\npd.DataFrame({'col1': [1,2], 'col2': [3,4]})\n\n# From list of dicts\npd.DataFrame([{'a': 1, 'b': 2}, {'a': 3, 'b': 4}])\n\n# From CSV\npd.read_csv('file.csv')\n```\n\n**Common operations:**\n| Method | Purpose |\n|--------|---------|\n| `head()` | First rows |\n| `tail()` | Last rows |\n| `info()` | Data info |\n| `describe()` | Statistics |\n| `shape` | Dimensions |\n| `columns` | Column names |\n\n**Python-chan says:**\n\"Pandas is the heart of data science in Python. You'll use it for almost every data task.\"",
+    "openingDialogue": "Pandas — the data science workhorse. 🐼"
+  },
+  "phase2": {
+    "brokenCode": "# Trying to access a column that doesn't exist\n\nimport pandas as pd\n\ndf = pd.DataFrame({'A': [1, 2, 3], 'B': [4, 5, 6]})\n\n# This works\nprint(df['A'])\n\n# This fails\n# print(df['C'])  # KeyError!\n\n# Use .get() or check first\nif 'C' in df.columns:\n    print(df['C'])\nelse:\n    print(\"Column 'C' not found!\")",
+    "errorMessage": "0    1\n1    2\n2    3\nName: A, dtype: int64\n\n# KeyError: 'C'\n# Column 'C' not found!",
+    "explanation": "**KeyError: column doesn't exist!**\n\n**What's wrong:**\n1. DataFrame has columns 'A' and 'B'\n2. Trying to access 'C'\n3. KeyError\n\n**The fix:**\n```python\nimport pandas as pd\n\ndf = pd.DataFrame({'A': [1, 2, 3], 'B': [4, 5, 6]})\n\n# Check if column exists\nif 'C' in df.columns:\n    print(df['C'])\nelse:\n    print(\"Column 'C' not found!\")\n\n# Or use .get() (but this returns None if missing)\ncol = df.get('C')\nprint(col)  # None\n\n# Use try/except\ntry:\n    print(df['C'])\nexcept KeyError:\n    print(\"Column not found!\")\n```\n\n**Python-chan says:**\n\"Always check if a column exists before accessing it. Or use `.get()` for safe access.\"",
+    "openingDialogue": "What happens when you access a missing column? ⚠️"
+  },
+  "phase3": {
+    "prompt": "Write a Python program that:\n\n1. Creates a DataFrame from this data:\n   ```\n   Name    Age  City     Score\n   Alice   25   NYC      85\n   Bob     30   London   92\n   Charlie 35   Paris    78\n   Diana   28   Tokyo    95\n   ```\n\n2. Prints:\n   - The full DataFrame\n   - Shape of the DataFrame\n   - Column names\n   - Data types\n   - Summary statistics using describe()\n   - First 2 rows\n   - The 'Name' column\n\nExpected output:\n```\nDataFrame:\n      Name  Age    City  Score\n0    Alice   25     NYC     85\n1      Bob   30  London     92\n2  Charlie   35   Paris     78\n3    Diana   28   Tokyo     95\n\nShape: (4, 4)\nColumns: ['Name', 'Age', 'City', 'Score']\n...\n```",
+    "validationPattern": {
+      "required": [
+        "pd.DataFrame",
+        "print",
+        "shape",
+        "columns",
+        "dtypes",
+        "describe",
+        "head",
+        "['Name']"
+      ],
+      "forbidden": [
+        ";",
+        "class",
+        "def"
+      ],
+      "fullRegex": "pd\\.DataFrame[\\s\\S]*\\.shape[\\s\\S]*\\.columns[\\s\\S]*\\.dtypes[\\s\\S]*\\.describe[\\s\\S]*\\.head[\\s\\S]*\\['Name'\\]"
+    },
+    "dialogueHints": [
+      "Create dict with lists for each column",
+      "Pass to pd.DataFrame()",
+      "Use df.shape, df.columns, df.dtypes, df.describe()",
+      "Use df.head(2) for first 2 rows",
+      "Access column: df['Name']"
+    ],
+    "solution": "import pandas as pd\n\ndata = {\n    'Name': ['Alice', 'Bob', 'Charlie', 'Diana'],\n    'Age': [25, 30, 35, 28],\n    'City': ['NYC', 'London', 'Paris', 'Tokyo'],\n    'Score': [85, 92, 78, 95]\n}\n\ndf = pd.DataFrame(data)\n\nprint(f\"DataFrame:\\n{df}\")\nprint(f\"\\nShape: {df.shape}\")\nprint(f\"Columns: {df.columns.tolist()}\")\nprint(f\"\\nData types:\\n{df.dtypes}\")\nprint(f\"\\nDescribe:\\n{df.describe()}\")\nprint(f\"\\nFirst 2 rows:\\n{df.head(2)}\")\nprint(f\"\\nName column:\\n{df['Name']}\")",
+    "openingDialogue": "Your turn to work with Pandas DataFrames! 🐼"
+  },
+  "xpReward": 10
+}

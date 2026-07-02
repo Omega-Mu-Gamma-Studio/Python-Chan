@@ -1,0 +1,30 @@
+{
+  "id": "6.2",
+  "title": "The Data Science Workflow",
+  "type": "conceptual",
+  "phase1": {
+    "code": "",
+    "output": "",
+    "explanation": "🐍 **The Data Science Workflow — a step-by-step process.**\n\n**1. Problem Definition**\n- What question are you trying to answer?\n- What business problem are you solving?\n- What success looks like?\n\n**2. Data Collection**\n- Identify data sources\n- Extract data (databases, APIs, files, web scraping)\n- Understand data structure\n\n**3. Data Cleaning and Preparation**\n- Handle missing values\n- Remove duplicates\n- Fix data types\n- Handle outliers\n- Feature engineering\n\n**4. Exploratory Data Analysis (EDA)**\n- Summary statistics\n- Visualizations\n- Identify patterns\n- Find relationships\n\n**5. Modeling**\n- Choose appropriate algorithms\n- Train models\n- Evaluate performance\n- Tune hyperparameters\n\n**6. Evaluation and Interpretation**\n- Assess model performance\n- Interpret results\n- Validate findings\n- Check assumptions\n\n**7. Communication**\n- Visualize results\n- Present findings\n- Make recommendations\n- Deploy models\n\n**Python-chan says:**\n\"The workflow is iterative. You'll loop back and refine as you learn more. Don't expect to get it right on the first try!\"",
+    "openingDialogue": "The data science workflow — your roadmap to insights. 🗺️"
+  },
+  "phase2": {
+    "brokenCode": "",
+    "errorMessage": "",
+    "explanation": "**Common mistake:** Jumping straight to modeling.\n\n**The problem:**\n- Data may be dirty or inappropriate\n- You might be asking the wrong question\n- You could miss important patterns\n\n**The fix:**\n- Spend time on data cleaning (it's 80% of the work!)\n- Explore data visually\n- Understand the problem deeply\n\n**Common mistake:** Not communicating results effectively.\n\n**The problem:**\n- Great analysis is useless if nobody understands it\n- Technical jargon alienates stakeholders\n- Poor visualizations obscure insights\n\n**The fix:**\n- Know your audience\n- Tell a story with data\n- Use clear visualizations\n- Focus on actionable insights\n\n**Python-chan says:**\n\"Data Science is as much about communication as it is about analysis. Make your insights accessible.\""
+  },
+  "phase3": {
+    "prompt": "What percentage of data science work is typically spent on data cleaning and preparation?\n\nA) 10-20%\nB) 30-40%\nC) 60-80%\nD) 90-100%\n\nSelect the correct answer.",
+    "validationPattern": {
+      "mcqAnswer": "C"
+    },
+    "dialogueHints": [
+      "Think about real-world data quality",
+      "Data often comes messy and incomplete",
+      "Cleaning takes significant effort"
+    ],
+    "solution": null,
+    "openingDialogue": "Quick check! How much time is spent cleaning data? 🤔"
+  },
+  "xpReward": 10
+}

@@ -1,0 +1,17 @@
+{
+  "id": "14.5",
+  "title": "Transformers and BERT Intro",
+  "type": "conceptual",
+  "phase1": {
+    "code": "",
+    "output": "",
+    "explanation": "🐍 **Transformers have revolutionized NLP.**\n\n**What is a Transformer?**\n\nTransformers are neural network architectures that use attention mechanisms.\n\nKey innovations:\n  1. **Self-Attention**: Weighs importance of all words\n  2. **Positional Encoding**: Adds position information\n  3. **Parallel Processing**: Processes all words simultaneously\n  4. **Scalability**: Can handle large datasets\n\n**What is BERT?**\n\nBERT (Bidirectional Encoder Representations from Transformers) is:\n- Pre-trained transformer model\n- Bidirectional context (reads both directions)\n- State-of-the-art on many NLP tasks\n- Fine-tunable for specific tasks\n\n**How BERT Works:**\n\n1. **Pre-training**:\n   - Masked Language Model: Predict masked words\n   - Next Sentence Prediction: Predict if sentences follow\n\n2. **Fine-tuning**:\n   - Add task-specific head\n   - Train on downstream task\n   - Few epochs with small learning rate\n\n**Key Concepts:**\n\n| Concept | Description |\n|---------|-------------|\n| Attention | Focus on important words |\n| Encoder | Processes input |\n| Decoder | Generates output |\n| Head | Task-specific layer |\n| Token | Word/subword unit |\n| Embedding | Vector representation |\n\n**Python-chan says:**\n\"Transformers and BERT are the state of the art in NLP. They're the foundation of modern language models.\"",
+    "openingDialogue": "Transformers and BERT — the NLP revolution. 🤖"
+  },
+  "phase2": {
+    "brokenCode": "",
+    "errorMessage": "",
+    "explanation": "**Common misconception:** \"BERT understands language.\"\n\n**The truth:**\n- BERT learns patterns, not understanding\n- It's a statistical model\n- Can be fooled by adversarial examples\n- Doesn't truly comprehend\n\n**Common misconception:** \"Transformers are too complex to use.\"\n\n**The truth:**\n- Libraries make them accessible\n- Hugging Face transformers\n- Pre-trained models available\n- Fine-tuning is straightforward\n\n**Common misconception:** \"You need huge compute for BERT.\"\n\n**The truth:**\n- Pre-trained models are ready to use\n- Fine-tuning is relatively light\n- Smaller variants available (DistilBERT, ALBERT)\n- Cloud options available\n\n**BERT Variants:**\n| Model | Description |\n|-------|-------------|\n| BERT-base | 110M parameters |\n| BERT-large | 340M parameters |\n| DistilBERT | 66M parameters (faster) |\n| ALBERT | 12M parameters (smaller) |\n| RoBERTa | Optimized BERT |\n| ELECTRA | More efficient pre-training |\n\n**Python-chan says:**\n\"BERT and transformers are accessible. Don't be intimidated by the complexity.\""
+  },
+  "xpReward": 10
+}

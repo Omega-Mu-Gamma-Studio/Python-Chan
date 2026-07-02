@@ -1,0 +1,17 @@
+{
+  "id": "14.13",
+  "title": "AutoML Tools",
+  "type": "conceptual",
+  "phase1": {
+    "code": "",
+    "output": "",
+    "explanation": "🐍 **AutoML automates the machine learning pipeline.**\n\n**What is AutoML?**\n\nAutoML (Automated Machine Learning) automates:\n- Data preprocessing\n- Feature engineering\n- Model selection\n- Hyperparameter tuning\n- Model evaluation\n- Deployment\n\n**Benefits:**\n\n| Benefit | Description |\n|---------|-------------|\n| Speed | Faster development |\n| Accessibility | Lower barrier to entry |\n| Consistency | Standardized approach |\n| Exploration | Try many models |\n| Optimization | Find best model |\n\n**Popular AutoML Tools:**\n\n| Tool | Description |\n|------|-------------|\n| Auto-sklearn | Automated scikit-learn |\n| TPOT | Genetic programming |\n| H2O AutoML | Enterprise AutoML |\n| AutoKeras | Automated deep learning |\n| MLBox | Automated ML |\n| PyCaret | Low-code ML |\n\n**AutoML Process:**\n\n```\n1. Data Understanding\n   └── Analyze data, detect issues\n\n2. Data Preparation\n   └── Clean, preprocess, engineer features\n\n3. Model Selection\n   └── Try multiple algorithms\n\n4. Hyperparameter Tuning\n   └── Find optimal parameters\n\n5. Model Evaluation\n   └── Select best model\n\n6. Deployment\n   └── Deploy model to production\n```\n\n**When to Use AutoML:**\n\n| When to Use | When to Avoid |\n|-------------|---------------|\n| Quick baseline | Need deep understanding |\n| Large search space | Limited compute |\n| Many models to try | Interpretability needed |\n| Limited ML expertise | Custom requirements |\n\n**Python-chan says:**\n\"AutoML is powerful but not a replacement for understanding. Use it as a tool, not a crutch.\"",
+    "openingDialogue": "AutoML — automating machine learning. 🤖"
+  },
+  "phase2": {
+    "brokenCode": "",
+    "errorMessage": "",
+    "explanation": "**Common misconception:** \"AutoML replaces data scientists.\"\n\n**The truth:**\n- AutoML is a tool, not a replacement\n- Data scientists still needed for:\n  - Problem definition\n  - Data understanding\n  - Feature engineering\n  - Interpretation\n  - Business context\n  - Deployment\n\n**Common misconception:** \"AutoML always finds the best model.\"\n\n**The truth:**\n- AutoML searches a space\n- May miss creative solutions\n- Can overfit\n- Needs careful evaluation\n\n**AutoML Limitations:**\n\n| Limitation | Description |\n|------------|-------------|\n| Compute | Can be expensive |\n| Interpretability | Black box models |\n| Customization | Limited flexibility |\n| Data understanding | No domain knowledge |\n| Deployment | May need custom deployment |\n\n**Best Practices:**\n1. Start with baseline\n2. Use AutoML for exploration\n3. Validate results\n4. Interpret models\n5. Combine with domain knowledge\n\n**Python-chan says:**\n\"AutoML is a powerful assistant, not a replacement for you.\""
+  },
+  "xpReward": 10
+}

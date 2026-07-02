@@ -1,0 +1,30 @@
+{
+  "id": "6.1",
+  "title": "What is Data Science?",
+  "type": "conceptual",
+  "phase1": {
+    "code": "",
+    "output": "",
+    "explanation": "🐍 **Data Science is the art of extracting insights from data.**\n\n**What is Data Science?**\n\nData Science combines:\n- **Statistics** — understanding patterns and uncertainty\n- **Programming** — manipulating and analyzing data\n- **Domain Knowledge** — understanding the problem context\n- **Machine Learning** — building predictive models\n\n**The Data Science Workflow:**\n\n1. **Ask** — Define the problem and questions\n2. **Collect** — Gather relevant data\n3. **Clean** — Handle missing values and errors\n4. **Explore** — Understand patterns and relationships\n5. **Model** — Build predictive or descriptive models\n6. **Communicate** — Share insights and findings\n\n**Why Python for Data Science?**\n- Rich ecosystem of libraries (NumPy, Pandas, Matplotlib, Scikit-learn)\n- Easy to learn and use\n- Large community and support\n- Industry standard\n\n**Real-world applications:**\n- **Recommendation systems** (Netflix, Amazon)\n- **Fraud detection** (Banking)\n- **Medical diagnosis** (Healthcare)\n- **Predictive maintenance** (Manufacturing)\n- **Customer segmentation** (Marketing)\n\n**Python-chan says:**\n\"Data Science is about telling stories with data. You'll learn to find patterns, make predictions, and communicate insights.\"\n\n**In this course:**\n- Unit 1: Setting up your data science environment\n- Unit 2: Cleaning and transforming data\n- Unit 3: Visualization\n- Unit 4: Statistics and exploratory analysis\n- Unit 5: Intro to ML and final project\n\n**Let's begin!** 📊",
+    "openingDialogue": "Data Science — turning data into insights. Let's explore! 📊"
+  },
+  "phase2": {
+    "brokenCode": "",
+    "errorMessage": "",
+    "explanation": "**Common misconception:** \"Data Science is just about machine learning.\"\n\nActually: Data Science includes:\n- Data collection and cleaning (80% of the work!)\n- Exploratory data analysis (EDA)\n- Statistical analysis\n- Visualization\n- Communication of results\n\n**Common misconception:** \"You need a PhD to do data science.\"\n\nActually: While advanced roles may require deep expertise, many data science tasks are accessible to anyone with:\n- Python skills\n- Curiosity\n- Willingness to learn\n- Problem-solving mindset\n\n**Common misconception:** \"Data Science is only for big data.\"\n\nActually: Many data science projects work with small datasets. The principles apply at any scale.\n\n**Python-chan says:**\n\"Data Science is for everyone. You don't need to be a math genius. You need to be curious and persistent.\""
+  },
+  "phase3": {
+    "prompt": "Which of the following is NOT typically part of the data science workflow?\n\nA) Data collection and cleaning\nB) Exploratory data analysis\nC) Building a web frontend\nD) Model building and evaluation\n\nSelect the correct answer.",
+    "validationPattern": {
+      "mcqAnswer": "C"
+    },
+    "dialogueHints": [
+      "Think about the data science workflow steps",
+      "Data science focuses on analysis, not user interfaces",
+      "Web frontend development is a different field"
+    ],
+    "solution": null,
+    "openingDialogue": "Quick comprehension check! 🤔"
+  },
+  "xpReward": 10
+}

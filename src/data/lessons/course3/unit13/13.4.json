@@ -1,0 +1,17 @@
+{
+  "id": "13.4",
+  "title": "Backpropagation Intuition",
+  "type": "conceptual",
+  "phase1": {
+    "code": "",
+    "output": "",
+    "explanation": "🐍 **Backpropagation is how neural networks learn.**\n\n**What is Backpropagation?**\n\nBackpropagation is the algorithm that:\n1. Computes gradients of loss with respect to weights\n2. Uses chain rule from calculus\n3. Propagates errors backward through the network\n4. Updates weights using gradient descent\n\n**The Learning Process:**\n\n```\n1. Forward Pass\n   Input → Hidden → Output → Loss\n\n2. Backward Pass\n   Loss → Output → Hidden → Input\n   (Gradients flow backward)\n\n3. Update Weights\n   w = w - learning_rate * gradient\n```\n\n**Chain Rule:**\n\nIf loss L depends on output y, and y depends on weight w:\n\n```\ndL/dw = dL/dy * dy/dw\n```\n\n**Why it works:**\n- Gradients tell us which direction to change weights\n- Negative gradient decreases loss\n- Multiple iterations converge to minimum\n\n**The Backpropagation Algorithm:**\n\n1. Forward pass: Compute predictions\n2. Compute loss\n3. Backward pass: Compute gradients\n4. Update weights\n5. Repeat\n\n**Python-chan says:**\n\"Backpropagation is the engine of deep learning. It's elegant and powerful.\"",
+    "openingDialogue": "Backpropagation — the learning engine. 🚂"
+  },
+  "phase2": {
+    "brokenCode": "",
+    "errorMessage": "",
+    "explanation": "**Common misconception:** \"Backpropagation is just differentiation.\"\n\n**The truth:**\n- It's more than differentiation\n- It's an algorithm for efficient gradient computation\n- Uses dynamic programming\n- Reuses intermediate results\n\n**Common misconception:** \"Backpropagation is the only learning algorithm.\"\n\n**The truth:**\n- Alternative learning algorithms exist\n- Evolutionary algorithms\n- Reinforcement learning\n- Hebbian learning\n\n**The Vanishing Gradient Problem:**\n- Gradients become very small in deep networks\n- Early layers don't learn\n- Solutions: ReLU, Batch Normalization, Residual connections\n\n**The Exploding Gradient Problem:**\n- Gradients become very large\n- Unstable training\n- Solutions: Gradient clipping, careful initialization\n\n**Python-chan says:**\n\"Backpropagation is powerful but has challenges. Modern solutions address them.\""
+  },
+  "xpReward": 10
+}

@@ -1,0 +1,30 @@
+{
+  "id": "13.1",
+  "title": "The Perceptron",
+  "type": "conceptual",
+  "phase1": {
+    "code": "",
+    "output": "",
+    "explanation": "🐍 **The Perceptron is the simplest neural network.**\n\n**What is a Perceptron?**\n\nA perceptron is a single neuron that:\n- Takes multiple inputs\n- Applies weights to each input\n- Sums the weighted inputs\n- Passes through an activation function\n- Outputs a binary decision (0 or 1)\n\n**The Perceptron Formula:**\n\n```\nz = w₁x₁ + w₂x₂ + ... + wₙxₙ + b\noutput = 1 if z > 0 else 0\n```\n\n**Components:**\n\n| Component | Description |\n|-----------|-------------|\n| Inputs (x) | Features from data |\n| Weights (w) | Learned parameters |\n| Bias (b) | Threshold |\n| Activation | Step function |\n| Output | Prediction |\n\n**How it learns:**\n1. Make a prediction\n2. Calculate error (prediction - actual)\n3. Update weights: w = w + learning_rate * error * x\n4. Repeat until convergence\n\n**Limitations:**\n- ❌ Only linear decision boundaries\n- ❌ Can't solve XOR problem\n- ❌ Only binary classification\n\n**Python-chan says:**\n\"The perceptron is the foundation of neural networks. Understand it, and you understand deep learning.\"",
+    "openingDialogue": "The Perceptron — the building block of neural networks. 🧠"
+  },
+  "phase2": {
+    "brokenCode": "",
+    "errorMessage": "",
+    "explanation": "**Common misconception:** \"Perceptrons are obsolete.\"\n\n**The truth:**\n- Perceptrons are the foundation of neural networks\n- They teach fundamental concepts\n- They're still used in some applications\n- They're the building block for deeper networks\n\n**Common misconception:** \"Perceptrons are just like logistic regression.\"\n\n**The truth:**\n- Similar but different\n- Logistic regression uses sigmoid activation\n- Perceptron uses step function\n- Perceptron doesn't output probabilities\n\n**The XOR Problem:**\n```\nXOR truth table:\n0 XOR 0 = 0\n0 XOR 1 = 1\n1 XOR 0 = 1\n1 XOR 1 = 0\n\nA single perceptron can't solve XOR\nNeed multiple layers (MLP) for XOR\n```\n\n**Python-chan says:**\n\"The perceptron's limitations led to multi-layer neural networks. It's a stepping stone to deep learning.\""
+  },
+  "phase3": {
+    "prompt": "What is the main limitation of a single perceptron?\n\nA) It's too slow\nB) It can only learn linear decision boundaries\nC) It can only handle numeric data\nD) It requires too much data\n\nSelect the correct answer.",
+    "validationPattern": {
+      "mcqAnswer": "B"
+    },
+    "dialogueHints": [
+      "Think about what a perceptron can represent",
+      "It's a linear classifier",
+      "It can't solve non-linear problems like XOR"
+    ],
+    "solution": null,
+    "openingDialogue": "Perceptron quiz! 🤔"
+  },
+  "xpReward": 10
+}

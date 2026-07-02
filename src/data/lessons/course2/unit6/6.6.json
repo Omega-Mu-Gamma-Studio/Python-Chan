@@ -1,0 +1,47 @@
+{
+  "id": "6.6",
+  "title": "Array Operations and Broadcasting",
+  "type": "coding",
+  "phase1": {
+    "code": "# Array operations and broadcasting\n\nimport numpy as np\n\nprint(\"=== Basic arithmetic operations ===\\n\")\n\narr = np.array([1, 2, 3, 4, 5])\n\nprint(f\"Original: {arr}\")\nprint(f\"+ 10: {arr + 10}\")\nprint(f\"- 5: {arr - 5}\")\nprint(f\"* 3: {arr * 3}\")\nprint(f\"/ 2: {arr / 2}\")\nprint(f\"** 2: {arr ** 2}\")\nprint(f\"% 3: {arr % 3}\")\n\nprint(\"\\n=== Element-wise operations ===\\n\")\n\narr1 = np.array([1, 2, 3, 4])\narr2 = np.array([10, 20, 30, 40])\n\nprint(f\"arr1: {arr1}\")\nprint(f\"arr2: {arr2}\")\nprint(f\"arr1 + arr2: {arr1 + arr2}\")\nprint(f\"arr1 * arr2: {arr1 * arr2}\")\nprint(f\"arr2 / arr1: {arr2 / arr1}\")\nprint(f\"arr2 ** arr1: {arr2 ** arr1}\")\n\nprint(\"\\n=== Broadcasting ===\\n\")\n\n# Broadcasting: operations on arrays of different shapes\nmatrix = np.array([[1, 2, 3],\n                   [4, 5, 6],\n                   [7, 8, 9]])\n\nrow_add = np.array([10, 20, 30])\nprint(f\"Matrix:\\n{matrix}\")\nprint(f\"Row to add: {row_add}\")\nprint(f\"Matrix + row:\\n{matrix + row_add}\")\n\ncol_add = np.array([[10], [20], [30]])\nprint(f\"\\nColumn to add:\\n{col_add}\")\nprint(f\"Matrix + column:\\n{matrix + col_add}\")\n\nprint(\"\\n=== Universal functions (ufuncs) ===\\n\")\n\narr = np.array([-5, -2, 0, 3, 8])\nprint(f\"Original: {arr}\")\nprint(f\"abs: {np.abs(arr)}\")\nprint(f\"sqrt: {np.sqrt(np.abs(arr))}\")\nprint(f\"exp: {np.exp(arr)}\")\nprint(f\"sin: {np.sin(arr)}\")\nprint(f\"log: {np.log(np.abs(arr) + 1)}\")\n\nprint(\"\\n=== Comparison operations ===\\n\")\n\narr = np.array([1, 2, 3, 4, 5])\nprint(f\"Original: {arr}\")\nprint(f\"arr > 3: {arr > 3}\")\nprint(f\"arr <= 3: {arr <= 3}\")\nprint(f\"arr == 3: {arr == 3}\")\nprint(f\"arr != 3: {arr != 3}\")\n\nprint(f\"\\nAny > 4? {np.any(arr > 4)}\")\nprint(f\"All > 0? {np.all(arr > 0)}\")",
+    "output": "=== Basic arithmetic operations ===\n\nOriginal: [1 2 3 4 5]\n+ 10: [11 12 13 14 15]\n- 5: [-4 -3 -2 -1 0]\n* 3: [3 6 9 12 15]\n/ 2: [0.5 1.  1.5 2.  2.5]\n** 2: [1 4 9 16 25]\n% 3: [1 2 0 1 2]\n\n=== Element-wise operations ===\n\narr1: [1 2 3 4]\narr2: [10 20 30 40]\narr1 + arr2: [11 22 33 44]\narr1 * arr2: [10 40 90 160]\narr2 / arr1: [10. 10. 10. 10.]\narr2 ** arr1: [10 400 27000 2560000]\n\n=== Broadcasting ===\n\nMatrix:\n[[1 2 3]\n [4 5 6]\n [7 8 9]]\nRow to add: [10 20 30]\nMatrix + row:\n[[11 22 33]\n [14 25 36]\n [17 28 39]]\n\nColumn to add:\n[[10]\n [20]\n [30]]\nMatrix + column:\n[[11 12 13]\n [24 25 26]\n [37 38 39]]\n\n=== Universal functions (ufuncs) ===\n\nOriginal: [-5 -2  0  3  8]\nabs: [5 2 0 3 8]\nsqrt: [2.236 1.414 0.     1.732 2.828]\nexp: [0.006 0.135 1.     20.085 2980.958]\nsin: [0.958 -0.909 0.     0.141 0.989]\nlog: [1.792 1.099 0.     1.386 2.197]\n\n=== Comparison operations ===\n\nOriginal: [1 2 3 4 5]\narr > 3: [False False False  True  True]\narr <= 3: [ True  True  True False False]\narr == 3: [False False  True False False]\narr != 3: [ True  True False  True  True]\n\nAny > 4? True\nAll > 0? True",
+    "explanation": "🐍 **Array operations are vectorized and powerful.**\n\n**Arithmetic operations:**\n```python\narr + 10      # Add scalar\narr * 3       # Multiply scalar\narr1 + arr2   # Element-wise addition\narr1 * arr2   # Element-wise multiplication\n```\n\n**Broadcasting rules:**\n1. Arrays with different shapes can be used together\n2. Smaller array is \"broadcast\" to match larger\n3. Works with scalars, rows, columns\n\n**Universal functions (ufuncs):**\n```python\nnp.abs(arr)      # Absolute value\nnp.sqrt(arr)     # Square root\nnp.exp(arr)      # Exponential\nnp.sin(arr)      # Trig functions\nnp.log(arr)      # Natural log\n```\n\n**Comparison operations:**\n```python\narr > 3          # Boolean array\nnp.any(arr > 3)  # Any True?\nnp.all(arr > 3)  # All True?\n```\n\n**Python-chan says:**\n\"Vectorized operations are what make NumPy fast. Avoid loops when working with arrays.\"",
+    "openingDialogue": "Array operations and broadcasting — power and speed. ⚡"
+  },
+  "phase2": {
+    "brokenCode": "# Broadcasting shape mismatch\n\nimport numpy as np\n\narr1 = np.array([1, 2, 3])      # Shape (3,)\narr2 = np.array([[1, 2, 3],     # Shape (2, 3)\n                  [4, 5, 6]])\n\n# This works\nresult = arr2 + arr1\nprint(f\"Works: {result}\")\n\n# This fails\narr3 = np.array([1, 2])  # Shape (2,)\n# result = arr2 + arr3  # Error! Shapes don't match",
+    "errorMessage": "Works: [[2 4 6]\n [5 7 9]]\n\n# The second one would error!\n# ValueError: operands could not be broadcast together with shapes (2,3) (2,)",
+    "explanation": "**Broadcasting works when shapes are compatible!**\n\n**What's happening:**\n1. (2,3) + (3,) works (row broadcast)\n2. (2,3) + (2,) fails (shape mismatch)\n\n**Broadcasting rules:**\n1. Arrays must have compatible shapes\n2. Dimensions are compared from the end\n3. They're compatible if:\n   - Equal, or\n   - One is 1, or\n   - One is missing\n\n**Examples:**\n```python\n(3,) + (3,)          # ✅ Compatible\n(2,3) + (3,)         # ✅ Compatible\n(2,3) + (2,)         # ❌ Not compatible\n(3,2) + (3,2)        # ✅ Compatible\n(3,2) + (2,)         # ✅ Compatible\n```\n\n**Python-chan says:**\n\"Broadcasting is powerful but requires compatible shapes. Check your shapes!\n\n```\n# Check shapes\nprint(arr1.shape)\nprint(arr2.shape)\n```",
+    "openingDialogue": "What happens when broadcasting fails? Shape mismatch! ⚠️"
+  },
+  "phase3": {
+    "prompt": "Write a Python program that:\n\n1. Creates a 3x3 matrix: `[[1, 2, 3], [4, 5, 6], [7, 8, 9]]`\n2. Creates a row vector: `[10, 20, 30]`\n3. Creates a column vector: `[[1], [2], [3]]`\n4. Performs operations:\n   - Matrix + row\n   - Matrix * row\n   - Matrix + column\n   - Matrix * column\n5. Also:\n   - Check if all elements in matrix are > 0\n   - Check if any elements in matrix are > 8\n   - Use np.sqrt on the matrix\n\nExpected output:\n```\nMatrix:\n[[1 2 3]\n [4 5 6]\n [7 8 9]]\nRow: [10 20 30]\nMatrix + row:\n[[11 22 33]\n [14 25 36]\n [17 28 39]]\n...\nAll > 0: True\nAny > 8: True\nSqrt matrix:\n[[1.   1.41 1.73]\n [2.   2.23 2.44]\n [2.64 2.82 3.  ]]\n```",
+    "validationPattern": {
+      "required": [
+        "np.array",
+        "print",
+        "+",
+        "*",
+        "np.all",
+        "np.any",
+        "np.sqrt"
+      ],
+      "forbidden": [
+        ";",
+        "class",
+        "def"
+      ],
+      "fullRegex": "np\\.array[\\s\\S]*\\+[\\s\\S]*\\*[\\s\\S]*np\\.all[\\s\\S]*np\\.any[\\s\\S]*np\\.sqrt"
+    },
+    "dialogueHints": [
+      "Create matrix: `np.array([[1,2,3], [4,5,6], [7,8,9]])`",
+      "Row vector: `np.array([10, 20, 30])`",
+      "Column vector: `np.array([[1], [2], [3]])`",
+      "Add/ multiply with broadcasting",
+      "Use np.all, np.any, np.sqrt"
+    ],
+    "solution": "import numpy as np\n\nmatrix = np.array([[1, 2, 3],\n                   [4, 5, 6],\n                   [7, 8, 9]])\nrow = np.array([10, 20, 30])\ncol = np.array([[1], [2], [3]])\n\nprint(f\"Matrix:\\n{matrix}\")\nprint(f\"Row: {row}\")\nprint(f\"Matrix + row:\\n{matrix + row}\")\nprint(f\"Matrix * row:\\n{matrix * row}\")\nprint(f\"Column:\\n{col}\")\nprint(f\"Matrix + column:\\n{matrix + col}\")\nprint(f\"Matrix * column:\\n{matrix * col}\")\n\nprint(f\"\\nAll > 0: {np.all(matrix > 0)}\")\nprint(f\"Any > 8: {np.any(matrix > 8)}\")\nprint(f\"Sqrt matrix:\\n{np.sqrt(matrix)}\")",
+    "openingDialogue": "Your turn to use broadcasting and array operations! 🎯"
+  },
+  "xpReward": 10
+}

@@ -1,0 +1,17 @@
+{
+  "id": "14.9",
+  "title": "ML Ethics and Bias",
+  "type": "conceptual",
+  "phase1": {
+    "code": "",
+    "output": "",
+    "explanation": "🐍 **ML Ethics and Bias are critical considerations.**\n\n**What is Algorithmic Bias?**\n\nAlgorithmic bias is when ML systems produce systematically prejudiced results.\n\n**Sources of Bias:**\n\n| Source | Description | Example |\n|--------|-------------|---------|\n| Data bias | Biased training data | Underrepresented groups |\n| Label bias | Biased labels | Subjective decisions |\n| Measurement bias | Biased measurements | Proxy variables |\n| Algorithm bias | Algorithm design | Objective function |\n| Deployed bias | Context of use | Unintended consequences |\n\n**Ethical Considerations:**\n\n1. **Fairness**: Are outcomes fair across groups?\n2. **Transparency**: Is the model understandable?\n3. **Accountability**: Who is responsible?\n4. **Privacy**: Is personal data protected?\n5. **Safety**: Is the system safe?\n6. **Bias**: Are there systematic errors?\n\n**Fairness Metrics:**\n\n| Metric | Description |\n|--------|-------------|\n| Demographic parity | Equal outcomes |\n| Equal opportunity | Equal true positive rates |\n| Equalized odds | Equal error rates |\n| Individual fairness | Similar individuals treated similarly |\n\n**Mitigation Strategies:**\n\n```\n1. Pre-processing: Adjust data\n2. In-processing: Adjust algorithm\n3. Post-processing: Adjust outputs\n4. Monitoring: Continuous evaluation\n```\n\n**Best Practices:**\n\n1. ✅ Diverse teams\n2. ✅ Audit data and models\n3. ✅ Fairness metrics\n4. ✅ Transparency\n5. ✅ User feedback\n6. ✅ Continuous monitoring\n\n**Python-chan says:**\n\"ML ethics is everyone's responsibility. Build models that are fair and accountable.\"",
+    "openingDialogue": "ML Ethics — building responsible AI. ⚖️"
+  },
+  "phase2": {
+    "brokenCode": "",
+    "errorMessage": "",
+    "explanation": "**Common bias examples:**\n\n**1. Gender bias in hiring:**\n- Models trained on historical data\n- Historically male-dominated roles\n- Model learns gender bias\n\n**2. Racial bias in facial recognition:**\n- Training data mostly white faces\n- Poor performance on other races\n- Serious consequences\n\n**3. Confirmation bias:**\n- Models reinforce existing biases\n- Search results, recommendations\n- Echo chambers\n\n**4. Proxy bias:**\n- Using proxy variables that correlate with protected attributes\n- ZIP code, education, income\n- Indirect discrimination\n\n**Mitigation:**\n```python\nfrom aif360.datasets import BinaryLabelDataset\nfrom aif360.metrics import ClassificationMetric\n\n# Check fairness metrics\n# Compare outcomes across groups\n# Use mitigation techniques\n```\n\n**Python-chan says:**\n\"Bias in ML is real and harmful. Always audit your models for fairness.\""
+  },
+  "xpReward": 10
+}

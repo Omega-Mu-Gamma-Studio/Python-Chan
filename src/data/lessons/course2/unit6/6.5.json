@@ -1,0 +1,51 @@
+{
+  "id": "6.5",
+  "title": "Creating and Inspecting Arrays",
+  "type": "coding",
+  "phase1": {
+    "code": "# Creating and inspecting NumPy arrays\n\nimport numpy as np\n\nprint(\"=== Creating arrays ===\\n\")\n\n# From Python list\narr1 = np.array([1, 2, 3, 4, 5])\nprint(f\"From list: {arr1}\")\n\n# arange() — like range()\narr2 = np.arange(10)\nprint(f\"arange(10): {arr2}\")\n\narr3 = np.arange(2, 10, 2)  # start, stop, step\nprint(f\"arange(2, 10, 2): {arr3}\")\n\n# linspace() — evenly spaced points\narr4 = np.linspace(0, 10, 5)  # start, stop, number of points\nprint(f\"linspace(0, 10, 5): {arr4}\")\n\n# zeros and ones\narr5 = np.zeros(5)\nprint(f\"zeros(5): {arr5}\")\n\narr6 = np.ones(3)\nprint(f\"ones(3): {arr6}\")\n\n# identity matrix\narr7 = np.eye(3)  # 3x3 identity matrix\nprint(f\"eye(3):\\n{arr7}\")\n\nprint(\"\\n=== Inspecting arrays ===\\n\")\n\narr = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])\nprint(f\"Array:\\n{arr}\")\nprint(f\"Shape: {arr.shape}\")\nprint(f\"Dimensions: {arr.ndim}\")\nprint(f\"Size: {arr.size}\")\nprint(f\"Data type: {arr.dtype}\")\nprint(f\"Number of bytes: {arr.nbytes}\")\n\nprint(\"\\n=== Random arrays ===\\n\")\n\n# Random integers\nrand_int = np.random.randint(0, 10, 5)  # 5 random ints 0-9\nprint(f\"Random ints: {rand_int}\")\n\n# Random floats\nrand_float = np.random.random(5)  # 5 random floats 0-1\nprint(f\"Random floats: {rand_float}\")\n\n# Random normal distribution\nrand_normal = np.random.randn(5)  # Standard normal\nprint(f\"Random normal: {rand_normal}\")\n\nprint(\"\\n=== Other useful arrays ===\\n\")\n\n# Full array\narr_full = np.full(3, 7)  # All values = 7\nprint(f\"full(3, 7): {arr_full}\")\n\n# Empty array (uninitialized)\narr_empty = np.empty(3)\nprint(f\"empty(3): {arr_empty}\")\n\n# Repeat\narr_repeat = np.repeat([1, 2], 3)  # [1, 1, 1, 2, 2, 2]\nprint(f\"repeat([1,2], 3): {arr_repeat}\")",
+    "output": "=== Creating arrays ===\n\nFrom list: [1 2 3 4 5]\narange(10): [0 1 2 3 4 5 6 7 8 9]\narange(2, 10, 2): [2 4 6 8]\nlinspace(0, 10, 5): [ 0.   2.5  5.   7.5 10. ]\nzeros(5): [0. 0. 0. 0. 0.]\nones(3): [1. 1. 1.]\neye(3):\n[[1. 0. 0.]\n [0. 1. 0.]\n [0. 0. 1.]]\n\n=== Inspecting arrays ===\n\nArray:\n[[1 2 3]\n [4 5 6]\n [7 8 9]]\nShape: (3, 3)\nDimensions: 2\nSize: 9\nData type: int64\nNumber of bytes: 72\n\n=== Random arrays ===\n\nRandom ints: [7 3 9 1 5]\nRandom floats: [0.123 0.456 0.789 0.234 0.567]\nRandom normal: [ 0.5 -1.2  0.3  0.8 -0.4]\n\n=== Other useful arrays ===\n\nfull(3, 7): [7 7 7]\nempty(3): [1.2e+000 2.3e+000 3.4e+000]\nrepeat([1,2], 3): [1 1 1 2 2 2]",
+    "explanation": "🐍 **NumPy provides many ways to create arrays.**\n\n**Creation functions:**\n| Function | Purpose | Example |\n|----------|---------|---------|\n| `np.array()` | From list/tuple | `np.array([1,2,3])` |\n| `np.arange()` | Range of values | `np.arange(0, 10, 2)` |\n| `np.linspace()` | Evenly spaced | `np.linspace(0, 1, 5)` |\n| `np.zeros()` | All zeros | `np.zeros(5)` |\n| `np.ones()` | All ones | `np.ones(3)` |\n| `np.eye()` | Identity matrix | `np.eye(3)` |\n| `np.full()` | Constant value | `np.full(3, 7)` |\n| `np.random.randint()` | Random ints | `np.random.randint(0,10,5)` |\n| `np.random.random()` | Random floats | `np.random.random(5)` |\n\n**Inspection attributes:**\n| Attribute | What it tells |\n|-----------|---------------|\n| `shape` | Dimensions |\n| `ndim` | Number of dimensions |\n| `size` | Total elements |\n| `dtype` | Data type |\n| `nbytes` | Memory used |\n\n**Python-chan says:**\n\"NumPy gives you many ways to create arrays. Each function is designed for a specific use case.\"",
+    "openingDialogue": "Creating and inspecting arrays — the building blocks. 🧱"
+  },
+  "phase2": {
+    "brokenCode": "# Trying to create an array with mixed types\n\nimport numpy as np\n\n# NumPy will convert everything to the same type\nmixed = np.array([1, 2.5, \"3\"])\nprint(f\"Mixed: {mixed}\")\nprint(f\"Type: {mixed.dtype}\")\n\n# All values become strings!\n# This might not be what you want",
+    "errorMessage": "Mixed: ['1' '2.5' '3']\nType: <U3\n\n(No error — but type conversion happened!)",
+    "explanation": "**NumPy coerces all elements to the same type!**\n\n**What's happening:**\n1. Array has int, float, and string\n2. NumPy converts everything to string\n3. You lose numeric capabilities\n\n**The fix:**\n```python\nimport numpy as np\n\n# Be explicit about types\narr = np.array([1, 2, 3], dtype=np.float64)\nprint(arr)  # [1. 2. 3.]\n\n# Use lists for mixed types\ndata = [1, 2.5, \"3\"]  # Python list is fine\n\n# Or use object dtype\narr = np.array([1, 2.5, \"3\"], dtype=np.object_)\nprint(arr)  # [1 2.5 '3']\n\n# But object arrays lose performance benefits\n```\n\n**Python-chan says:**\n\"NumPy arrays are homogeneous. All elements must be the same type. Use lists for mixed types.\"",
+    "openingDialogue": "What happens when you put mixed types in an array? ⚠️"
+  },
+  "phase3": {
+    "prompt": "Write a Python program that:\n\n1. Creates the following arrays:\n   - `arr1`: arange from 0 to 20 (step 2)\n   - `arr2`: linspace from 0 to 1 with 10 points\n   - `arr3`: 3x3 identity matrix using np.eye\n   - `arr4`: random integers between 0 and 10 (shape 3, 4)\n   - `arr5`: array of all zeros with shape (2, 3)\n\n2. For arr1, prints:\n   - Shape, dimensions, size, and data type\n\nExpected output:\n```\narr1: [0 2 4 6 8 10 12 14 16 18]\nShape: (10,), Dimensions: 1, Size: 10, Type: int64\narr2: [0.   0.111 0.222 ...]\narr3: [[1. 0. 0.] ...]\narr4: [[7 3 9 1] [5 8 2 6] [4 0 3 7]]\narr5: [[0. 0. 0.] [0. 0. 0.]]\n```",
+    "validationPattern": {
+      "required": [
+        "np.arange",
+        "np.linspace",
+        "np.eye",
+        "np.random.randint",
+        "np.zeros",
+        "shape",
+        "ndim",
+        "size",
+        "dtype",
+        "print"
+      ],
+      "forbidden": [
+        ";",
+        "class",
+        "def"
+      ],
+      "fullRegex": "np\\.arange[\\s\\S]*np\\.linspace[\\s\\S]*np\\.eye[\\s\\S]*np\\.random\\.randint[\\s\\S]*np\\.zeros[\\s\\S]*\\.shape[\\s\\S]*\\.ndim[\\s\\S]*\\.size[\\s\\S]*\\.dtype"
+    },
+    "dialogueHints": [
+      "arr1: `np.arange(0, 20, 2)`",
+      "arr2: `np.linspace(0, 1, 10)`",
+      "arr3: `np.eye(3)`",
+      "arr4: `np.random.randint(0, 10, size=(3, 4))`",
+      "arr5: `np.zeros((2, 3))`",
+      "Inspect arr1 with shape, ndim, size, dtype"
+    ],
+    "solution": "import numpy as np\n\n# Create arrays\narr1 = np.arange(0, 20, 2)\narr2 = np.linspace(0, 1, 10)\narr3 = np.eye(3)\narr4 = np.random.randint(0, 10, size=(3, 4))\narr5 = np.zeros((2, 3))\n\n# Print results\nprint(f\"arr1: {arr1}\")\nprint(f\"Shape: {arr1.shape}, Dimensions: {arr1.ndim}, Size: {arr1.size}, Type: {arr1.dtype}\")\nprint(f\"arr2: {arr2}\")\nprint(f\"arr3:\\n{arr3}\")\nprint(f\"arr4:\\n{arr4}\")\nprint(f\"arr5:\\n{arr5}\")",
+    "openingDialogue": "Your turn to create and inspect arrays! 🎯"
+  },
+  "xpReward": 10
+}

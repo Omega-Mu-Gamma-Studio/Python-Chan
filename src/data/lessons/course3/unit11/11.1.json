@@ -1,0 +1,30 @@
+{
+  "id": "11.1",
+  "title": "The ML Pipeline",
+  "type": "conceptual",
+  "phase1": {
+    "code": "",
+    "output": "",
+    "explanation": "🐍 **The Machine Learning Pipeline is a step-by-step process for building ML systems.**\n\n**What is an ML Pipeline?**\n\nAn ML pipeline is the end-to-end process of taking raw data and producing a deployed model that makes predictions.\n\n**The 7 Steps of the ML Pipeline:**\n\n1. **Business Understanding**\n   - Define the problem\n   - Set objectives\n   - Define success metrics\n\n2. **Data Acquisition**\n   - Collect data from sources\n   - Combine datasets\n   - Store data\n\n3. **Data Preparation**\n   - Clean data (missing values, outliers)\n   - Transform data (scaling, encoding)\n   - Feature engineering\n\n4. **Model Building**\n   - Split data (train/validation/test)\n   - Select algorithms\n   - Train models\n\n5. **Model Evaluation**\n   - Evaluate performance\n   - Compare models\n   - Tune hyperparameters\n\n6. **Model Deployment**\n   - Deploy to production\n   - Monitor performance\n   - Update models\n\n7. **Model Monitoring**\n   - Track performance drift\n   - Retrain when needed\n   - Collect feedback\n\n**Why Use a Pipeline?**\n\n| Benefit | Description |\n|---------|-------------|\n| Reproducibility | Same steps = same results |\n| Automation | Automate steps |\n| Consistency | Same preprocessing for all data |\n| Scalability | Handle more data easily |\n| Maintainability | Easy to update |\n\n**Scikit-Learn Pipelines:**\n```python\nfrom sklearn.pipeline import Pipeline\nfrom sklearn.preprocessing import StandardScaler\nfrom sklearn.linear_model import LogisticRegression\n\npipeline = Pipeline([\n    ('scaler', StandardScaler()),\n    ('classifier', LogisticRegression())\n])\n\npipeline.fit(X_train, y_train)\npredictions = pipeline.predict(X_test)\n```\n\n**Python-chan says:**\n\"The ML pipeline is your roadmap. Follow it and you'll build successful ML systems.\"",
+    "openingDialogue": "The ML Pipeline — your roadmap to building models. 🗺️"
+  },
+  "phase2": {
+    "brokenCode": "",
+    "errorMessage": "",
+    "explanation": "**Common misconception:** \"ML is just about training models.\"\n\n**The truth:**\n- Model training is only 20% of the work\n- Data preparation is 60-80% of the work\n- Deployment and monitoring are ongoing\n\n**Common mistake:** Skipping steps\n```python\n# ❌ Bad: Jump straight to modeling\nmodel = RandomForestClassifier()\nmodel.fit(X, y)\n\n# ✅ Good: Follow the pipeline\n# 1. Understand the problem\n# 2. Collect and prepare data\n# 3. Explore the data\n# 4. Build and evaluate models\n# 5. Deploy and monitor\n```\n\n**Common mistake:** Not validating assumptions\n- Data quality assumptions\n- Model assumptions\n- Deployment assumptions\n\n**Python-chan says:**\n\"The pipeline exists for a reason. Follow it and you'll avoid common mistakes.\""
+  },
+  "phase3": {
+    "prompt": "Which step of the ML pipeline typically takes the most time and effort?\n\nA) Model Training\nB) Data Preparation\nC) Model Deployment\nD) Model Monitoring\n\nSelect the correct answer.",
+    "validationPattern": {
+      "mcqAnswer": "B"
+    },
+    "dialogueHints": [
+      "Think about where most of the work happens",
+      "Data is often messy and needs cleaning",
+      "Model training is relatively quick"
+    ],
+    "solution": null,
+    "openingDialogue": "ML Pipeline quiz! 🤔"
+  },
+  "xpReward": 10
+}
