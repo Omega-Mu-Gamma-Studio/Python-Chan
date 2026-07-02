@@ -26,7 +26,7 @@ const useProgressStore = create(
       lessonAttempts: {},         // { "1.1": 3, ... } — resets on completion
       xp: 0,
       level: 1,
-      unlockedUnits: [1, 2, 3, 4, 5], // All units unlocked by default
+      unlockedUnits: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15], // All units across all courses unlocked by default
       lastVisited: null,          // lesson ID string
       rewardsCollected: [],       // array of reward IDs
       equippedWallpaper: 'wallpaper-default', // shop item id
@@ -135,7 +135,7 @@ const useProgressStore = create(
         lessonAttempts: {},
         xp: 0,
         level: 1,
-        unlockedUnits: [1, 2, 3, 4, 5],
+        unlockedUnits: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
         lastVisited: null,
         rewardsCollected: [],
         equippedWallpaper: 'wallpaper-default',
@@ -145,6 +145,18 @@ const useProgressStore = create(
     {
       name: 'pythonchan-progress', // localStorage key
       // Phase 2: replace this with a custom storage adapter pointing to your API
+
+      // Union persisted unlockedUnits with the current default so students
+      // who saved progress before all-courses-unlocked-by-default shipped
+      // don't stay stuck with only units [1-5] unlocked.
+      merge: (persistedState, currentState) => {
+        const merged = { ...currentState, ...persistedState };
+        const persistedUnits = persistedState?.unlockedUnits || [];
+        merged.unlockedUnits = Array.from(
+          new Set([...currentState.unlockedUnits, ...persistedUnits])
+        );
+        return merged;
+      },
     }
   )
 );
