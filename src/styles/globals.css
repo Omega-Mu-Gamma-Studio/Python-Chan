@@ -1,50 +1,55 @@
 /* ============================================
-   Python-Chan DESIGN SYSTEM — Dark Fantasy
+   Python-Chan DESIGN SYSTEM — Forest Lake
    All CSS variables live here. Never hardcode
    colors or spacing anywhere else.
    ============================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Orbitron:wght@700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,900&display=swap');
 
 :root {
-  /* --- Core Palette --- */
-  --color-bg:            #07050f;
-  --color-surface:       #0e0b1a;
-  --color-surface-2:     #130f22;
-  --color-surface-3:     #0b0917;
-  --color-border:        rgba(124, 111, 255, 0.1);
-  --color-border-accent: rgba(124, 111, 255, 0.28);
+  /* --- Core Palette: deep lake water, wet stone --- */
+  --color-bg:            #071815;
+  --color-surface:       #0e2420;
+  --color-surface-2:     #11302a;
+  --color-surface-3:     #0a1c18;
+  --color-border:        rgba(63, 163, 138, 0.12);
+  --color-border-accent: rgba(63, 163, 138, 0.3);
 
-  /* --- Python-Chan Brand Colors (electric blue/violet) --- */
-  --color-primary:        #7c6fff;
-  --color-primary-light:  #a99fff;
-  --color-primary-dark:   #5a4fd6;
-  --color-primary-glow:   rgba(124, 111, 255, 0.22);
+  /* --- Python-Chan Brand Colors (blue-green lake gradient) --- */
+  --color-primary:        #3fa38a;
+  --color-primary-light:  #7fd9c4;
+  --color-primary-dark:   #1a5c52;
+  --color-primary-glow:   rgba(63, 163, 138, 0.24);
+  --gradient-lake:         linear-gradient(135deg, #1a5c52 0%, #3fa38a 55%, #7fd9c4 100%);
 
-  --color-cyan:           #64d2ff;
-  --color-cyan-light:     #9de3ff;
-  --color-cyan-glow:      rgba(100, 210, 255, 0.18);
+  --color-cyan:           #5fb8a8;
+  --color-cyan-light:     #9de0d2;
+  --color-cyan-glow:      rgba(95, 184, 168, 0.18);
 
-  --color-violet:         #b46eff;
-  --color-violet-light:   #d4aaff;
-  --color-violet-glow:    rgba(180, 110, 255, 0.18);
+  /* --- Amber accent (her eyes) — replaces old neon violet accent --- */
+  --color-amber:          #d9a441;
+  --color-amber-light:    #f0c674;
+  --color-amber-glow:     rgba(217, 164, 65, 0.2);
+  --color-violet:         #d9a441;
+  --color-violet-light:   #f0c674;
+  --color-violet-glow:    rgba(217, 164, 65, 0.2);
 
   /* --- Semantic Colors --- */
-  --color-success:        #4fffb0;
-  --color-success-glow:   rgba(79, 255, 176, 0.15);
-  --color-error:          #ff4f7b;
-  --color-error-glow:     rgba(255, 79, 123, 0.15);
-  --color-warning:        #ffc76e;
-  --color-xp:             #7c6fff;
+  --color-success:        #7fc98a;
+  --color-success-glow:   rgba(127, 201, 138, 0.15);
+  --color-error:          #c0553a;
+  --color-error-glow:     rgba(192, 85, 58, 0.15);
+  --color-warning:        #d9a441;
+  --color-xp:             #3fa38a;
 
   /* --- Text --- */
-  --color-text:           #e8e0ff;
-  --color-text-muted:     rgba(232, 224, 255, 0.5);
-  --color-text-faint:     rgba(232, 224, 255, 0.25);
+  --color-text:           #e6f2ee;
+  --color-text-muted:     rgba(230, 242, 238, 0.5);
+  --color-text-faint:     rgba(230, 242, 238, 0.25);
 
   /* --- Typography --- */
   --font-ui:              'Inter', sans-serif;
-  --font-display:         'Orbitron', sans-serif;
+  --font-display:         'Fraunces', serif;
   --font-code:            'JetBrains Mono', monospace;
 
   /* --- Sizing --- */
@@ -76,45 +81,76 @@
 }
 
 /* ============================================
-   THEME OVERRIDES (shop-unlockable)
+   THEME OVERRIDES (shop-unlockable) — biomes
+   Default app theme IS the forest lake; these
+   are the other regions she's visited.
    ============================================ */
-.theme-steel {
-  --color-primary:        #8fb8d0;
-  --color-primary-light:  #b8d4e8;
-  --color-primary-dark:   #6090aa;
-  --color-primary-glow:   rgba(143, 184, 208, 0.22);
-  --color-border-accent:  rgba(143, 184, 208, 0.28);
-  --color-xp:             #8fb8d0;
+.theme-forest {
+  /* explicit alias of :root, for wallpaper items that want to name it */
+  --color-primary:        #3fa38a;
+  --color-primary-light:  #7fd9c4;
+  --color-primary-dark:   #1a5c52;
+  --color-primary-glow:   rgba(63, 163, 138, 0.24);
+  --color-border-accent:  rgba(63, 163, 138, 0.3);
+  --color-xp:             #3fa38a;
 }
 
-.theme-indigo-gold {
-  --color-primary:        #9b6fff;
-  --color-primary-light:  #c4a0ff;
-  --color-primary-dark:   #7044dd;
-  --color-primary-glow:   rgba(155, 111, 255, 0.22);
-  --color-border-accent:  rgba(155, 111, 255, 0.28);
-  --color-xp:             #ffd700;
-  --color-cyan:           #ffd700;
-  --color-cyan-light:     #ffe566;
+.theme-mountain {
+  /* granite blue-grey, snow-white highlights */
+  --color-bg:              #10161c;
+  --color-surface:         #171f27;
+  --color-surface-2:       #1c2530;
+  --color-primary:         #7fa3bf;
+  --color-primary-light:   #cfe3f0;
+  --color-primary-dark:    #4c7089;
+  --color-primary-glow:    rgba(127, 163, 191, 0.22);
+  --color-border-accent:   rgba(127, 163, 191, 0.3);
+  --color-xp:              #7fa3bf;
+  --color-cyan:            #cfe3f0;
+  --color-cyan-light:      #eaf4fa;
 }
 
-.theme-crimson {
-  --color-primary:        #ff4f7b;
-  --color-primary-light:  #ff8fa8;
-  --color-primary-dark:   #cc2255;
-  --color-primary-glow:   rgba(255, 79, 123, 0.22);
-  --color-border-accent:  rgba(255, 79, 123, 0.28);
-  --color-xp:             #ff4f7b;
+.theme-desert {
+  /* sun-baked terracotta, sand, warm gold */
+  --color-bg:              #1c130b;
+  --color-surface:         #26190f;
+  --color-surface-2:       #301f12;
+  --color-primary:         #d97f41;
+  --color-primary-light:   #f0b774;
+  --color-primary-dark:    #a3551f;
+  --color-primary-glow:    rgba(217, 127, 65, 0.24);
+  --color-border-accent:   rgba(217, 127, 65, 0.32);
+  --color-xp:              #e0b34a;
+  --color-cyan:            #e0b34a;
+  --color-cyan-light:      #f2d488;
 }
 
-.theme-terminal {
-  --color-primary:        #4fffb0;
-  --color-primary-light:  #9fffd8;
-  --color-primary-dark:   #2acc80;
-  --color-primary-glow:   rgba(79, 255, 176, 0.22);
-  --color-border-accent:  rgba(79, 255, 176, 0.28);
-  --color-xp:             #4fffb0;
-  --color-cyan:           #4fffb0;
+.theme-canyon {
+  /* red rock, burnt orange, dusty clay */
+  --color-bg:              #1a0e0a;
+  --color-surface:         #26140e;
+  --color-surface-2:       #331a12;
+  --color-primary:         #c0553a;
+  --color-primary-light:   #e0906f;
+  --color-primary-dark:    #8a3624;
+  --color-primary-glow:    rgba(192, 85, 58, 0.24);
+  --color-border-accent:   rgba(192, 85, 58, 0.32);
+  --color-xp:              #c0553a;
+}
+
+.theme-arctic {
+  /* glacial pale blue-white */
+  --color-bg:              #0c1418;
+  --color-surface:         #121e24;
+  --color-surface-2:       #17262e;
+  --color-primary:         #8fd4e8;
+  --color-primary-light:   #d8f2f9;
+  --color-primary-dark:    #4f9cb5;
+  --color-primary-glow:    rgba(143, 212, 232, 0.24);
+  --color-border-accent:   rgba(143, 212, 232, 0.32);
+  --color-xp:              #8fd4e8;
+  --color-cyan:            #d8f2f9;
+  --color-cyan-light:      #f0fbfe;
 }
 
 /* ============================================

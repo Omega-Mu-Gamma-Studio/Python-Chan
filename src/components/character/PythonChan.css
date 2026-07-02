@@ -47,7 +47,7 @@
   width: max-content;
   pointer-events: all;
   cursor: pointer;
-  box-shadow: var(--shadow-md), 0 0 12px rgba(255,110,180,0.1);
+  box-shadow: var(--shadow-md), 0 0 12px rgba(63,163,138,0.15);
   text-align: left;
   font-family: var(--font-ui);
   background-color: var(--color-surface-2); /* override button default */

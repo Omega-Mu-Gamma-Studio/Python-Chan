@@ -21,36 +21,40 @@
 }
 
 .aurora__blob--1 {
+  /* deep water body */
   width: 600px;
   height: 600px;
-  background: radial-gradient(circle, rgba(124, 111, 255, 0.6) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(26, 92, 82, 0.55) 0%, transparent 70%);
   top: -15%;
   left: -10%;
   animation: aurora-drift-1 22s ease-in-out infinite alternate;
 }
 
 .aurora__blob--2 {
+  /* sunlit shallows */
   width: 500px;
   height: 500px;
-  background: radial-gradient(circle, rgba(100, 210, 255, 0.45) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(127, 217, 196, 0.4) 0%, transparent 70%);
   top: 20%;
   right: -8%;
   animation: aurora-drift-2 28s ease-in-out infinite alternate;
 }
 
 .aurora__blob--3 {
+  /* amber light through canopy */
   width: 450px;
   height: 450px;
-  background: radial-gradient(circle, rgba(180, 110, 255, 0.4) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(217, 164, 65, 0.28) 0%, transparent 70%);
   bottom: -10%;
   left: 25%;
   animation: aurora-drift-3 18s ease-in-out infinite alternate;
 }
 
 .aurora__blob--4 {
+  /* moss shadow */
   width: 350px;
   height: 350px;
-  background: radial-gradient(circle, rgba(124, 111, 255, 0.35) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(63, 163, 138, 0.3) 0%, transparent 70%);
   top: 55%;
   left: 55%;
   animation: aurora-drift-4 24s ease-in-out infinite alternate;

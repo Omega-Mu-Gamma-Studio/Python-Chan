@@ -27,7 +27,7 @@ const AnimatedBg = () => {
     canvas.width = W;
     canvas.height = H;
 
-    // Spawn particles
+    // Spawn particles — fireflies over water: mostly teal, a few amber
     const particles = Array.from({ length: PARTICLE_COUNT }, () => ({
       x:   Math.random() * W,
       y:   Math.random() * H,
@@ -35,6 +35,7 @@ const AnimatedBg = () => {
       vy:  (Math.random() - 0.5) * 0.18,
       r:   Math.random() * 1.5 + 0.5,
       opacity: Math.random() * 0.35 + 0.1,
+      amber: Math.random() < 0.2,
     }));
 
     const draw = () => {
@@ -47,22 +48,24 @@ const AnimatedBg = () => {
           const dy = particles[i].y - particles[j].y;
           const dist = Math.sqrt(dx * dx + dy * dy);
           if (dist < CONNECTION_DIST) {
-            const alpha = (1 - dist / CONNECTION_DIST) * 0.08;
+            const alpha = (1 - dist / CONNECTION_DIST) * 0.07;
             ctx.beginPath();
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.strokeStyle = `rgba(124, 111, 255, ${alpha})`;
+            ctx.strokeStyle = `rgba(95, 184, 168, ${alpha})`;
             ctx.lineWidth = 0.6;
             ctx.stroke();
           }
         }
       }
 
-      // Draw dots
+      // Draw dots — fireflies over water
       particles.forEach(p => {
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(124, 111, 255, ${p.opacity})`;
+        ctx.fillStyle = p.amber
+          ? `rgba(217, 164, 65, ${p.opacity})`
+          : `rgba(127, 217, 196, ${p.opacity})`;
         ctx.fill();
 
         // Move

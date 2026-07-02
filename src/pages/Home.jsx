@@ -68,76 +68,97 @@ const Home = () => {
   return (
     <div className="home-page">
 
-      {/* ── STAT ROW ── */}
+      {/* ── HERO: lakeside clearing ── */}
+      <div className="home-hero">
+        <div className="hero-water" aria-hidden="true" />
+        <div className="hero-content">
+          <div className="hero-portrait-wrap">
+            <img
+              src="/sprites/teaching.png"
+              alt="Python-chan by the water"
+              className="hero-portrait"
+              draggable={false}
+            />
+            <img
+              src="/sprites/teaching.png"
+              alt=""
+              aria-hidden="true"
+              className="hero-portrait hero-portrait--reflection"
+              draggable={false}
+            />
+          </div>
+          <div className="hero-text">
+            <h1 className="hero-title">Welcome back to the clearing.</h1>
+            <p className="hero-sub">
+              {totalCompleted === 0
+                ? "No prior experience required. Just show up."
+                : `${totalLessons - totalCompleted} lessons left before the far shore.`}
+            </p>
+            {lastVisited ? (
+              <button
+                className="cta-btn cta-btn--primary"
+                onClick={() => navigate(`/lesson/${lastVisited}`)}
+              >
+                <span className="cta-btn-icon">▶</span>
+                Continue — Lesson {lastVisited}
+              </button>
+            ) : (
+              <button
+                className="cta-btn cta-btn--primary"
+                onClick={() => navigate('/lesson/1.1')}
+              >
+                <span className="cta-btn-icon">▶</span>
+                Begin Training
+              </button>
+            )}
+          </div>
+        </div>
+      </div>
+
+      {/* ── STEPPING STONES: stats ── */}
       <div className="home-stats">
-        <div className="stat-card">
-          <span className="stat-value">{level}</span>
-          <span className="stat-label">Level</span>
-          <div className="stat-bar-track">
-            <div className="stat-bar-fill" style={{ width: `${levelProgress}%` }} />
+        <div className="stone stone--level">
+          <span className="stone-value">{level}</span>
+          <span className="stone-label">Level</span>
+          <div className="stream-track">
+            <div className="stream-fill" style={{ width: `${levelProgress}%` }} />
           </div>
-          <span className="stat-sublabel">{xpToNextLevel} XP to next</span>
+          <span className="stone-sublabel">{xpToNextLevel} XP to next</span>
         </div>
 
-        <div className="stat-card stat-card--xp">
-          <span className="stat-value">{xp.toLocaleString()}</span>
-          <span className="stat-label">Total XP</span>
-          <span className="stat-icon">✦</span>
+        <div className="stone stone--xp">
+          <span className="stone-value">{xp.toLocaleString()}</span>
+          <span className="stone-label">Total XP</span>
+          <span className="stone-ripple" aria-hidden="true" />
         </div>
 
-        <div className="stat-card">
-          <span className="stat-value">{totalCompleted}<span className="stat-value-denom">/{totalLessons}</span></span>
-          <span className="stat-label">Lessons Done</span>
-          <div className="stat-bar-track">
-            <div className="stat-bar-fill stat-bar-fill--cyan" style={{ width: `${overallPct}%` }} />
+        <div className="stone stone--progress">
+          <span className="stone-value">{totalCompleted}<span className="stone-value-denom">/{totalLessons}</span></span>
+          <span className="stone-label">Lessons Done</span>
+          <div className="stream-track">
+            <div className="stream-fill stream-fill--amber" style={{ width: `${overallPct}%` }} />
           </div>
-          <span className="stat-sublabel">{overallPct}% complete</span>
+          <span className="stone-sublabel">{overallPct}% complete</span>
         </div>
 
         <div
-          className="stat-card stat-card--shop"
+          className="stone stone--shop"
           onClick={() => navigate('/shop')}
           role="button"
           tabIndex={0}
         >
-          <span className="stat-shop-icon">🛍️</span>
-          <span className="stat-label">Closet</span>
-          <span className="stat-sublabel">Lv.{level} unlocks</span>
-          <span className="stat-shop-arrow">→</span>
+          <span className="stone-shop-icon">🛍️</span>
+          <span className="stone-label">Closet</span>
+          <span className="stone-sublabel">Lv.{level} unlocks</span>
+          <span className="stone-shop-arrow">→</span>
         </div>
       </div>
 
-      {/* ── CTA ── */}
-      <div className="home-cta">
-        {lastVisited ? (
-          <button
-            className="cta-btn cta-btn--primary"
-            onClick={() => navigate(`/lesson/${lastVisited}`)}
-          >
-            <span className="cta-btn-icon">▶</span>
-            Continue — Lesson {lastVisited}
-          </button>
-        ) : (
-          <button
-            className="cta-btn cta-btn--primary"
-            onClick={() => navigate('/lesson/1.1')}
-          >
-            <span className="cta-btn-icon">▶</span>
-            Begin Training
-          </button>
-        )}
-        <p className="cta-sub">
-          {totalCompleted === 0
-            ? "No prior experience required. Just show up."
-            : `${totalLessons - totalCompleted} lessons remaining.`}
-        </p>
-      </div>
-
-      {/* ── COURSE SELECTOR ── */}
+      {/* ── GROVES: course selector ── */}
       <div className="home-courses">
         <h2 className="home-section-title">
           <span className="section-title-bar" />
-          Choose a Course
+          Wander into a grove
         </h2>
 
         {coursesError && <p className="course-grid-error">Couldn't load courses.</p>}
