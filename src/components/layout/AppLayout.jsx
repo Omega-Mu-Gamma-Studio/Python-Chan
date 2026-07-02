@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import Sidebar from '../ui/Sidebar';
 import BottomBar from '../ui/BottomBar';
-import PlusPlusChan from '../character/PlusPlusChan';
+import PythonChan from '../character/PythonChan';
 import AnimatedBg from './AnimatedBg';
 import { useProgress } from '../../hooks/useProgress';
 import { getShopItem } from '../../data/shopItems';
@@ -54,7 +54,7 @@ const AppLayout = () => {
       </main>
 
       <BottomBar />
-      <PlusPlusChan />
+      <PythonChan />
     </div>
   );
 };

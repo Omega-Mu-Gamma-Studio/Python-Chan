@@ -3,10 +3,10 @@ import { AnimatePresence, motion } from 'framer-motion';
 import useLessonStore from '../../store/lessonStore';
 import { useProgress } from '../../hooks/useProgress';
 import { getShopItem } from '../../data/shopItems';
-import './PlusPlusChan.css';
+import './PythonChan.css';
 
 /**
- * pluspluschan.jsx — Real sprite version
+ * PythonChan.jsx — Real sprite version
  *
  * Expression → Sprite mapping:
  *   idle        → teaching.png   (relaxed hands-out, default state)
@@ -44,9 +44,9 @@ const SPRITE_MAP = {
 // How long (ms) of no interaction before she falls asleep
 const IDLE_SLEEP_DELAY = 45000;
 
-const pluspluschan = () => {
+const PythonChan = () => {
   const {
-    pluspluschanExpression,
+    pythonchanExpression,
     currentDialogue,
     advanceDialogue,
     setExpression,
@@ -66,8 +66,8 @@ const pluspluschan = () => {
 
   // Sync expression from store, but intercept 'idle' to maybe show sleep
   useEffect(() => {
-    if (pluspluschanExpression !== 'idle') {
-      setDisplayExpression(pluspluschanExpression);
+    if (pythonchanExpression !== 'idle') {
+      setDisplayExpression(pythonchanExpression);
       // Reset sleep timer on any non-idle expression
       clearTimeout(sleepTimerRef.current);
       sleepTimerRef.current = setTimeout(() => {
@@ -83,7 +83,7 @@ const pluspluschan = () => {
       }, IDLE_SLEEP_DELAY);
     }
     return () => clearTimeout(sleepTimerRef.current);
-  }, [pluspluschanExpression]);
+  }, [pythonchanExpression]);
 
   // Wake up on any user interaction
   useEffect(() => {
@@ -142,7 +142,7 @@ const pluspluschan = () => {
               >
                 <img
                   src={sprite.src}
-                  alt="PlusPlus-Chan excited"
+                  alt="Python-chan excited"
                   className="domain-sprite-img"
                   style={sprite.blend ? { mixBlendMode: 'screen' } : {}}
                   draggable={false}
@@ -175,7 +175,7 @@ const pluspluschan = () => {
 
       {/* ── Normal Widget ── */}
       {!isDomain && (
-        <div className="pluspluschan-widget">
+        <div className="pythonchan-widget">
           {/* Dialogue bubble */}
           <AnimatePresence mode="wait">
             {currentDialogue && (
@@ -197,7 +197,7 @@ const pluspluschan = () => {
 
           {/* Sprite */}
           <motion.div
-            className="pluspluschan-sprite-wrap"
+            className="pythonchan-sprite-wrap"
             animate={shouldBob ? { y: [0, -5, 0] } : { y: 0 }}
             transition={shouldBob
               ? { duration: 2.4, repeat: Infinity, ease: 'easeInOut' }
@@ -209,8 +209,8 @@ const pluspluschan = () => {
               <motion.img
                 key={displayExpression}
                 src={sprite.src}
-                alt={`PlusPlus-Chan ${displayExpression}`}
-                className="pluspluschan-sprite-img"
+                alt={`Python-chan ${displayExpression}`}
+                className="pythonchan-sprite-img"
                 style={sprite.blend ? { mixBlendMode: 'screen' } : {}}
                 draggable={false}
                 initial={{ opacity: 0, scale: 0.92 }}
@@ -226,4 +226,4 @@ const pluspluschan = () => {
   );
 };
 
-export default pluspluschan;
+export default PythonChan;

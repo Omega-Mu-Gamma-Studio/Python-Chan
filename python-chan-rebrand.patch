@@ -1,0 +1,905 @@
+diff --git a/AUTHORS.md b/AUTHORS.md
+index 9c242cc..0f6da51 100644
+--- a/AUTHORS.md
++++ b/AUTHORS.md
+@@ -2,7 +2,7 @@
+ 
+ ## Omega Mu Gamma Studio
+ 
+-PlusPlus-Chan is a project by **Omega Mu Gamma Studio** — a student-built open-source studio from St. Xavier's Catholic College of Engineering, Tamil Nadu, India.
++Python-Chan is a project by **Omega Mu Gamma Studio** — a student-built open-source studio from St. Xavier's Catholic College of Engineering, Tamil Nadu, India.
+ 
+ ---
+ 
+@@ -10,7 +10,7 @@ PlusPlus-Chan is a project by **Omega Mu Gamma Studio** — a student-built open
+ 
+ ### Alberto Felix
+ **Founder & Lead Developer — Omega Mu Gamma Studio**
+-Project architect, lead developer, and character art curator for PlusPlus-Chan.
++Project architect, lead developer, and character art curator for Python-Chan.
+ Responsible for the full application architecture, lesson content, XP/progression system, shop system, and sprite integration.
+ 
+ - GitHub: [@albertofelix08](https://github.com/albertofelix08)
+@@ -20,7 +20,7 @@ Responsible for the full application architecture, lesson content, XP/progressio
+ ## Acknowledgements
+ 
+ **Character Art**
+-PlusPlus-Chan's sprites were generated using AI tools and hand-curated for expression consistency by Alberto Felix. All character designs are proprietary to Omega Mu Gamma Studio.
++Python-Chan's sprites were generated using AI tools and hand-curated for expression consistency by Alberto Felix. All character designs are proprietary to Omega Mu Gamma Studio.
+ 
+ ---
+ 
+diff --git a/CONTRIBUTING.md b/CONTRIBUTING.md
+index 3f63c78..8fafece 100644
+--- a/CONTRIBUTING.md
++++ b/CONTRIBUTING.md
+@@ -1,6 +1,6 @@
+-# Contributing to PlusPlus-Chan
++# Contributing to Python-Chan
+ 
+-Thanks for your interest! PlusPlus-Chan is an open-source project from Omega Mu Gamma Studio. Here's how to contribute effectively.
++Thanks for your interest! Python-Chan is an open-source project from Omega Mu Gamma Studio. Here's how to contribute effectively.
+ 
+ ---
+ 
+@@ -31,8 +31,8 @@ Open an issue before starting on anything in the "Discuss First" category. We'll
+ ## Getting Set Up
+ 
+ ```bash
+-git clone https://github.com/Omega-Mu-Gamma-Studio/PlusPlus-Chan.git
+-cd PlusPlus-Chan
++git clone https://github.com/Omega-Mu-Gamma-Studio/Python-Chan.git
++cd Python-Chan
+ npm install
+ npm run dev
+ ```
+@@ -59,16 +59,16 @@ Lesson files live at `src/data/lessons/unit{N}/{N}.{M}.json`. The required struc
+     {
+       "phase": 1,
+       "title": "See It Work",
+-      "dialogue": "Explanation from PlusPlus-Chan.",
+-      "code": "// Working C++ code",
++      "dialogue": "Explanation from Python-chan.",
++      "code": "# Working Python code",
+       "output": "Expected output"
+     },
+     {
+       "phase": 2,
+       "title": "See It Break",
+       "dialogue": "Here is the error, and here's why.",
+-      "code": "// Same code, deliberately broken",
+-      "error": "CompilationError: ..."
++      "code": "# Same code, deliberately broken",
++      "error": "Traceback (most recent call last): ..."
+     },
+     {
+       "phase": 3,
+diff --git a/package-lock.json b/package-lock.json
+index 4c4d522..dc6038a 100644
+--- a/package-lock.json
++++ b/package-lock.json
+@@ -1,11 +1,11 @@
+ {
+-  "name": "PlusPlus-Chan",
++  "name": "Python-Chan",
+   "version": "0.0.0",
+   "lockfileVersion": 3,
+   "requires": true,
+   "packages": {
+     "": {
+-      "name": "PlusPlus-Chan",
++      "name": "Python-Chan",
+       "version": "0.0.0",
+       "dependencies": {
+         "framer-motion": "^12.40.0",
+diff --git a/package.json b/package.json
+index 837e9a8..ad853b2 100644
+--- a/package.json
++++ b/package.json
+@@ -1,5 +1,5 @@
+ {
+-  "name": "PlusPlus-Chan",
++  "name": "Python-Chan",
+   "private": true,
+   "version": "0.0.0",
+   "type": "module",
+diff --git a/src/components/character/PlusPlusChan.css b/src/components/character/PythonChan.css
+similarity index 93%
+rename from src/components/character/PlusPlusChan.css
+rename to src/components/character/PythonChan.css
+index 1b028bd..6007da9 100644
+--- a/src/components/character/PlusPlusChan.css
++++ b/src/components/character/PythonChan.css
+@@ -1,13 +1,13 @@
+ /* ══════════════════════════════════════════
+-   PlusPlus-Chan CHARACTER — WIDGET & DOMAIN
++   Python-Chan CHARACTER — WIDGET & DOMAIN
+    ══════════════════════════════════════════ */
+ 
+ /* ── Widget container ── */
+-.pluspluschan-widget {
++.pythonchan-widget {
+   position: fixed;
+   bottom: calc(var(--bottombar-height) + 8px);
+   right: 8px;
+-  width: var(--pluspluschan-width);        /* 180px from globals */
++  width: var(--pythonchan-width);        /* 180px from globals */
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+@@ -17,9 +17,9 @@
+ }
+ 
+ /* ── Sprite wrapper (handles bob animation) ── */
+-.pluspluschan-sprite-wrap {
+-  width: var(--pluspluschan-width);
+-  height: var(--pluspluschan-height);
++.pythonchan-sprite-wrap {
++  width: var(--pythonchan-width);
++  height: var(--pythonchan-height);
+   display: flex;
+   align-items: flex-end;
+   justify-content: center;
+@@ -27,7 +27,7 @@
+ }
+ 
+ /* ── Actual sprite image ── */
+-.pluspluschan-sprite-img {
++.pythonchan-sprite-img {
+   width: 100%;
+   height: 100%;
+   object-fit: contain;
+diff --git a/src/components/character/PlusPlusChan.jsx b/src/components/character/PythonChan.jsx
+similarity index 93%
+rename from src/components/character/PlusPlusChan.jsx
+rename to src/components/character/PythonChan.jsx
+index 19a5c3f..d4e9fca 100644
+--- a/src/components/character/PlusPlusChan.jsx
++++ b/src/components/character/PythonChan.jsx
+@@ -3,10 +3,10 @@ import { AnimatePresence, motion } from 'framer-motion';
+ import useLessonStore from '../../store/lessonStore';
+ import { useProgress } from '../../hooks/useProgress';
+ import { getShopItem } from '../../data/shopItems';
+-import './PlusPlusChan.css';
++import './PythonChan.css';
+ 
+ /**
+- * pluspluschan.jsx — Real sprite version
++ * PythonChan.jsx — Real sprite version
+  *
+  * Expression → Sprite mapping:
+  *   idle        → teaching.png   (relaxed hands-out, default state)
+@@ -44,9 +44,9 @@ const SPRITE_MAP = {
+ // How long (ms) of no interaction before she falls asleep
+ const IDLE_SLEEP_DELAY = 45000;
+ 
+-const pluspluschan = () => {
++const PythonChan = () => {
+   const {
+-    pluspluschanExpression,
++    pythonchanExpression,
+     currentDialogue,
+     advanceDialogue,
+     setExpression,
+@@ -66,8 +66,8 @@ const pluspluschan = () => {
+ 
+   // Sync expression from store, but intercept 'idle' to maybe show sleep
+   useEffect(() => {
+-    if (pluspluschanExpression !== 'idle') {
+-      setDisplayExpression(pluspluschanExpression);
++    if (pythonchanExpression !== 'idle') {
++      setDisplayExpression(pythonchanExpression);
+       // Reset sleep timer on any non-idle expression
+       clearTimeout(sleepTimerRef.current);
+       sleepTimerRef.current = setTimeout(() => {
+@@ -83,7 +83,7 @@ const pluspluschan = () => {
+       }, IDLE_SLEEP_DELAY);
+     }
+     return () => clearTimeout(sleepTimerRef.current);
+-  }, [pluspluschanExpression]);
++  }, [pythonchanExpression]);
+ 
+   // Wake up on any user interaction
+   useEffect(() => {
+@@ -142,7 +142,7 @@ const pluspluschan = () => {
+               >
+                 <img
+                   src={sprite.src}
+-                  alt="PlusPlus-Chan excited"
++                  alt="Python-chan excited"
+                   className="domain-sprite-img"
+                   style={sprite.blend ? { mixBlendMode: 'screen' } : {}}
+                   draggable={false}
+@@ -175,7 +175,7 @@ const pluspluschan = () => {
+ 
+       {/* ── Normal Widget ── */}
+       {!isDomain && (
+-        <div className="pluspluschan-widget">
++        <div className="pythonchan-widget">
+           {/* Dialogue bubble */}
+           <AnimatePresence mode="wait">
+             {currentDialogue && (
+@@ -197,7 +197,7 @@ const pluspluschan = () => {
+ 
+           {/* Sprite */}
+           <motion.div
+-            className="pluspluschan-sprite-wrap"
++            className="pythonchan-sprite-wrap"
+             animate={shouldBob ? { y: [0, -5, 0] } : { y: 0 }}
+             transition={shouldBob
+               ? { duration: 2.4, repeat: Infinity, ease: 'easeInOut' }
+@@ -209,8 +209,8 @@ const pluspluschan = () => {
+               <motion.img
+                 key={displayExpression}
+                 src={sprite.src}
+-                alt={`PlusPlus-Chan ${displayExpression}`}
+-                className="pluspluschan-sprite-img"
++                alt={`Python-chan ${displayExpression}`}
++                className="pythonchan-sprite-img"
+                 style={sprite.blend ? { mixBlendMode: 'screen' } : {}}
+                 draggable={false}
+                 initial={{ opacity: 0, scale: 0.92 }}
+@@ -226,4 +226,4 @@ const pluspluschan = () => {
+   );
+ };
+ 
+-export default pluspluschan;
+\ No newline at end of file
++export default PythonChan;
+\ No newline at end of file
+diff --git a/src/components/layout/AppLayout.css b/src/components/layout/AppLayout.css
+index 905865c..0f2ad81 100644
+--- a/src/components/layout/AppLayout.css
++++ b/src/components/layout/AppLayout.css
+@@ -108,7 +108,7 @@
+   overflow-x: hidden;
+   position: relative;
+   z-index: 1;
+-  padding-right: calc(var(--pluspluschan-width) + 16px);
++  padding-right: calc(var(--pythonchan-width) + 16px);
+ }
+ 
+ /* ---- Sidebar backdrop ---- */
+diff --git a/src/components/layout/AppLayout.jsx b/src/components/layout/AppLayout.jsx
+index 899608e..d589885 100644
+--- a/src/components/layout/AppLayout.jsx
++++ b/src/components/layout/AppLayout.jsx
+@@ -2,7 +2,7 @@ import { useState } from 'react';
+ import { Outlet } from 'react-router-dom';
+ import Sidebar from '../ui/Sidebar';
+ import BottomBar from '../ui/BottomBar';
+-import PlusPlusChan from '../character/PlusPlusChan';
++import PythonChan from '../character/PythonChan';
+ import AnimatedBg from './AnimatedBg';
+ import { useProgress } from '../../hooks/useProgress';
+ import { getShopItem } from '../../data/shopItems';
+@@ -54,7 +54,7 @@ const AppLayout = () => {
+       </main>
+ 
+       <BottomBar />
+-      <PlusPlusChan />
++      <PythonChan />
+     </div>
+   );
+ };
+diff --git a/src/components/lesson/CodeBlock.jsx b/src/components/lesson/CodeBlock.jsx
+index b46c56e..f26a4d2 100644
+--- a/src/components/lesson/CodeBlock.jsx
++++ b/src/components/lesson/CodeBlock.jsx
+@@ -3,14 +3,14 @@ import './CodeBlock.css';
+ /**
+  * CodeBlock.jsx
+  * 
+- * Renders syntax-highlighted C++ code.
++ * Renders syntax-highlighted Python code.
+  * Uses a pure CSS approach with <span> tokens.
+  * 
+  * For Phase 1, we do simple keyword-based tokenization.
+- * The tokenizer lives in utils/CppHighlighter.js
++ * The tokenizer lives in utils/PythonHighlighter.js
+  */
+ 
+-import { tokenize } from '../../utils/CppHighlighter';
++import { tokenize } from '../../utils/PythonHighlighter';
+ 
+ const CodeBlock = ({ code = '', label = '', showLineNumbers = true }) => {
+   if (!code || code.trim() === '' || code.startsWith('// No code')) {
+diff --git a/src/components/lesson/LessonCanvas.jsx b/src/components/lesson/LessonCanvas.jsx
+index 92468a1..a3c094d 100644
+--- a/src/components/lesson/LessonCanvas.jsx
++++ b/src/components/lesson/LessonCanvas.jsx
+@@ -216,7 +216,7 @@ const LessonCanvas = ({ onComplete }) => {
+                 className="code-editor"
+                 value={userCode}
+                 onChange={e => setUserCode(e.target.value)}
+-                placeholder="// Write your C++ code here..."
++                placeholder="# Write your Python code here..."
+                 spellCheck={false}
+                 autoCorrect="off"
+                 autoCapitalize="off"
+diff --git a/src/pages/Shop.jsx b/src/pages/Shop.jsx
+index 961a449..c5755bd 100644
+--- a/src/pages/Shop.jsx
++++ b/src/pages/Shop.jsx
+@@ -17,7 +17,7 @@ import './Shop.css';
+  * Thumbnails:
+  *   - imageSrc set         → real art, render it directly.
+  *   - wallpaper, no art    → CSS gradient placeholder.
+- *   - outfit, no art       → PlusPlus-Chan's real "teaching" sprite with
++ *   - outfit, no art       → Python-chan's real "teaching" sprite with
+  *                            the outfit's CSS filter tint applied, so
+  *                            the preview is still recognisably her.
+  *   - outfit, comingSoon   → silhouetted teaching sprite (CSS filter: brightness(0))
+@@ -180,7 +180,7 @@ const DownloadWallpaperCard = ({ item, level }) => {
+     if (!item.imageSrc) return;
+     const a = document.createElement('a');
+     a.href = item.imageSrc;
+-    a.download = item.fileName || 'pluspluschan-wallpaper.png';
++    a.download = item.fileName || 'pythonchan-wallpaper.png';
+     a.click();
+     setDownloaded(true);
+     setTimeout(() => setDownloaded(false), 2500);
+@@ -377,7 +377,7 @@ const Shop = () => {
+       <section className="shop-section">
+         <h2 className="shop-section-title">🧡 Default Outfit</h2>
+         <p className="shop-section-note">
+-          PlusPlus-Chan's signature look — always available, can't be removed.
++          Python-chan's signature look — always available, can't be removed.
+         </p>
+         <div className="shop-grid">
+           <motion.div
+@@ -419,7 +419,7 @@ const Shop = () => {
+       <section className="shop-section">
+         <h2 className="shop-section-title">👘 Outfits</h2>
+         <p className="shop-section-note">
+-          Unlock outfits as you level up — equip them to change PlusPlus-Chan's look across all 75 lessons.
++          Unlock outfits as you level up — equip them to change Python-chan's look across all 75 lessons.
+         </p>
+         <div className="shop-grid">
+           {realOutfits.map((item) => (
+diff --git a/src/services/storageService.js b/src/services/storageService.js
+index d5e9854..b01f8ab 100644
+--- a/src/services/storageService.js
++++ b/src/services/storageService.js
+@@ -40,9 +40,9 @@ const localAdapter = {
+   },
+ 
+   clear: () => {
+-    // Only clear pluspluschan-prefixed keys
++    // Only clear pythonchan-prefixed keys
+     Object.keys(localStorage)
+-      .filter(k => k.startsWith('pluspluschan-'))
++      .filter(k => k.startsWith('pythonchan-'))
+       .forEach(k => localStorage.removeItem(k));
+   },
+ };
+@@ -75,12 +75,12 @@ const adapter = USE_DATABASE ? apiAdapter : localAdapter;
+ // ---- Public API ----
+ export const storageService = {
+   // User settings (theme, sound on/off etc.)
+-  getSettings: () => adapter.get('pluspluschan-settings') || {},
+-  saveSettings: (settings) => adapter.set('pluspluschan-settings', settings),
++  getSettings: () => adapter.get('pythonchan-settings') || {},
++  saveSettings: (settings) => adapter.set('pythonchan-settings', settings),
+ 
+   // Cached lesson data (optional optimization)
+-  getCachedLesson: (lessonId) => adapter.get(`pluspluschan-lesson-${lessonId}`),
+-  cacheLesson: (lessonId, data) => adapter.set(`pluspluschan-lesson-${lessonId}`, data),
++  getCachedLesson: (lessonId) => adapter.get(`pythonchan-lesson-${lessonId}`),
++  cacheLesson: (lessonId, data) => adapter.set(`pythonchan-lesson-${lessonId}`, data),
+ 
+   // Generic escape hatch
+   get: (key) => adapter.get(key),
+diff --git a/src/store/lessonStore.js b/src/store/lessonStore.js
+index f3a4ca6..a6b1034 100644
+--- a/src/store/lessonStore.js
++++ b/src/store/lessonStore.js
+@@ -17,7 +17,7 @@ const useLessonStore = create((set, get) => ({
+   currentPhase: 1,            // 1 | 2 | 3
+   userCode: '',               // student's current code input
+   lastValidationResult: null, // { passed: bool, message: string }
+-  pluspluschanExpression: 'idle', // 'idle' | 'happy' | 'sad' | 'thinking' | 'surprised' | 'domain'
++  pythonchanExpression: 'idle', // 'idle' | 'happy' | 'sad' | 'thinking' | 'surprised' | 'domain'
+   currentDialogue: null,      // string currently shown in dialogue bubble
+   dialogueQueue: [],          // queued dialogue lines
+ 
+@@ -28,7 +28,7 @@ const useLessonStore = create((set, get) => ({
+     currentPhase: 1,
+     userCode: '',
+     lastValidationResult: null,
+-    pluspluschanExpression: 'idle',
++    pythonchanExpression: 'idle',
+     currentDialogue: lessonData?.phase1?.openingDialogue || null,
+     dialogueQueue: [],
+   }),
+@@ -43,7 +43,7 @@ const useLessonStore = create((set, get) => ({
+ 
+   setValidationResult: (result) => set({ lastValidationResult: result }),
+ 
+-  setExpression: (expression) => set({ pluspluschanExpression: expression }),
++  setExpression: (expression) => set({ pythonchanExpression: expression }),
+ 
+   setDialogue: (text) => set({ currentDialogue: text }),
+ 
+@@ -76,7 +76,7 @@ const useLessonStore = create((set, get) => ({
+     currentPhase: 1,
+     userCode: '',
+     lastValidationResult: null,
+-    pluspluschanExpression: 'idle',
++    pythonchanExpression: 'idle',
+     currentDialogue: null,
+     dialogueQueue: [],
+   }),
+diff --git a/src/store/progressStore.js b/src/store/progressStore.js
+index 532dfd7..fa7cd5c 100644
+--- a/src/store/progressStore.js
++++ b/src/store/progressStore.js
+@@ -143,7 +143,7 @@ const useProgressStore = create(
+       }),
+     }),
+     {
+-      name: 'pluspluschan-progress', // localStorage key
++      name: 'pythonchan-progress', // localStorage key
+       // Phase 2: replace this with a custom storage adapter pointing to your API
+     }
+   )
+diff --git a/src/styles/globals.css b/src/styles/globals.css
+index 8917f6d..7400916 100644
+--- a/src/styles/globals.css
++++ b/src/styles/globals.css
+@@ -1,5 +1,5 @@
+ /* ============================================
+-   PlusPlus-Chan DESIGN SYSTEM — Dark Fantasy
++   Python-Chan DESIGN SYSTEM — Dark Fantasy
+    All CSS variables live here. Never hardcode
+    colors or spacing anywhere else.
+    ============================================ */
+@@ -15,7 +15,7 @@
+   --color-border:        rgba(124, 111, 255, 0.1);
+   --color-border-accent: rgba(124, 111, 255, 0.28);
+ 
+-  /* --- PlusPlus-Chan Brand Colors (electric blue/violet) --- */
++  /* --- Python-Chan Brand Colors (electric blue/violet) --- */
+   --color-primary:        #7c6fff;
+   --color-primary-light:  #a99fff;
+   --color-primary-dark:   #5a4fd6;
+@@ -50,8 +50,8 @@
+   /* --- Sizing --- */
+   --sidebar-width:        280px;
+   --bottombar-height:     64px;
+-  --pluspluschan-width:   240px;
+-  --pluspluschan-height:  320px;
++  --pythonchan-width:   240px;
++  --pythonchan-height:  320px;
+   --topbar-height:        56px;
+ 
+   /* --- Radii --- */
+diff --git a/src/utils/CppHighlighter.js b/src/utils/CppHighlighter.js
+deleted file mode 100644
+index cbbeaac..0000000
+--- a/src/utils/CppHighlighter.js
++++ /dev/null
+@@ -1,196 +0,0 @@
+-/**
+- * cppHighlighter.js
+- *
+- * Zero-dependency C++ tokenizer for PlusPlus-chan.
+- * Returns an HTML string with <span class="token-*"> wrappers.
+- * Used by CodeBlock.jsx.
+- *
+- * Token classes:
+- *   token-keyword     → blue   (if, for, class, return, etc.)
+- *   token-type        → teal   (int, float, std::string, auto, etc.)
+- *   token-string      → green  (quoted strings and char literals)
+- *   token-comment     → gray   (// and block comments )
+- *   token-number      → orange (integers, floats, hex, binary)
+- *   token-method      → pink   (identifier immediately followed by '(')
+- *   token-preprocessor→ purple (#include, #define, #pragma, etc.)
+- *   token-class-name  → yellow (PascalCase identifiers / after class/struct)
+- *   token-operator    → red    (::, ->, <<, >>, *, &, etc.)
+- */
+-
+-// --- C++ control flow & structure keywords ---
+-const KEYWORDS = new Set([
+-  'alignas','alignof','and','and_eq','asm','auto',
+-  'bitand','bitor','break','case','catch','class',
+-  'compl','concept','const','consteval','constexpr','constinit',
+-  'const_cast','continue','co_await','co_return','co_yield',
+-  'decltype','default','delete','do','dynamic_cast',
+-  'else','enum','explicit','export','extern',
+-  'false','final','for','friend',
+-  'goto','if','inline',
+-  'mutable','namespace','new','noexcept','not','not_eq','nullptr',
+-  'operator','or','or_eq',
+-  'override','private','protected','public',
+-  'register','reinterpret_cast','requires','return',
+-  'sizeof','static','static_assert','static_cast','struct','switch',
+-  'template','this','thread_local','throw','true','try','typedef','typeid','typename',
+-  'union','using','virtual','volatile',
+-  'while','xor','xor_eq',
+-]);
+-
+-// --- C++ built-in types and common std types ---
+-const TYPES = new Set([
+-  // Primitives
+-  'bool','char','char8_t','char16_t','char32_t','wchar_t',
+-  'int','long','short','signed','unsigned','void','float','double',
+-  // Sized integers
+-  'int8_t','int16_t','int32_t','int64_t',
+-  'uint8_t','uint16_t','uint32_t','uint64_t',
+-  'size_t','ptrdiff_t','nullptr_t',
+-  // Common std types (unqualified usage)
+-  'string','wstring','string_view',
+-  'vector','array','list','deque','forward_list',
+-  'map','unordered_map','multimap','unordered_multimap',
+-  'set','unordered_set','multiset','unordered_multiset',
+-  'stack','queue','priority_queue',
+-  'pair','tuple','optional','variant','any',
+-  'unique_ptr','shared_ptr','weak_ptr',
+-  'function','thread','mutex','lock_guard','unique_lock',
+-  'fstream','ifstream','ofstream','stringstream','iostream',
+-  'exception','runtime_error','logic_error','out_of_range',
+-  'initializer_list','iterator','reverse_iterator',
+-  'cin','cout','cerr','clog','endl',
+-]);
+-
+-// --- Operators worth highlighting ---
+-const OPERATOR_REGEX = /::|->|\.\*|->*|<<|>>|&&|\|\||[+\-*/%&|^~!<>=]=?|[?:]/;
+-
+-function escapeHtml(str) {
+-  return str
+-    .replace(/&/g, '&amp;')
+-    .replace(/</g, '&lt;')
+-    .replace(/>/g, '&gt;');
+-}
+-
+-export function tokenize(line) {
+-  let result = '';
+-  let i = 0;
+-  const len = line.length;
+-
+-  while (i < len) {
+-
+-    // ── Block comment opening /* (handle multiline state externally if needed) ──
+-    if (line[i] === '/' && line[i + 1] === '*') {
+-      let end = i + 2;
+-      while (end < len - 1 && !(line[end] === '*' && line[end + 1] === '/')) end++;
+-      end = Math.min(end + 2, len);
+-      result += `<span class="token-comment">${escapeHtml(line.slice(i, end))}</span>`;
+-      i = end;
+-      continue;
+-    }
+-
+-    // ── Single-line comment // ──
+-    if (line[i] === '/' && line[i + 1] === '/') {
+-      result += `<span class="token-comment">${escapeHtml(line.slice(i))}</span>`;
+-      break;
+-    }
+-
+-    // ── Preprocessor directive # ──
+-    if (line[i] === '#' && (i === 0 || /\s/.test(line[i - 1]))) {
+-      let end = i;
+-      while (end < len && line[end] !== ' ' && line[end] !== '\t') end++;
+-      // grab the rest of the directive (e.g. the filename in #include)
+-      result += `<span class="token-preprocessor">${escapeHtml(line.slice(i, end))}</span>`;
+-      i = end;
+-      continue;
+-    }
+-
+-    // ── String literal " ──
+-    if (line[i] === '"') {
+-      let end = i + 1;
+-      while (end < len) {
+-        if (line[end] === '\\') { end += 2; continue; }
+-        if (line[end] === '"') { end++; break; }
+-        end++;
+-      }
+-      result += `<span class="token-string">${escapeHtml(line.slice(i, end))}</span>`;
+-      i = end;
+-      continue;
+-    }
+-
+-    // ── Char literal ' ──
+-    if (line[i] === "'") {
+-      let end = i + 1;
+-      while (end < len) {
+-        if (line[end] === '\\') { end += 2; continue; }
+-        if (line[end] === "'") { end++; break; }
+-        end++;
+-      }
+-      result += `<span class="token-string">${escapeHtml(line.slice(i, end))}</span>`;
+-      i = end;
+-      continue;
+-    }
+-
+-    // ── Number literal (int, float, hex 0x, binary 0b, suffixes) ──
+-    if (/[0-9]/.test(line[i]) && (i === 0 || !/[\w]/.test(line[i - 1]))) {
+-      let end = i;
+-      // hex
+-      if (line[i] === '0' && (line[i + 1] === 'x' || line[i + 1] === 'X')) {
+-        end += 2;
+-        while (end < len && /[0-9a-fA-F_]/.test(line[end])) end++;
+-      // binary
+-      } else if (line[i] === '0' && (line[i + 1] === 'b' || line[i + 1] === 'B')) {
+-        end += 2;
+-        while (end < len && /[01_]/.test(line[end])) end++;
+-      } else {
+-        while (end < len && /[0-9._eE]/.test(line[end])) end++;
+-      }
+-      // consume suffixes: f, F, l, L, u, U, ul, ll, etc.
+-      while (end < len && /[fFlLuU]/.test(line[end])) end++;
+-      result += `<span class="token-number">${escapeHtml(line.slice(i, end))}</span>`;
+-      i = end;
+-      continue;
+-    }
+-
+-    // ── Word: keyword / type / method / identifier ──
+-    if (/[a-zA-Z_]/.test(line[i])) {
+-      let end = i;
+-      while (end < len && /[\w]/.test(line[end])) end++;
+-      const word = line.slice(i, end);
+-
+-      // Peek past whitespace to detect function/method call
+-      let j = end;
+-      while (j < len && line[j] === ' ') j++;
+-      const isCall = line[j] === '(';
+-
+-      let cls = '';
+-      if (KEYWORDS.has(word))        cls = 'token-keyword';
+-      else if (TYPES.has(word))      cls = 'token-type';
+-      else if (isCall)               cls = 'token-method';
+-      else if (/^[A-Z]/.test(word)) cls = 'token-class-name';
+-
+-      result += cls
+-        ? `<span class="${cls}">${escapeHtml(word)}</span>`
+-        : escapeHtml(word);
+-
+-      i = end;
+-      continue;
+-    }
+-
+-    // ── Multi-char operators: ::, ->, <<, >>, etc. ──
+-    {
+-      const slice = line.slice(i);
+-      const match = slice.match(/^(::|->|\.\*|->*|<<|>>|&&|\|\||[+\-*/%&|^~!<>=]=?)/);
+-      if (match) {
+-        result += `<span class="token-operator">${escapeHtml(match[0])}</span>`;
+-        i += match[0].length;
+-        continue;
+-      }
+-    }
+-
+-    // ── Everything else (punctuation, braces, semicolons) ──
+-    result += escapeHtml(line[i]);
+-    i++;
+-  }
+-
+-  return result;
+-}
+\ No newline at end of file
+diff --git a/src/utils/PythonHighlighter.js b/src/utils/PythonHighlighter.js
+new file mode 100644
+index 0000000..d726177
+--- /dev/null
++++ b/src/utils/PythonHighlighter.js
+@@ -0,0 +1,207 @@
++/**
++ * PythonHighlighter.js
++ *
++ * Zero-dependency Python tokenizer for Python-chan.
++ * Returns an HTML string with <span class="token-*"> wrappers.
++ * Used by CodeBlock.jsx.
++ *
++ * Token classes:
++ *   token-keyword     → blue   (if, for, def, return, etc.)
++ *   token-type        → teal   (int, str, len, True, None, etc.)
++ *   token-string      → green  (quoted strings, incl. f/r/b prefixes and triple-quotes)
++ *   token-comment     → gray   (# comments — Python has no block comments)
++ *   token-number      → orange (integers, floats, hex, octal, binary, complex)
++ *   token-method      → pink   (identifier immediately followed by '(')
++ *   token-preprocessor→ purple (import / from lines, and @decorators)
++ *   token-class-name  → yellow (PascalCase identifiers — Python's class-naming convention)
++ *   token-operator    → red    (:=, ->, **, //, ==, etc.)
++ *
++ * Note: like the original tokenizer this replaced, this works line-by-line
++ * with no cross-line state — multi-line triple-quoted docstrings are
++ * highlighted best-effort per line, same simplification the old block-comment
++ * handling had.
++ */
++
++// --- Python reserved keywords (all 32, excluding True/False/None — see TYPES) ---
++const KEYWORDS = new Set([
++  'and','as','assert','async','await',
++  'break',
++  'class','continue',
++  'def','del',
++  'elif','else','except',
++  'finally','for','from',
++  'global',
++  'if','import','in','is',
++  'lambda',
++  'nonlocal','not',
++  'or',
++  'pass',
++  'raise','return',
++  'try',
++  'while','with',
++  'yield',
++]);
++
++// --- Python built-in types and predeclared identifiers ---
++const TYPES = new Set([
++  // Primitives / container types
++  'bool','int','float','complex','str','bytes','bytearray','memoryview',
++  'list','tuple','dict','set','frozenset','object','type',
++  // Predeclared constants — highlighted like types for visual consistency
++  'True','False','None','NotImplemented','Ellipsis',
++  // Common builtin functions
++  'print','len','range','input','open','isinstance','issubclass','super',
++  'enumerate','zip','map','filter','sorted','reversed','sum','min','max',
++  'abs','round','all','any','iter','next','format','repr','hash','id',
++  'vars','dir','getattr','setattr','hasattr','callable',
++  'staticmethod','classmethod','property',
++  // Common built-in exceptions
++  'Exception','ValueError','TypeError','KeyError','IndexError',
++  'AttributeError','RuntimeError','StopIteration','ZeroDivisionError',
++  'FileNotFoundError','ImportError','NotImplementedError',
++]);
++
++// --- Operators worth highlighting (Python has no ::, ->  used for return-type hints, and, or, not are keywords not symbols) ---
++const OPERATOR_REGEX = /^(:=|->|\*\*=?|\/\/=?|<<=?|>>=?|==|!=|<=|>=|[+\-*/%&|^~<>=]=?)/;
++
++// --- Optional string prefixes: r, b, u, f (and combos like rb, fr) ---
++const STRING_PREFIX_REGEX = /^[rRbBuUfF]{1,2}(?=['"])/;
++
++function escapeHtml(str) {
++  return str
++    .replace(/&/g, '&amp;')
++    .replace(/</g, '&lt;')
++    .replace(/>/g, '&gt;');
++}
++
++export function tokenize(line) {
++  let result = '';
++  let i = 0;
++  const len = line.length;
++
++  while (i < len) {
++
++    // ── Single-line comment # (Python has no block comments) ──
++    if (line[i] === '#') {
++      result += `<span class="token-comment">${escapeHtml(line.slice(i))}</span>`;
++      break;
++    }
++
++    // ── @decorator (Python's closest analog to a preprocessor directive) ──
++    if (line[i] === '@' && (i === 0 || /\s/.test(line[i - 1]))) {
++      let end = i + 1;
++      while (end < len && /[\w.]/.test(line[end])) end++;
++      result += `<span class="token-preprocessor">${escapeHtml(line.slice(i, end))}</span>`;
++      i = end;
++      continue;
++    }
++
++    // ── import / from lines (Python's closest analog to a preprocessor directive) ──
++    if ((i === 0 || /\s/.test(line[i - 1])) &&
++        (line.slice(i, i + 5) === 'from ' || line.slice(i, i + 7) === 'import ')) {
++      const word = line.slice(i, i + 5) === 'from ' ? 'from' : 'import';
++      result += `<span class="token-preprocessor">${escapeHtml(word)}</span>`;
++      i += word.length;
++      continue;
++    }
++
++    // ── String literal (optional r/b/u/f prefix, single or triple-quoted) ──
++    {
++      const prefixMatch = STRING_PREFIX_REGEX.exec(line.slice(i));
++      const prefixLen = prefixMatch ? prefixMatch[0].length : 0;
++      const quoteChar = line[i + prefixLen];
++
++      if (quoteChar === '"' || quoteChar === "'") {
++        const isTriple =
++          line[i + prefixLen + 1] === quoteChar &&
++          line[i + prefixLen + 2] === quoteChar;
++        let end;
++
++        if (isTriple) {
++          const triple = quoteChar.repeat(3);
++          const closeIdx = line.indexOf(triple, i + prefixLen + 3);
++          end = closeIdx === -1 ? len : closeIdx + 3;
++        } else {
++          end = i + prefixLen + 1;
++          while (end < len) {
++            if (line[end] === '\\') { end += 2; continue; }
++            if (line[end] === quoteChar) { end++; break; }
++            end++;
++          }
++        }
++
++        result += `<span class="token-string">${escapeHtml(line.slice(i, end))}</span>`;
++        i = end;
++        continue;
++      }
++    }
++
++    // ── Number literal (int, float, hex 0x, octal 0o, binary 0b, complex suffix j) ──
++    if (/[0-9]/.test(line[i]) && (i === 0 || !/[\w]/.test(line[i - 1]))) {
++      let end = i;
++      // hex
++      if (line[i] === '0' && (line[i + 1] === 'x' || line[i + 1] === 'X')) {
++        end += 2;
++        while (end < len && /[0-9a-fA-F_]/.test(line[end])) end++;
++      // octal
++      } else if (line[i] === '0' && (line[i + 1] === 'o' || line[i + 1] === 'O')) {
++        end += 2;
++        while (end < len && /[0-7_]/.test(line[end])) end++;
++      // binary
++      } else if (line[i] === '0' && (line[i + 1] === 'b' || line[i + 1] === 'B')) {
++        end += 2;
++        while (end < len && /[01_]/.test(line[end])) end++;
++      } else {
++        while (end < len && /[0-9._eE]/.test(line[end])) end++;
++      }
++      // consume complex-number suffix: j
++      if (line[end] === 'j' || line[end] === 'J') end++;
++      result += `<span class="token-number">${escapeHtml(line.slice(i, end))}</span>`;
++      i = end;
++      continue;
++    }
++
++    // ── Word: keyword / type / method / identifier ──
++    if (/[a-zA-Z_]/.test(line[i])) {
++      let end = i;
++      while (end < len && /[\w]/.test(line[end])) end++;
++      const word = line.slice(i, end);
++
++      // Peek past whitespace to detect function/method call
++      let j = end;
++      while (j < len && line[j] === ' ') j++;
++      const isCall = line[j] === '(';
++
++      let cls = '';
++      if (KEYWORDS.has(word))       cls = 'token-keyword';
++      else if (TYPES.has(word))     cls = 'token-type';
++      else if (isCall)              cls = 'token-method';
++      // PascalCase identifiers — Python's class-naming convention (PEP 8)
++      else if (/^[A-Z]/.test(word)) cls = 'token-class-name';
++
++      result += cls
++        ? `<span class="${cls}">${escapeHtml(word)}</span>`
++        : escapeHtml(word);
++
++      i = end;
++      continue;
++    }
++
++    // ── Multi-char operators: :=, ->, **, //, ==, etc. ──
++    {
++      const slice = line.slice(i);
++      const match = slice.match(OPERATOR_REGEX);
++      if (match) {
++        result += `<span class="token-operator">${escapeHtml(match[0])}</span>`;
++        i += match[0].length;
++        continue;
++      }
++    }
++
++    // ── Everything else (punctuation, colons, brackets) ──
++    result += escapeHtml(line[i]);
++    i++;
++  }
++
++  return result;
++}
+diff --git a/src/utils/patternMatcher.js b/src/utils/patternMatcher.js
+index cc122a4..79c02da 100644
+--- a/src/utils/patternMatcher.js
++++ b/src/utils/patternMatcher.js
+@@ -2,7 +2,7 @@
+  * patternMatcher.js
+  * 
+  * Validates student code against lesson patterns.
+- * No C++ execution — this is intentional for Phase 1.
++ * No Python execution — this is intentional for Phase 1.
+  * 
+  * Pattern shape (from lesson JSON):
+  * {

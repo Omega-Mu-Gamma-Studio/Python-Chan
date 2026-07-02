@@ -1,6 +1,6 @@
-# Contributing to PlusPlus-Chan
+# Contributing to Python-Chan
 
-Thanks for your interest! PlusPlus-Chan is an open-source project from Omega Mu Gamma Studio. Here's how to contribute effectively.
+Thanks for your interest! Python-Chan is an open-source project from Omega Mu Gamma Studio. Here's how to contribute effectively.
 
 ---
 
@@ -31,8 +31,8 @@ Open an issue before starting on anything in the "Discuss First" category. We'll
 ## Getting Set Up
 
 ```bash
-git clone https://github.com/Omega-Mu-Gamma-Studio/PlusPlus-Chan.git
-cd PlusPlus-Chan
+git clone https://github.com/Omega-Mu-Gamma-Studio/Python-Chan.git
+cd Python-Chan
 npm install
 npm run dev
 ```
@@ -59,16 +59,16 @@ Lesson files live at `src/data/lessons/unit{N}/{N}.{M}.json`. The required struc
     {
       "phase": 1,
       "title": "See It Work",
-      "dialogue": "Explanation from PlusPlus-Chan.",
-      "code": "// Working C++ code",
+      "dialogue": "Explanation from Python-chan.",
+      "code": "# Working Python code",
       "output": "Expected output"
     },
     {
       "phase": 2,
       "title": "See It Break",
       "dialogue": "Here is the error, and here's why.",
-      "code": "// Same code, deliberately broken",
-      "error": "CompilationError: ..."
+      "code": "# Same code, deliberately broken",
+      "error": "Traceback (most recent call last): ..."
     },
     {
       "phase": 3,
