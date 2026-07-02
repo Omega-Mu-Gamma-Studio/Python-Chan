@@ -43,9 +43,8 @@ const AppLayout = () => {
           <span /><span /><span />
         </button>
         <span className="topbar-title">
-          <span className="topbar-title-main">C</span>
-          <span className="topbar-title-plus">++</span>
-          <span className="topbar-title-accent">chan</span>
+          <span className="topbar-title-main">Python</span>
+          <span className="topbar-title-accent">Chan</span>
         </span>
         <div className="topbar-spacer" />
       </header>
